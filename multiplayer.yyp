@@ -24,10 +24,8 @@
   "name":"multiplayer",
   "resources":[
     {"id":{"name":"obj_player1","path":"objects/obj_player1/obj_player1.yy",},},
-    {"id":{"name":"obj_player2","path":"objects/obj_player2/obj_player2.yy",},},
     {"id":{"name":"rm_start","path":"rooms/rm_start/rm_start.yy",},},
     {"id":{"name":"spr_player1","path":"sprites/spr_player1/spr_player1.yy",},},
-    {"id":{"name":"spr_player2","path":"sprites/spr_player2/spr_player2.yy",},},
   ],
   "resourceType":"GMProject",
   "resourceVersion":"2.0",
