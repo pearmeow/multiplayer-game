@@ -1,5 +1,7 @@
 # multiplayer game
 
+2 player coop multiplayer game
+
 ## Current ideas
 
 2d top down game where one player can move obstacles and one  
