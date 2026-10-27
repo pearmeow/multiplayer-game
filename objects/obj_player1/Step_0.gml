@@ -4,6 +4,7 @@ var cone_movement = keyboard_check(vk_right) - keyboard_check(vk_left)
 
 cone_start_degree += cone_movement * 1
 cone_end_degree += cone_movement * 1
+show_debug_message(cone_start_degree)
 
 x += horizontal_movement * spd
 y += vertical_movement * spd
