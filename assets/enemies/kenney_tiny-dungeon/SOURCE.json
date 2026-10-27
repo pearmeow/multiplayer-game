@@ -1,0 +1,715 @@
+{
+  "official_source": "https://kenney.nl/assets/tiny-dungeon",
+  "download_mirror": "https://github.com/Tiddybub/2d-assets",
+  "mirror_revision": "e0cbe0d995554a490d4c182fe9beb8769ffbb606",
+  "reason": "Official ZIP returned HTTP 403; CC0 license retained",
+  "license": "CC0",
+  "imported": false,
+  "files": [
+    {
+      "path": "License.txt",
+      "git_blob": "1b269f6a34a6dd92aae10fdf7b2f795c26e6b181",
+      "sha256": "9f574a2f1f636a3db8a0665ba90212f34e2b5e61ecb533d77c05237766374111"
+    },
+    {
+      "path": "Preview.png",
+      "git_blob": "01c23ad3ec7f764f6f2cbfbda9d56f22c0050de2",
+      "sha256": "b6023d3a9504f84bbd128d21680d0899c7a150bce3443d0861590f3f3de1c24b"
+    },
+    {
+      "path": "SOURCE.md",
+      "git_blob": "7c296ed400423806ff8546feba7fe8f920d7f449",
+      "sha256": "59991c34feada4d4f3fd02022e22c2deb058cf6071c9780e8849cb929bc3799f"
+    },
+    {
+      "path": "Sample.png",
+      "git_blob": "505a6d64c04378ad0b08bb7be182baf222d97c30",
+      "sha256": "2b922fefcaa5728986e0b5c1fb901a51c3e571c39e6bed1a22fa1ffdf504370f"
+    },
+    {
+      "path": "Tiled/sampleMap.tmx",
+      "git_blob": "9227705a88774231326f996b4f508b65ae7fd5e6",
+      "sha256": "fc545787837e2655c9d2078cc1b167df0d9ea2755f6ec3912c7987e8501339e3"
+    },
+    {
+      "path": "Tiled/sampleSheet.tsx",
+      "git_blob": "46a615e49ce506f3b697f238659848454c4dec6c",
+      "sha256": "02f1b90cfdb37bcccddc83d074954272aaffd297ed4fabce7bb670f2f3f4be71"
+    },
+    {
+      "path": "Tilemap/tilemap.png",
+      "git_blob": "a893ccb09a0be133b3d4aedafcc660e912048b56",
+      "sha256": "5653222ac495d89e942f9b636300759b3f38e85b26e9b888676f2e9ab834095a"
+    },
+    {
+      "path": "Tilemap/tilemap_packed.png",
+      "git_blob": "f6e8b937c99fe45b1b75490cc050ee5929954259",
+      "sha256": "d24e60a41e4ac7a745c0304dfde121143688557f40215f23221c29cfe683825f"
+    },
+    {
+      "path": "Tiles/tile_0000.png",
+      "git_blob": "6bd64a7974df44aa1d2a1955ee337b90cb9096f9",
+      "sha256": "ebf91e6638d484dc6bdaec5f30e91589252125146b70c2911f11fac7ebe17090"
+    },
+    {
+      "path": "Tiles/tile_0001.png",
+      "git_blob": "cdaffc0959303c023be8d2a67b755c18aa629217",
+      "sha256": "cd86d8a06512f6e1bb97110fdefc9dbbd64ea4d50e0c04158860d8420145c346"
+    },
+    {
+      "path": "Tiles/tile_0002.png",
+      "git_blob": "0b4f047bf9043dcbf7a9bf106939a29313749f13",
+      "sha256": "1bee42a448291ff9259c6afee8151478238d1c2f49e74f3323577e0110b8fc67"
+    },
+    {
+      "path": "Tiles/tile_0003.png",
+      "git_blob": "c03b478f1f8fdac9f72c0a6ec5133ec0dc91e879",
+      "sha256": "2c0b45910d964d71112b81f7be17cc9a24169d4942c64ce8b59ea0f3f7490ca8"
+    },
+    {
+      "path": "Tiles/tile_0004.png",
+      "git_blob": "e55ab28bf1401a2dc0a9693097a0db5d02fd9d16",
+      "sha256": "f3ea334d2be859c68ad1d1ff9c3314905ac12030cd65ce093e4ee8ec3c6b202b"
+    },
+    {
+      "path": "Tiles/tile_0005.png",
+      "git_blob": "e4d148bfa5ef669aa76d1ce89d56e321ccea6191",
+      "sha256": "7ed587c0ae06d8c8dfb683ff25b7119c6600f21364a253301a3faf230a1eb0e6"
+    },
+    {
+      "path": "Tiles/tile_0006.png",
+      "git_blob": "fe7f7b35497eef62747d66f6c682e68eba8af664",
+      "sha256": "34fefe03ad9f435a777c81e56e288ead41dc3a0654088d85b51cb36e5579a0d3"
+    },
+    {
+      "path": "Tiles/tile_0007.png",
+      "git_blob": "029bf8c9f790f40a4b60e15b415407187aff4862",
+      "sha256": "883ba3a3fb022b373db047b9dd19ae67f2611e584190a82d45d2b8d3f21dfad2"
+    },
+    {
+      "path": "Tiles/tile_0008.png",
+      "git_blob": "0ee6237e00116278e514f61c2da8ce03a1dc9aa3",
+      "sha256": "23721149763a8fd6071857c19e01d0967c769e80ae89bbe968bc88a4816fc4f5"
+    },
+    {
+      "path": "Tiles/tile_0009.png",
+      "git_blob": "3a47228d1c71d850a4d08d43f66fd09e5673eca8",
+      "sha256": "c8b7b183b0750dca16581173d7de4862ee01e937b1c414de526da5b75574adff"
+    },
+    {
+      "path": "Tiles/tile_0010.png",
+      "git_blob": "3e7352b04be6063838772621729d87d9cb606d9c",
+      "sha256": "ba622a41d8fac8885d65c9cac01f35f3c6a3e7782c7c5eb375fafa78bafa9868"
+    },
+    {
+      "path": "Tiles/tile_0011.png",
+      "git_blob": "2ceaed8d7e58e10cf5bba5588df9a6f8b3979117",
+      "sha256": "22b9237af31b12ff6cfaa1ed3b520383e93380c4e1582b7feafd76a9e9344426"
+    },
+    {
+      "path": "Tiles/tile_0012.png",
+      "git_blob": "4320cb2fdffac29308f9b01ac47271d471ff28d8",
+      "sha256": "dddf38ef416861eb38c499eaf8fdeb62051b577d5e33699fd42b46a198bec5f9"
+    },
+    {
+      "path": "Tiles/tile_0013.png",
+      "git_blob": "3a5b250cb584680d43ff295cdbdac9982bb807f8",
+      "sha256": "4eb6fedc53053420bbe92517109c941bc53cd114094ba9f9b8bc20802548d254"
+    },
+    {
+      "path": "Tiles/tile_0014.png",
+      "git_blob": "bec979d97eeeeb13fdf35a178da78f81a4875151",
+      "sha256": "0d4f0c82ffb4c4158342fc0d7fc95cef22ff509003d711e84ec3b5ba3cee21f6"
+    },
+    {
+      "path": "Tiles/tile_0015.png",
+      "git_blob": "32e03a9dbdd0cdd3e02222d15a4ce03a51a6b0d8",
+      "sha256": "fdee6e6ccd725ae07348d4da5740b5837bf516a4e519f55cc6b5c566b5f5aa4d"
+    },
+    {
+      "path": "Tiles/tile_0016.png",
+      "git_blob": "12634df1965cedd4504cd6e640bcaaf18eb63b19",
+      "sha256": "62e5de639001c66c44f2aa84e3fd1eee56d99eb234c82f2d5b2f471663592bad"
+    },
+    {
+      "path": "Tiles/tile_0017.png",
+      "git_blob": "148bc2773c50d717e4421e478e26bbb791d31ae9",
+      "sha256": "714b92d97d613bbcf4d15c553a0c85fa29a2807a2601ac1395b8f45da6575deb"
+    },
+    {
+      "path": "Tiles/tile_0018.png",
+      "git_blob": "10d95da848d2cf397ef23e0c9e2528bde9a2ce37",
+      "sha256": "b331519c825010a8d061b740a1127e3d711c2b447d6db1fad27f371acd1a1870"
+    },
+    {
+      "path": "Tiles/tile_0019.png",
+      "git_blob": "8c1285f1d538d1db3017985c92f7d2c046928515",
+      "sha256": "77031b04b17129b8142c6ca80dc10d265fb94c39a443f17ecfb2e48d9a7c2a16"
+    },
+    {
+      "path": "Tiles/tile_0020.png",
+      "git_blob": "6dfd70ed460f1691e397f8c4694c39358723e2a2",
+      "sha256": "8ed3c08b77ef4e6ead26858f95efcaa302f5f014aaf3b26b49dd2bea991eecce"
+    },
+    {
+      "path": "Tiles/tile_0021.png",
+      "git_blob": "e7d18500a0a10bc76d6820d683db951b5c0b92c4",
+      "sha256": "9def7eb7a3b00190148a55367c08ecfd4a03b66096e585b0c07b6f21277bb4fd"
+    },
+    {
+      "path": "Tiles/tile_0022.png",
+      "git_blob": "4e9bc12913a6d89acf04d8ab8e303d04191690f4",
+      "sha256": "24298faf91a61a57d158435e9fa75ca30ab88bbfddae797e2a268b1064787f45"
+    },
+    {
+      "path": "Tiles/tile_0023.png",
+      "git_blob": "07921a67dfb5cfc3f999c9aace723f5ba49b3418",
+      "sha256": "ff3ac631206dd4882134b8719368519644fd26703ea289a7237924e9d622f208"
+    },
+    {
+      "path": "Tiles/tile_0024.png",
+      "git_blob": "ec6d9038d9427e5029989adffcf9244719cf3fc6",
+      "sha256": "3f4d77da84e948836c16d2c81f2812b7805e76147921f0ea9f047705f709a62a"
+    },
+    {
+      "path": "Tiles/tile_0025.png",
+      "git_blob": "da5f19ab6d811bd60c790129e3d128063e2eeb00",
+      "sha256": "5782701dc1d3d19c26f26cf1b147a044ecbc8535766ffa33ed93eee0e8bec2a1"
+    },
+    {
+      "path": "Tiles/tile_0026.png",
+      "git_blob": "e93246af0fc6ca7318f54e04e7840e7cffe44203",
+      "sha256": "a18f13529118365c4054f2b6dc7379190c8d99fc70f2f1c374f6e95f532630ce"
+    },
+    {
+      "path": "Tiles/tile_0027.png",
+      "git_blob": "1ce15f4bd0113ab76dc4c2edc9e981b26e1e2f5d",
+      "sha256": "c9ddc3f83a9ecb1d340d2925df3f99f34542d8be1514c53e82c71500c5537ced"
+    },
+    {
+      "path": "Tiles/tile_0028.png",
+      "git_blob": "bf1c3a2b3d3b09f1ce051a831c73c232ac335ac2",
+      "sha256": "7a67b0ec169f8a967906b2272927f4d4dd34ee60e0e066ad1544deaa9cf86d08"
+    },
+    {
+      "path": "Tiles/tile_0029.png",
+      "git_blob": "7b0e33d5f272637f8defacd8559a29e3f7d741c0",
+      "sha256": "9a448977535c4af375b3db4800112ecde93e0d794b393e0cacf1dd82b4d9f971"
+    },
+    {
+      "path": "Tiles/tile_0030.png",
+      "git_blob": "1b597ca6e0d98e720453e3dc7b8f06fa8978a132",
+      "sha256": "50ba69228b0185e84fe73b4beec8837e275c7be1b8bde1981484feeecdf02199"
+    },
+    {
+      "path": "Tiles/tile_0031.png",
+      "git_blob": "acd9203fac949b7017d811b70416022f2ec72f80",
+      "sha256": "3cde5a77140e4d8ed160e37cd14789aa9901c4808e2a6b0c109fd1502ca8deb2"
+    },
+    {
+      "path": "Tiles/tile_0032.png",
+      "git_blob": "77ca1a731ca8db2b711eff4b399d6c6955803c58",
+      "sha256": "82ee687a8c6b7929ad25f4f9497a2e96b54b00c68cf174c405b77b74b456df33"
+    },
+    {
+      "path": "Tiles/tile_0033.png",
+      "git_blob": "2cf8cb1d880af43a8f522c772de4ea68267e3731",
+      "sha256": "928dcac1d9d2df6fa2ac8916edc35f409605e70e387321a7cbd5ba26ffdc3b5e"
+    },
+    {
+      "path": "Tiles/tile_0034.png",
+      "git_blob": "98076aaa3782544b292db531f0346e2470a6b968",
+      "sha256": "7e06aac6ac40317d4699b9bad6c5fdcaea4df1aa350878a6c825089db6133f82"
+    },
+    {
+      "path": "Tiles/tile_0035.png",
+      "git_blob": "1e414988e7f5a666ff07bc98a0972295caf7ca9d",
+      "sha256": "9fa58f97f4b8cd794179d8d2110c6180b69aa2030f449d734d69466b58eed2fb"
+    },
+    {
+      "path": "Tiles/tile_0036.png",
+      "git_blob": "23c3a83aac1921b159952c85fb46ac457971b467",
+      "sha256": "d0be450733fad7bb93599113861381e3caedb8e0fbf30bd4e120024547689582"
+    },
+    {
+      "path": "Tiles/tile_0037.png",
+      "git_blob": "1d2d96230f9939a5a4e803c3cb7d8fe54ccbcaab",
+      "sha256": "dff77f0cd9bf86fe3f6ee4ebcb4074c2a30ceba18e5966022b0fc74a339e036d"
+    },
+    {
+      "path": "Tiles/tile_0038.png",
+      "git_blob": "96972bdad95702b438c42c322639c431a4456add",
+      "sha256": "0b8d843daedf04706f865ad877e71d2d9ad1ce1dee01073071d286fd5aafdbdb"
+    },
+    {
+      "path": "Tiles/tile_0039.png",
+      "git_blob": "75667caf8396663091a458c6f5ef623e593a13df",
+      "sha256": "7dc16b81fa82f7fdd377d68bac398a8358438599d1036c509de913abcde64683"
+    },
+    {
+      "path": "Tiles/tile_0040.png",
+      "git_blob": "1191cd3008c85653c9121cc13d765568e34d2858",
+      "sha256": "7541f8325e46dc4d5f0707819c0b6cbf48dab832727c2bca54a4380991b6cf10"
+    },
+    {
+      "path": "Tiles/tile_0041.png",
+      "git_blob": "dbcdc56a8956ab62f93aef417d833fc40c16a5be",
+      "sha256": "0fbb63362251a29d741280e59f5d9cf29c80c0fcff0532cc9c8530936d873994"
+    },
+    {
+      "path": "Tiles/tile_0042.png",
+      "git_blob": "4ac7fa5d4674bdd5aea2db89bf3c77d86a9c9230",
+      "sha256": "8dc63d1b4fc05e9ef0dc5ad22788e49e4b37477d4e85de2c2e420d22fe4cd958"
+    },
+    {
+      "path": "Tiles/tile_0043.png",
+      "git_blob": "f12545f17ecb739713db1535ab3f949a21261734",
+      "sha256": "77511b6490f69a9f4991ac807a7a53bb946077883d629ae21f935989709067ea"
+    },
+    {
+      "path": "Tiles/tile_0044.png",
+      "git_blob": "3d05e584b9d54deb1459c79d6144934b10e67352",
+      "sha256": "e4deaf3ebddc654a8e3d075e41cc78a29fd5e5635b3d6646e6b36da10d63ea20"
+    },
+    {
+      "path": "Tiles/tile_0045.png",
+      "git_blob": "22e1625479e18413bb9b235627a6c52533ce9819",
+      "sha256": "4f5d0fd34c70872b66f2418b6cae9c9c9e3aca133bdec0b0dbf860ce82f9f225"
+    },
+    {
+      "path": "Tiles/tile_0046.png",
+      "git_blob": "1dc121302401c71aabbf1acca65c59c283232dda",
+      "sha256": "acc19c7eee1b0c89dc9bacda260c7678490967389e41cdd8186c2fe82cee78c5"
+    },
+    {
+      "path": "Tiles/tile_0047.png",
+      "git_blob": "e9a7f9fe94f1d72363cc58746999ba5c13e6e0ff",
+      "sha256": "ec5c217c482cb5921717c5577049846283f689c993b65ca57a9dff5d245ff635"
+    },
+    {
+      "path": "Tiles/tile_0048.png",
+      "git_blob": "6e59a442db93c1e92ae71baa4700f72b4461d7b4",
+      "sha256": "63519065228f5f8af6200d979fa54cd7f00650034ceea10a1609203a34b3ff9b"
+    },
+    {
+      "path": "Tiles/tile_0049.png",
+      "git_blob": "c7d072220ac4ba39f4f4e917a362ac94e8c5cc5f",
+      "sha256": "c4257bfa85878e4d293237cd9a50e72b3e883f721e4fe1c48132514bb93668f2"
+    },
+    {
+      "path": "Tiles/tile_0050.png",
+      "git_blob": "b4464f3fa99a4f9adc1822429785b0ee76729eb4",
+      "sha256": "af45eaf5658a481cbf5645ed006ea59072e8bcdbe481b15a55204179d291f5c7"
+    },
+    {
+      "path": "Tiles/tile_0051.png",
+      "git_blob": "7bc6fe4fca04ebb91a4b912230bcd69eb0e0af1b",
+      "sha256": "2c10663f36fbfef2638b018d8ed3c11f1e2e3c62fd63300b13e7aeb39273eb97"
+    },
+    {
+      "path": "Tiles/tile_0052.png",
+      "git_blob": "8a17adb905c541d752fa921bd058e355ec58ea85",
+      "sha256": "d380d7941b23178f8a90ff41f977bb459890f3a5f4b29f9c159859221d8f9704"
+    },
+    {
+      "path": "Tiles/tile_0053.png",
+      "git_blob": "a8ac994083d834b14e71d4ac4bb6123b9ebbba2c",
+      "sha256": "e3d67fdc99ebea256141127ccfeb4103821db7dca11d099639de32e60b05b47e"
+    },
+    {
+      "path": "Tiles/tile_0054.png",
+      "git_blob": "39b9cf6dfcec5862f0f008cccd9c8bb3e6cdb710",
+      "sha256": "1a9ae3a209decf1f4b8df62d354edd7dfa1f7d4101ab14819f181a8e51b5ce20"
+    },
+    {
+      "path": "Tiles/tile_0055.png",
+      "git_blob": "655077e7a7fdcc599ca98a3d8025e1fb33c3b58b",
+      "sha256": "5a17519655807550ae9a90ae9618772d6bb67e856b9920ec090ccddcc3057e2c"
+    },
+    {
+      "path": "Tiles/tile_0056.png",
+      "git_blob": "0dfcb2152ac28205f05120d46fbf6c0071b3f3ec",
+      "sha256": "3dce1fb1d0ab8ecc5b168449b9cac11709a221f53d7dc49d31c4c7c96bd5ea2f"
+    },
+    {
+      "path": "Tiles/tile_0057.png",
+      "git_blob": "f9ad9b7a8b1f4bf86c93f137f274cfc053b2ef6e",
+      "sha256": "2d553978f4663e6fde5d5eb8dce1db9fd9aff9823c04c4ac9b5434625910c6c2"
+    },
+    {
+      "path": "Tiles/tile_0058.png",
+      "git_blob": "e498583cd48154a58de49a4278c855ccd3d3156a",
+      "sha256": "d010f83dc263ca1b3b4788ef380c7ef5695a21493c7db10e423c9891e2eac730"
+    },
+    {
+      "path": "Tiles/tile_0059.png",
+      "git_blob": "f47e75b31c0759516f88073b203411516bc8bbb1",
+      "sha256": "78d2be3cc11b4dfcd3bdc6f90a34ff564f8d8216aa3ad7abf11bdd349bba02ee"
+    },
+    {
+      "path": "Tiles/tile_0060.png",
+      "git_blob": "ad4779c964526a6ca6d98880202f4983a3ba376c",
+      "sha256": "c0c9ba7c823d46b2baf1fd4134c36f8e966b840b5f79a95a7585a0b3252a45a8"
+    },
+    {
+      "path": "Tiles/tile_0061.png",
+      "git_blob": "308dc05c4581cdad090fb49f49c2957297e5facb",
+      "sha256": "c090e00663c0b81ad5769020fc450f1f0d32fb9420072f41ffcc939cbc25acb8"
+    },
+    {
+      "path": "Tiles/tile_0062.png",
+      "git_blob": "e679062718a6fe2f0a72b90c1c6941cf9e5f9736",
+      "sha256": "cf66bddd9f4b4ecea0ac26406e487cf2639d373a2d5f21f1efd3cc6992272399"
+    },
+    {
+      "path": "Tiles/tile_0063.png",
+      "git_blob": "11b5cf71609d5ad6d4aa5084e6093161aef86616",
+      "sha256": "2c7d1a1fdf12a6cd37cfb82f9c38e18cfc8fe28963d1c33ab97379671cdd1aa4"
+    },
+    {
+      "path": "Tiles/tile_0064.png",
+      "git_blob": "c574d11af31b6ddda9e93d77209162885a2cae92",
+      "sha256": "b2ddf6178c613f3725e1e28830514d378649238e695b0d0b74ca5b471f880fa5"
+    },
+    {
+      "path": "Tiles/tile_0065.png",
+      "git_blob": "8dba4014920d461429e2df299895149d41ae5233",
+      "sha256": "cb304f8bfba830e8213f357e0ad9b255e63aed2574cf5a2b3c351490d28dabf3"
+    },
+    {
+      "path": "Tiles/tile_0066.png",
+      "git_blob": "f5ae1b68cecae97380196051be0b9cbabf432a95",
+      "sha256": "601f7619c0103424fb76a2fe0ef6f086fbc29a404f2bfba2dd16fa6dc141e9d9"
+    },
+    {
+      "path": "Tiles/tile_0067.png",
+      "git_blob": "db9f646cb6369774a2432fc2d05b175d32a31e2a",
+      "sha256": "9cbd5a8a7bf7f43eb6a7429698e99e829c57997c5022018a8b60ba9a70e51ccc"
+    },
+    {
+      "path": "Tiles/tile_0068.png",
+      "git_blob": "a03571a276fcf7f92ad928fbcb54798e1a0893a4",
+      "sha256": "f90351394da9efc3b61293c20378f50d30b3dd531a9fd83b4367927e7bf9c144"
+    },
+    {
+      "path": "Tiles/tile_0069.png",
+      "git_blob": "fceb76e2f5e6aaba944ea2d9f1e09bc89c77abd3",
+      "sha256": "5a09ecf571abb5bb4d2b727b054d7417a0bafc1ac82a4a0ffe7eccc2561ad556"
+    },
+    {
+      "path": "Tiles/tile_0070.png",
+      "git_blob": "c77f8aed7ca9628282d50197d5314345e1bb32b1",
+      "sha256": "56ae1a17ea808d02da78e58b5d6dc58a6ea62287b4addb81b5a6967dc2245a5a"
+    },
+    {
+      "path": "Tiles/tile_0071.png",
+      "git_blob": "9624f3f08a31ef2cce5557b851a4b1c4ed91be89",
+      "sha256": "33589077ca1518bc453aa63bf2f1810d67422bea07ed5db8f486f8257478d154"
+    },
+    {
+      "path": "Tiles/tile_0072.png",
+      "git_blob": "6ca51a37ab298b889e6b4c4a2b2735ade47f6371",
+      "sha256": "a977172d74aef292a924c867d7d2744ac1c4720f9a9f7120c0dec4ca1b9e9e00"
+    },
+    {
+      "path": "Tiles/tile_0073.png",
+      "git_blob": "00ff065f14fb2cac96b831462acaee003311ee07",
+      "sha256": "138b74609bc477ca5bacc3c8c2b6d80bfc0362c81f163e7b6dcb063526c97f89"
+    },
+    {
+      "path": "Tiles/tile_0074.png",
+      "git_blob": "407e2d15ea883acb795d004fd407d3b8051642f7",
+      "sha256": "cfb675c1dcc7530a41956004471c8ec27cd5ae19a03d8c424074b855395497e8"
+    },
+    {
+      "path": "Tiles/tile_0075.png",
+      "git_blob": "4b91993ed01f3489f1d6ae899424f14f046e1c3c",
+      "sha256": "5fd90e49d9be0c155f1e6a5cb08099fda486ea6fbb266be20b6b97614b96ddd1"
+    },
+    {
+      "path": "Tiles/tile_0076.png",
+      "git_blob": "08f2649e9953dc0fc8d57232fc6b0453d1e9367a",
+      "sha256": "349c56fdf06e20fb6a1ee98e2dea1e70833f4f0cf3a96ace0660d32ee0496631"
+    },
+    {
+      "path": "Tiles/tile_0077.png",
+      "git_blob": "4e67040855c245adf61de991a590c77546a18714",
+      "sha256": "be810b6e4b8cd8dfa9dd06af7a5964648a6683c5a3e8da64bc3233b48a636be7"
+    },
+    {
+      "path": "Tiles/tile_0078.png",
+      "git_blob": "c395235642b37ce5ffa067aec63b29c14a3bdb01",
+      "sha256": "62d47ae44908d577c29ff002a2e73ae1bb07602ff4715a85c9743893ef72546d"
+    },
+    {
+      "path": "Tiles/tile_0079.png",
+      "git_blob": "765965a97a1c2978a633934a5e39f0aae1bbb172",
+      "sha256": "c8c819b6054e0c231fae5f9f85dc9a34ed828379f5fdb4456ecd360305ca44c6"
+    },
+    {
+      "path": "Tiles/tile_0080.png",
+      "git_blob": "3336418b8a7d730883507207e53b52b397599808",
+      "sha256": "0151695f2890361f16ae4ea585e8f5d80fe0b6c2e82593f5e2ad336fbb7360fe"
+    },
+    {
+      "path": "Tiles/tile_0081.png",
+      "git_blob": "19e40a9aff0b93de87af396e1d953b640662a7c4",
+      "sha256": "92edb7e7a7b658e00d2c983d9526ffa5f868071b72f98a645f48fac2b33eb377"
+    },
+    {
+      "path": "Tiles/tile_0082.png",
+      "git_blob": "78f95bceab167e05e7e058c818b97360868fbdbc",
+      "sha256": "2efb31e30cd6f1527329fe5d7704e41c65a8376d498bf93372f46155600420c9"
+    },
+    {
+      "path": "Tiles/tile_0083.png",
+      "git_blob": "19e40a9aff0b93de87af396e1d953b640662a7c4",
+      "sha256": "92edb7e7a7b658e00d2c983d9526ffa5f868071b72f98a645f48fac2b33eb377"
+    },
+    {
+      "path": "Tiles/tile_0084.png",
+      "git_blob": "83aef72945b2573f55cdb41c6d23469682f0b255",
+      "sha256": "b3909f80a29a0f18729f96a90ebe446ecaf26a195da633f2a6c3dd31f660821e"
+    },
+    {
+      "path": "Tiles/tile_0085.png",
+      "git_blob": "5f12f941754c1ef4533c85e90c91c447958f40c6",
+      "sha256": "377b35acbce5129e8167df1f5d1d0420805990962a37a30f5784b88b81a40ec2"
+    },
+    {
+      "path": "Tiles/tile_0086.png",
+      "git_blob": "0a1cb8322582b3e16742116540e3f3bf0986355d",
+      "sha256": "0606653ad07e177c06c9782c9fff4b1388c7b67865b6ab0e202f76e8e6f6bec8"
+    },
+    {
+      "path": "Tiles/tile_0087.png",
+      "git_blob": "1b47647344b734f4568d572010f0e8ba072ab89d",
+      "sha256": "321ecd683c4e542e09d368709e75821b8b823b7b98b71bebb39d66cead951315"
+    },
+    {
+      "path": "Tiles/tile_0088.png",
+      "git_blob": "94aa932d261e6e3ca28419aa48ff63335fc75dd9",
+      "sha256": "ad6715e9bcab60faed303260a21adfca2de09a7950b98384065bcc5df05634b2"
+    },
+    {
+      "path": "Tiles/tile_0089.png",
+      "git_blob": "d46243520a9988870d308c46227243d8fa3548d0",
+      "sha256": "0b9fa753068061e816246437466d0c9d3100375ff12b77fe9459a801265c83c1"
+    },
+    {
+      "path": "Tiles/tile_0090.png",
+      "git_blob": "008737e42865c10c82b4fac515350903ae898d73",
+      "sha256": "fb4aa142cbbba7d9504ed3ff0d989069e8f1974feb76f25906efd9901d4f9ef4"
+    },
+    {
+      "path": "Tiles/tile_0091.png",
+      "git_blob": "2b322b9410b5425d73688eb443002e9c4104d747",
+      "sha256": "19a75fbb7df761b7373dac310d5e7dd2aa5a65529f81d4ffc80940c89d0538ff"
+    },
+    {
+      "path": "Tiles/tile_0092.png",
+      "git_blob": "906f46bdd70d0feb2f1826478502bc08f5995094",
+      "sha256": "357e08bc52b8dc318ce003681196dce6d2de41298b6253bbcc9bd10283785b37"
+    },
+    {
+      "path": "Tiles/tile_0093.png",
+      "git_blob": "4914e05d6878e668a06c197369406492233e2c7f",
+      "sha256": "0ce7aabd23d9784f67ad64d461b132f8bd59932d9cc7dddb98c66edf60a6671a"
+    },
+    {
+      "path": "Tiles/tile_0094.png",
+      "git_blob": "c77f8aed7ca9628282d50197d5314345e1bb32b1",
+      "sha256": "56ae1a17ea808d02da78e58b5d6dc58a6ea62287b4addb81b5a6967dc2245a5a"
+    },
+    {
+      "path": "Tiles/tile_0095.png",
+      "git_blob": "95b220bd5c5cdb2291ad50fdc9c445d4c2055791",
+      "sha256": "f5c2ce5b8e9e36580df27e8287472c662b360e97c4b8bef669ad70eceb9fc7b4"
+    },
+    {
+      "path": "Tiles/tile_0096.png",
+      "git_blob": "ed3029baa32c0dbbeddce39af22a41711c50d74e",
+      "sha256": "b8a0a9376c1c3398a059a1e3226e8f8d6839c1d73ac53ea37425340d762055fd"
+    },
+    {
+      "path": "Tiles/tile_0097.png",
+      "git_blob": "b0106b2d4119b8cb9a6953aee95cbf3bfd513a3b",
+      "sha256": "20915fde756b990f5b0c86fda557a93a6c306373d7c4fc07a1991f4ace3271b4"
+    },
+    {
+      "path": "Tiles/tile_0098.png",
+      "git_blob": "339537161fd724115f0906cceebfd5351188acde",
+      "sha256": "39b7c35f414e086b9c7e0cd2b34693ae370e5382a05b4dbb9964cef20f9769c8"
+    },
+    {
+      "path": "Tiles/tile_0099.png",
+      "git_blob": "2278e3aed6295369a196e7701f2fb13d55563a44",
+      "sha256": "61af4b9f1f67aa761e89e516ac6d60371175875b78b073b7f6a8415517c66181"
+    },
+    {
+      "path": "Tiles/tile_0100.png",
+      "git_blob": "be9422cd4275e5225a5674f0c8b3d4b458188dd8",
+      "sha256": "e139ab1d56c599af1cea5a955b705ead18a92d41e8e635b550729383cad9de3c"
+    },
+    {
+      "path": "Tiles/tile_0101.png",
+      "git_blob": "48971500c861b59da583ac1645f7b13feca5ef88",
+      "sha256": "03b7f71be1904c72c71f98d31c5f0f7fd8dceffcd40c19c4232746cbf509f5b1"
+    },
+    {
+      "path": "Tiles/tile_0102.png",
+      "git_blob": "c9681ed7955d1ca3cb69fdde5aba835bcbf9a014",
+      "sha256": "35af44a6fc76a09e7fe625c0becfeac809360774c6a845ec8024dd8db6f5fc3f"
+    },
+    {
+      "path": "Tiles/tile_0103.png",
+      "git_blob": "23f289dc9eea6963179597422174c8d59f3630da",
+      "sha256": "38a3ab676d73fe4219930bad3d0294e045269fd153587b0e21c60843fc13d281"
+    },
+    {
+      "path": "Tiles/tile_0104.png",
+      "git_blob": "bb7c70285062b3b3a10e7a72a29c00537ce918e7",
+      "sha256": "3b38808f0c20a49a9923475022041c46e8a04b47d8621e5186fe153b4bbaed48"
+    },
+    {
+      "path": "Tiles/tile_0105.png",
+      "git_blob": "b699b1b08bb939e9c93fe0369f91192be31715f2",
+      "sha256": "e6ce715420b033cc4b0eb6b26255996a919ef721c0081388d3fa6a964047630d"
+    },
+    {
+      "path": "Tiles/tile_0106.png",
+      "git_blob": "905ebcb69e0265502b88f098c37330228b0df6a7",
+      "sha256": "4958c3b09a0d41b3f21741476274855ab2242b3240e5054657dbc0569c881215"
+    },
+    {
+      "path": "Tiles/tile_0107.png",
+      "git_blob": "86517222cae4ca77ccb0b6a64b2dbb623d3e310f",
+      "sha256": "66d47c25a72a5be74cb8a15c0e4930ee4c8859f5ba5d04837d953d45649d0873"
+    },
+    {
+      "path": "Tiles/tile_0108.png",
+      "git_blob": "7b6f8efddb904da5468d8aee5ece1b673f2e3156",
+      "sha256": "f15c964db469039861f70bdc75cc5b02ba9351eaa5d7421a85d028131eb12f4d"
+    },
+    {
+      "path": "Tiles/tile_0109.png",
+      "git_blob": "705fa2d3345dd934255ebd4564bbac76511ea931",
+      "sha256": "f344d22151345f81fe1b95fdb03cf007747042670bda1540192c14853f35b94a"
+    },
+    {
+      "path": "Tiles/tile_0110.png",
+      "git_blob": "93866d105ec4a0b527a6a0a1832354cfaee0dbe8",
+      "sha256": "ca2d26579be3738be5abfb74cea388634e212fb991b84701deeda65da4780f1c"
+    },
+    {
+      "path": "Tiles/tile_0111.png",
+      "git_blob": "564b39cc95f15a42779d916cf6761ea9424d302c",
+      "sha256": "8ecfc9b753e676a3cd1fcf2f8f98cc70c8e814f706f41a7e172508fe15156618"
+    },
+    {
+      "path": "Tiles/tile_0112.png",
+      "git_blob": "6026b2817408c7155ce3337f89bf3671da106c22",
+      "sha256": "1e82481db9d95d0cec64ba0ea95b8fadf1e3675936e93731d0ff0e3bc72470b0"
+    },
+    {
+      "path": "Tiles/tile_0113.png",
+      "git_blob": "0d070f9d81ecfa131135fbc973a574e89673c1f4",
+      "sha256": "d8b00568696dfc79269a8f47ab8e19ecf6f080140176034cbf8124b4b143d49e"
+    },
+    {
+      "path": "Tiles/tile_0114.png",
+      "git_blob": "54e4df45f7941342d9b6d8ddb977d79ae3f76130",
+      "sha256": "486bea807469ea50e471bd9a8e5d60424386b81b0bbef0c84f3cda285d8cf088"
+    },
+    {
+      "path": "Tiles/tile_0115.png",
+      "git_blob": "00e3e0de60ab3555ba48a3daeef0dc23402ae9be",
+      "sha256": "ad27340925ae7e936788c22cbd0f7d1922ef5bdd21377f916f1be9af6be4312d"
+    },
+    {
+      "path": "Tiles/tile_0116.png",
+      "git_blob": "caae164ef4e551a8022a94f39a2bc3a690266520",
+      "sha256": "610de03ee2d2a7d452159a885707217ccb17c6c18444418d7f21496d76a65f76"
+    },
+    {
+      "path": "Tiles/tile_0117.png",
+      "git_blob": "eaea357b88d3459b47d7c097166a7d2492e45eeb",
+      "sha256": "4f75a60e03d46523afba3c52f73c1fcbe06a7566a87eea9fb9b82320718182bf"
+    },
+    {
+      "path": "Tiles/tile_0118.png",
+      "git_blob": "68ab04317e4ca3c1f2a6be5e3f817a085fc0ab35",
+      "sha256": "43679336db4fca6d7c4b47941f707174cdc4476b75af32e0d9f0bd80677831bd"
+    },
+    {
+      "path": "Tiles/tile_0119.png",
+      "git_blob": "98f10936a7eaa6a1dbad2f9b2d15096745cbddeb",
+      "sha256": "c1a5fcc94e0557e04615186966d5ded2a7b590985f03c4a564de6801aeea4acf"
+    },
+    {
+      "path": "Tiles/tile_0120.png",
+      "git_blob": "2f0d9b14a38acc8bb9c338d0e6236459516d1e74",
+      "sha256": "2ca96264cc5506bb52a5f7b5d278d0fa8e66e26c4b8242e40db6b46acb9df95e"
+    },
+    {
+      "path": "Tiles/tile_0121.png",
+      "git_blob": "fca32b86583458d80e9991ddfa0c4bb46f515a39",
+      "sha256": "28466ec899a6e0720f40e4f622aee5925d2e5c50b2409856f36ef65c7eedc532"
+    },
+    {
+      "path": "Tiles/tile_0122.png",
+      "git_blob": "179f42fd15adf76dc8478ed3afa98aa3de55d26e",
+      "sha256": "2cb76164d899e3a5eb42d7cd23ffe8defae130f6ce702a35926cbf61d2d1b569"
+    },
+    {
+      "path": "Tiles/tile_0123.png",
+      "git_blob": "be4b83e82e6f4222d985d9dc572a76b4eb7c757a",
+      "sha256": "16d8f777b329a6516f32d790b389fd5072622195152680c298d2caf8d723ef8b"
+    },
+    {
+      "path": "Tiles/tile_0124.png",
+      "git_blob": "3fe67e4f8e6b4c8d240006eed2aeadd953eb95ca",
+      "sha256": "cda39a2ba32af6935e106b5c243ba5ca813a8b2566855b94524485463883196a"
+    },
+    {
+      "path": "Tiles/tile_0125.png",
+      "git_blob": "3029b20487c9d00a24f71c3c3960eb31ed15bdea",
+      "sha256": "d576af0d95a09721d174c3f57cb51b3c736e3627330a9bfee110e676d37c3cab"
+    },
+    {
+      "path": "Tiles/tile_0126.png",
+      "git_blob": "d28ba06e8ed521dd0feebf6e4ebc4417da02d755",
+      "sha256": "59dd6e934921a327935f8aa35a24cd949bc04541c0adaed2d0ac46b29fe409c2"
+    },
+    {
+      "path": "Tiles/tile_0127.png",
+      "git_blob": "20e0cc9de0e1905c279c39e285f8907d48c1982e",
+      "sha256": "4ae08fffdd99c4e14a941e664de4cf9ecba0064cd94e5caae9d4a82a10fe120c"
+    },
+    {
+      "path": "Tiles/tile_0128.png",
+      "git_blob": "208da4d3739972c61397cd95c4dcbeb9a62db7dc",
+      "sha256": "f9d1c49865855dece38e496cdb68458040facf8256831751f4b0ab695a193be9"
+    },
+    {
+      "path": "Tiles/tile_0129.png",
+      "git_blob": "ac7fe54a21532c1e9db1753c9718b656a677714b",
+      "sha256": "1b0a4efa97420e011f08151149c662dbc7c91be0e3c72caa3e8f5718789908fb"
+    },
+    {
+      "path": "Tiles/tile_0130.png",
+      "git_blob": "2cf4d02cbc484588564ea94500ca5ec3fb2ddd25",
+      "sha256": "a61e8a3fe7e1e6f192d6b6452852274a02768c20a45ef6afa48ec80908a39185"
+    },
+    {
+      "path": "Tiles/tile_0131.png",
+      "git_blob": "ca4935b15f54a89d56a4d80d34d99aace21eb480",
+      "sha256": "0fe7c5448902cef52dd8ed8530eda0a986ad0d2cc0c36c2ee1528fe0c6860262"
+    },
+    {
+      "path": "Tilesheet.txt",
+      "git_blob": "3ecbdd2a9c115ae4bb8e6c77ee1bdae684916e3e",
+      "sha256": "1b86fae0b27a628f18cfd89c6e148ea1d727f5ef02fc1dbeb5a6e9f9667bea00"
+    }
+  ]
+}

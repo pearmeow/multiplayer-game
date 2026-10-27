@@ -1,0 +1,16 @@
+var _left = 24;
+var _top = 24;
+var _width = min(300, max(100, display_get_gui_width() - 48));
+draw_set_alpha(1);
+draw_set_halign(fa_left);
+draw_set_valign(fa_top);
+draw_set_colour(make_colour_rgb(35, 40, 50));
+draw_rectangle(_left, _top, _left + _width, _top + 20, false);
+draw_set_colour(energy >= shot_cost ? c_aqua : c_red);
+if (energy > 0) draw_rectangle(_left, _top, _left + _width * energy / energy_max, _top + 20, false);
+draw_set_colour(c_white);
+draw_rectangle(_left, _top, _left + _width, _top + 20, true);
+draw_text(_left, _top + 28, "TEAM ENERGY " + string(energy) + "/" + string(energy_max) + "   +1/s   SHOT -5");
+draw_text(_left, _top + 50, "BODY: WASD / SPACE fire / E interact");
+draw_text(_left, _top + 70, "VISION: LEFT-RIGHT aim / UP-DOWN cone width");
+if (feedback_time > 0) draw_text(_left, _top + 94, feedback);

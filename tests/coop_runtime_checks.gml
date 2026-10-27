@@ -1,0 +1,64 @@
+checks = 0;
+check = function(_ok, _label) {
+    if (!_ok) show_error("TEST FAIL: " + _label, true);
+    checks += 1;
+    show_debug_message("PASS: " + _label);
+};
+var _body = instance_find(obj_player1, 0);
+var _team = _body.team;
+var _aim = _body.aim_controller;
+check(instance_number(obj_team) == 1, "one shared persistent energy manager");
+check(_team.energy_max == 100 && _team.shot_cost == 5, "energy configuration");
+_team.energy = 0; _team.regen_elapsed = 0;
+_team.advance_energy(0.5); check(_team.energy == 0, "no early regeneration");
+_team.advance_energy(0.5); check(_team.energy == 1, "one energy after one second");
+_team.advance_energy(250); check(_team.energy == 100, "energy capped at 100");
+check(_team.try_spend(5) && _team.energy == 95, "shot spends exactly five");
+_team.advance_energy(0.5); check(_team.energy == 95, "no banked regeneration at cap");
+check(!_team.try_spend(-5) && _team.energy == 95, "negative spending rejected");
+_team.energy = 0; check(!_team.try_spend(5) && _team.energy == 0, "insufficient energy rejected");
+check(abs(coop_ray_circle(0,0,1,0,100,0,14) - 86) < 0.01, "ray circle entry");
+check(coop_ray_circle(0,0,1,0,-100,0,14) == -1, "enemy behind shooter missed");
+check(coop_ray_circle(0,0,1,0,100,20,14) == -1, "off-axis enemy missed");
+check(coop_ray_circle(0,0,1,0,0,0,14) == 0, "overlapping enemy entry");
+check(_aim.ghost_gap == 6 && _aim.ghost_alpha == 0.6, "ghost offset and translucency");
+
+for (var _a = 0; _a < 360; _a += 45) {
+    _aim.aim_angle = _a;
+    var _pose = _aim.get_ghost_pose();
+    var _dx = lengthdir_x(1, _a);
+    var _dy = lengthdir_y(1, _a);
+    var _ox = _pose.x - _body.x;
+    var _oy = _pose.y - _body.y;
+    check(_ox * _dx + _oy * _dy < 0, "ghost opposite aim " + string(_a));
+    check(abs(_ox * _dy - _oy * _dx) < 0.001, "ghost on rear axis " + string(_a));
+    check(abs(angle_difference((_pose.rotation + 270) mod 360, _a)) < 0.001, "ghost faces aim " + string(_a));
+    check(abs(point_distance(_body.x, _body.y, _pose.x, _pose.y) - _pose.body_extent - _pose.ghost_front - 6) < 0.001, "six pixel gap " + string(_a));
+}
+
+_aim.aim_angle = 0;
+check(coop_visible(_body,_body.x+100,_body.y), "target inside cone visible");
+check(!coop_visible(_body,_body.x-100,_body.y), "target behind player hidden");
+var _near = instance_create_depth(_body.x+100,_body.y,0,par_enemy);
+var _far = instance_create_depth(_body.x+180,_body.y,0,par_enemy);
+_team.energy=100;
+check(_body.fire_shot(), "shot accepted");
+check(!instance_exists(_near) && instance_exists(_far), "one shot kills nearest only");
+check(_team.energy==95, "hit consumes five energy");
+var _wall = instance_create_depth(_body.x+40,_body.y-16,0,obj_wall);
+check(!coop_visible(_body,_far.x,_far.y), "wall blocks vision");
+check(_body.fire_shot() && instance_exists(_far), "wall blocks shot");
+check(_team.energy==90, "blocked shot still costs five");
+instance_destroy(_wall);
+_team.energy=0;
+check(!_body.fire_shot() && instance_exists(_far), "empty pool cannot kill enemy");
+instance_destroy(_far);
+_team.energy=100; _team.regen_elapsed=0;
+check(_body.fire_shot() && _team.energy==95, "miss still costs five");
+_team.energy=100; _body.shot_time=0;
+_team.feedback=""; _team.feedback_time=0;
+// Only the temporary test project receives demo instances; real rooms stay empty.
+instance_create_depth(_body.x+160,_body.y,0,par_enemy);
+instance_create_depth(_body.x+45,_body.y+15,0,par_interactable);
+show_debug_message("COOP TESTS PASSED: " + string(checks));
+alarm[1]=3;

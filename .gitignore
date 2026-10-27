@@ -60,3 +60,8 @@ Temporary Items
 
 # GMRT build directory
 Build
+# Downloaded third-party art: local use only, not source redistribution.
+assets/players/snoblin_prototype/**
+!assets/players/snoblin_prototype/SOURCE.json
+assets/players/nectanebo/**
+!assets/players/nectanebo/SOURCE.json
