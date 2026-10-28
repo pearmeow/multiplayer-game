@@ -1,4 +1,2 @@
-if (nav_grid != -1) {
-    ds_grid_destroy(nav_grid);
-    nav_grid = -1;
-}
+if (nav_grid != -1) mp_grid_destroy(nav_grid);
+path_delete(nav_path);

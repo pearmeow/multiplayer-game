@@ -8,7 +8,7 @@ var _body = instance_find(obj_player1, 0);
 var _team = _body.team;
 var _aim = _body.aim_controller;
 check(instance_number(obj_team) == 1, "one shared persistent energy manager");
-check(_team.energy_max == 100 && _team.shot_cost == 5, "energy configuration");
+check(_team.energy_max == 100 && _team.action_energy_cost == 5, "energy configuration");
 _team.energy = 0; _team.regen_elapsed = 0;
 _team.advance_energy(0.5); check(_team.energy == 0, "no early regeneration");
 _team.advance_energy(0.5); check(_team.energy == 1, "one energy after one second");

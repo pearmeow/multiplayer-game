@@ -1,24 +1,16 @@
-hit_radius = 14;
 targetable = true;
 receive_shot = function(_attacker) {
 
     instance_destroy();
 };
 
-notice_distance = 220;
-home_tolerance = 16;
 start_x = x;
 start_y = y;
 state = 0; // 0 idle, 1 chase, 2 return home
-move_speed = 120;
 ai_enabled = true;
-wall_margin = 4;
-nav_cell_size = 8;
-nav_repath_interval = 0.35;
 nav_repath_timer = 0;
 nav_grid = -1;
-nav_columns = 0;
-nav_rows = 0;
+nav_path = path_add();
 nav_points = [];
 nav_point_index = 0;
 nav_goal_reachable = false;

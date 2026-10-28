@@ -5,7 +5,7 @@
 这是同一键盘上的本地双人合作框架，不包含网络联机。
 
 - **实体玩家**：WASD 移动；Space 按下一次射击一发；不控制交互。
-- **幽灵玩家**：← / → 旋转瞄准；↑ 收窄视野、↓ 扩大视野（30–100°，默认60°）；右 Shift 按下一次确认一次交互。
+- **幽灵玩家**：← / → 旋转瞄准；视锥宽度在对象变量面板配置；Enter 按下一次确认一次交互。
 - 实体暂保留原有 32×32 白色占位，不导入下载的角色。
 - 幽灵采用新增 24×24 青蓝色笑脸像素贴图，60% 不透明度，始终头朝上，非恐怖风格。
 - 幽灵永远悬在视野反方向：视野向右时在实体左侧，视野向上时在实体下侧。只有位置随瞄准方向环绕，贴图不旋转、始终头朝上。沿瞄准轴保留约6px间距；不独立移动、不单独碰撞。
@@ -26,7 +26,7 @@
 - obj_aim：Begin Step 更新瞄准，Draw 绘制视锥和幽灵。ghost_gap=6，ghost_alpha=0.60。
 - obj_team：共享池和 GUI 能量条；try_spend(cost)、advance_energy(seconds)。
 - par_enemy：未来敌人的父对象；hit_radius=14，targetable=true，receive_shot(attacker) 默认直接销毁。子对象的 Create 需调用 event_inherited()；更换贴图可覆写 Draw，但需保留 coop_visible 判断。
-- par_interactable：未来门、开关、拾取物的父对象；enabled、prompt、interact(actor)。幽灵的右 Shift 选择实体64px内最近的可见对象；交互方法默认只提示，子对象替换实际效果。
+- par_interactable：未来门、开关、拾取物的父对象；enabled、prompt、interact(actor)。幽灵的Enter 选择实体64px内最近的可见对象；交互方法默认只提示，子对象替换实际效果。
 - coop_core：射线与圆形目标相交、墙体射程截断、共享视野判定。
 - obj_wall：实体阻挡移动、瞄准射线和可见性。
 

@@ -14,7 +14,7 @@ if (_length > 0) {
 }
 
 var _gap = instance_exists(aim_controller) ? aim_controller.ghost_gap : 6;
-var _margin = ceil(point_distance(0, 0, 16, 16) + _gap + 12 + point_distance(0, 0, 12, 12));
+var _margin = sprite_get_width(sprite_index) + sprite_get_width(spr_ghost) + _gap;
 x = clamp(x, min(_margin, room_width * 0.5), max(room_width * 0.5, room_width - _margin));
 y = clamp(y, min(_margin, room_height * 0.5), max(room_height * 0.5, room_height - _margin));
 shot_time = max(0, shot_time - _dt);
