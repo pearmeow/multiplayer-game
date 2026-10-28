@@ -25,17 +25,9 @@ function enemy_nav_plan(_enemy, _goal_x, _goal_y) {
         if (_wall.sprite_index == -1) continue;
         mp_grid_add_rectangle(_enemy.nav_grid, _wall.bbox_left - _radius, _wall.bbox_top - _radius, _wall.bbox_right + _radius, _wall.bbox_bottom + _radius);
     }
-    _enemy.nav_points = [];
     _enemy.nav_point_index = 0;
-    _enemy.nav_goal_reachable = mp_grid_path(_enemy.nav_grid, _enemy.nav_path, _enemy.x, _enemy.y, _goal_x, _goal_y, false);
-    if (_enemy.nav_goal_reachable) {
-        for (var _i = 0; _i < path_get_number(_enemy.nav_path); _i++) {
-            array_push(_enemy.nav_points, {x: path_get_point_x(_enemy.nav_path, _i), y: path_get_point_y(_enemy.nav_path, _i)});
-        }
-    }
-    _enemy.nav_status = "following";
-    if (!_enemy.nav_goal_reachable) _enemy.nav_status = "no_path";
-    return _enemy.nav_goal_reachable;
+    path_clear_points(_enemy.nav_path);
+    return mp_grid_path(_enemy.nav_grid, _enemy.nav_path, _enemy.x, _enemy.y, _goal_x, _goal_y, false);
 }
 
 function enemy_nav_touching_player(_enemy) {
@@ -53,21 +45,21 @@ function enemy_nav_touching_player(_enemy) {
 }
 
 function enemy_nav_follow(_enemy, _distance_left) {
-    while (_distance_left > 0 && _enemy.nav_point_index < array_length(_enemy.nav_points)) {
+    while (_distance_left > 0 && _enemy.nav_point_index < path_get_number(_enemy.nav_path)) {
         if (_enemy.state == 1 && enemy_nav_touching_player(_enemy)) {
-            _enemy.nav_status = "touching_player";
             _enemy.nav_repath_timer = 0;
             return;
         }
-        var _point = _enemy.nav_points[_enemy.nav_point_index];
-        var _distance = point_distance(_enemy.x, _enemy.y, _point.x, _point.y);
+        var _x = path_get_point_x(_enemy.nav_path, _enemy.nav_point_index);
+        var _y = path_get_point_y(_enemy.nav_path, _enemy.nav_point_index);
+        var _distance = point_distance(_enemy.x, _enemy.y, _x, _y);
         if (_distance < 0.01) {
             _enemy.nav_point_index++;
             continue;
         }
         var _step = min(1, _distance_left, _distance);
-        var _x = _enemy.x + (_point.x - _enemy.x) / _distance * _step;
-        var _y = _enemy.y + (_point.y - _enemy.y) / _distance * _step;
+        _x = _enemy.x + (_x - _enemy.x) / _distance * _step;
+        _y = _enemy.y + (_y - _enemy.y) / _distance * _step;
         if (!enemy_nav_position_clear(_enemy, _x, _y)) {
             _enemy.nav_repath_timer = 0;
             return;

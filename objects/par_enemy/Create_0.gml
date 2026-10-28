@@ -11,11 +11,7 @@ ai_enabled = true;
 nav_repath_timer = 0;
 nav_grid = -1;
 nav_path = path_add();
-nav_points = [];
 nav_point_index = 0;
-nav_goal_reachable = false;
-nav_status = "idle";
-nav_clearance = hit_radius + wall_margin;
 ai_update = function(_seconds) {
     if (!ai_enabled) return;
     var _dt = clamp(_seconds, 0, 0.05);
@@ -31,20 +27,14 @@ ai_update = function(_seconds) {
         if (_player_distance < notice_distance) state = 1;
     }
     if (_old_state != state) nav_repath_timer = 0;
-    if (state == 0) { nav_status = "idle"; nav_points = []; return; }
-    if (state == 1) {
-        if (enemy_nav_touching_player(id)) {
-            nav_status = "touching_player";
-            nav_points = [];
-            nav_repath_timer = 0;
-            return;
-        }
+    if (state == 0) return;
+    if (state == 1 && enemy_nav_touching_player(id)) {
+        nav_repath_timer = 0;
+        return;
     }
-    var _goal_x = state == 1 ? _player.x : start_x;
-    var _goal_y = state == 1 ? _player.y : start_y;
     nav_repath_timer -= _dt;
     if (nav_repath_timer <= 0) {
-        enemy_nav_plan(id, _goal_x, _goal_y);
+        enemy_nav_plan(id, state == 1 ? _player.x : start_x, state == 1 ? _player.y : start_y);
         nav_repath_timer = nav_repath_interval;
     }
     enemy_nav_follow(id, move_speed * _dt);

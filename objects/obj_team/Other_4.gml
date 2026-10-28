@@ -1,9 +1,7 @@
 changing_room = false;
 var _body = instance_find(obj_player, 0);
-if (instance_exists(_body)) {
-    if (instance_exists(_body.aim_controller)) {
-        _body.aim_controller.aim_angle = saved_aim_angle;
-    }
+if (instance_exists(_body) && instance_exists(_body.aim_controller)) {
+    _body.aim_controller.aim_angle = saved_aim_angle;
 }
 if (camera_id != -1) camera_destroy(camera_id);
 camera_id = camera_create_view(0, 0, min(camera_width, room_width), min(camera_height, room_height), 0, -1, -1, -1, 0, 0);

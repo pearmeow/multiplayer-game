@@ -7,7 +7,7 @@ if (!instance_exists(_enemy) || !instance_exists(_player)) {
 var _found = enemy_nav_plan(_enemy, _player.x, _player.y);
 if (_found) {
     if (!path_exists(_enemy.nav_path)) show_error("Navigation path missing", true);
-    if (array_length(_enemy.nav_points) == 0) show_error("Navigation points missing", true);
+    if (path_get_number(_enemy.nav_path) == 0) show_error("Navigation points missing", true);
     show_debug_message("Navigation path found for this room.");
 } else {
     show_debug_message("No route in the current layout.");

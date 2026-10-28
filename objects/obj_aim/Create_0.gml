@@ -1,7 +1,6 @@
 owner_body = noone;
 aim_angle = 90;
 
-
 get_ghost_pose = function() {
     var _dx = lengthdir_x(1, aim_angle);
     var _dy = lengthdir_y(1, aim_angle);
@@ -24,8 +23,7 @@ update_interaction = function(_pressed) {
     if (!instance_exists(_body)) return false;
     _body.interaction_target = noone;
     var _best = _body.interact_range + 1;
-    var _target_x = _body.x;
-    var _target_y = _body.y;
+    var _target_point = undefined;
     var _groups = [par_interactable, obj_door];
     for (var _group = 0; _group < array_length(_groups); _group++) {
         var _object = _groups[_group];
@@ -42,8 +40,7 @@ update_interaction = function(_pressed) {
             if (!coop_visible(_body, _point.x, _point.y, _item)) continue;
             _body.interaction_target = _item;
             _best = _distance;
-            _target_x = _point.x;
-            _target_y = _point.y;
+            _target_point = _point;
         }
     }
     if (!_pressed || !instance_exists(_body.interaction_target)) return false;
@@ -51,8 +48,7 @@ update_interaction = function(_pressed) {
         _body.team.notify("Not enough energy to interact");
         return false;
     }
-    var _target = _body.interaction_target;
-    _target.interact(_body);
-    _body.show_action_effect(_target_x, _target_y, _body.interact_effect_colour);
+    _body.interaction_target.interact(_body);
+    _body.show_action_effect(_target_point.x, _target_point.y, _body.interact_effect_colour);
     return true;
 };
