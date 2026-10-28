@@ -32,7 +32,7 @@ for (var _a = 0; _a < 360; _a += 45) {
     var _oy = _pose.y - _body.y;
     check(_ox * _dx + _oy * _dy < 0, "ghost opposite aim " + string(_a));
     check(abs(_ox * _dy - _oy * _dx) < 0.001, "ghost on rear axis " + string(_a));
-    check(abs(angle_difference((_pose.rotation + 270) mod 360, _a)) < 0.001, "ghost faces aim " + string(_a));
+    check(_pose.rotation == 0, "ghost stays upright " + string(_a));
     check(abs(point_distance(_body.x, _body.y, _pose.x, _pose.y) - _pose.body_extent - _pose.ghost_front - 6) < 0.001, "six pixel gap " + string(_a));
 }
 
@@ -57,7 +57,6 @@ _team.energy=100; _team.regen_elapsed=0;
 check(_body.fire_shot() && _team.energy==95, "miss still costs five");
 _team.energy=100; _body.shot_time=0;
 _team.feedback=""; _team.feedback_time=0;
-// Only the temporary test project receives demo instances; real rooms stay empty.
 instance_create_depth(_body.x+160,_body.y,0,par_enemy);
 instance_create_depth(_body.x+45,_body.y+15,0,par_interactable);
 show_debug_message("COOP TESTS PASSED: " + string(checks));

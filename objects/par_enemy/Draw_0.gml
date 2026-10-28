@@ -1,7 +1,10 @@
-var _body = instance_find(obj_player, 0);
-if (!coop_visible(_body, x, y)) exit;
-// Placeholder only; child enemies can replace this with their own sprite.
+if (!coop_enemy_visible(id)) exit;
 draw_set_alpha(1);
-draw_set_colour(c_red);
-draw_circle(x, y, hit_radius, false);
+draw_set_colour(c_white);
+if (sprite_index != -1) {
+    draw_self();
+} else {
+    draw_set_colour(c_red);
+    draw_circle(x, y, hit_radius, false);
+}
 draw_set_colour(c_white);

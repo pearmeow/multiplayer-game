@@ -1,4 +1,3 @@
-// Movement control
 var _dt = min(0.05, max(0, delta_time / 1000000));
 var _mx = keyboard_check(ord("D")) - keyboard_check(ord("A"));
 var _my = keyboard_check(ord("S")) - keyboard_check(ord("W"));
@@ -22,18 +21,3 @@ shot_time = max(0, shot_time - _dt);
 if (!instance_exists(team) || !instance_exists(aim_controller)) exit;
 
 if (keyboard_check_pressed(vk_space)) fire_shot();
-
-interaction_target = noone;
-var _best = interact_range + 1;
-for (var _j = 0; _j < instance_number(par_interactable); ++_j) {
-    var _item = instance_find(par_interactable, _j);
-    var _d = point_distance(x, y, _item.x, _item.y);
-    if (_item.enabled && _d <= interact_range && _d < _best
-        && coop_visible(id, _item.x, _item.y)) {
-        interaction_target = _item;
-        _best = _d;
-    }
-}
-if (keyboard_check_pressed(ord("E")) && instance_exists(interaction_target)) {
-    interaction_target.interact(id);
-}

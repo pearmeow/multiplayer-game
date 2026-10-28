@@ -11,6 +11,6 @@ if (energy > 0) draw_rectangle(_left, _top, _left + _width * energy / energy_max
 draw_set_colour(c_white);
 draw_rectangle(_left, _top, _left + _width, _top + 20, true);
 draw_text(_left, _top + 28, "TEAM ENERGY " + string(energy) + "/" + string(energy_max) + "   +1/s   SHOT -5");
-draw_text(_left, _top + 50, "BODY: WASD / SPACE fire / E interact");
-draw_text(_left, _top + 70, "VISION: LEFT-RIGHT aim / UP-DOWN cone width");
+draw_text(_left, _top + 50, "BODY: WASD / SPACE fire");
+draw_text(_left, _top + 70, "GHOST: ARROWS aim/view / RIGHT SHIFT interact");
 if (feedback_time > 0) draw_text(_left, _top + 94, feedback);

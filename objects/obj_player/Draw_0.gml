@@ -7,6 +7,6 @@ if (shot_time > 0) {
 }
 if (instance_exists(interaction_target)) {
     draw_set_colour(c_white);
-    draw_text(interaction_target.x + 16, interaction_target.y - 20, "[E] " + interaction_target.prompt);
+    draw_text(interaction_target.x + 16, interaction_target.y - 20, "[RSHIFT] " + interaction_target.prompt);
 }
 draw_set_colour(c_white);

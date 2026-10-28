@@ -1,5 +1,5 @@
 if (!instance_exists(owner_body)) exit;
-// Use the body's current position, not the position cached before its movement.
+
 var _x = owner_body.x;
 var _y = owner_body.y;
 var _segments = 40;
@@ -23,11 +23,9 @@ draw_circle(_cx, _cy, 5, true);
 draw_set_alpha(1);
 draw_set_colour(c_white);
 
-
-// Orbit exactly opposite the view direction; face along the aim direction.
 var _pose = get_ghost_pose();
-draw_sprite_ext(spr_ghost, 0, _pose.x, _pose.y, 1, 1, _pose.rotation, c_white, ghost_alpha);
-// Soft possession link follows the same rear-facing axis.
+draw_sprite_ext(spr_ghost, 0, _pose.x, _pose.y, 1, 1, 0, c_white, ghost_alpha);
+
 var _dx = lengthdir_x(1, aim_angle);
 var _dy = lengthdir_y(1, aim_angle);
 draw_set_colour(c_aqua);

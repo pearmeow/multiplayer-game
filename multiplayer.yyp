@@ -33,8 +33,9 @@
     {"id":{"name":"rm_01","path":"rooms/rm_01/rm_01.yy",},},
     {"id":{"name":"rm_02","path":"rooms/rm_02/rm_02.yy",},},
     {"id":{"name":"rm_03","path":"rooms/rm_03/rm_03.yy",},},
-    {"id":{"name":"rm_start","path":"rooms/rm_start/rm_start.yy",},},
     {"id":{"name":"coop_core","path":"scripts/coop_core/coop_core.yy",},},
+    {"id":{"name":"enemy_navigation","path":"scripts/enemy_navigation/enemy_navigation.yy",},},
+    {"id":{"name":"spr_enemy","path":"sprites/spr_enemy/spr_enemy.yy",},},
     {"id":{"name":"spr_ghost","path":"sprites/spr_ghost/spr_ghost.yy",},},
     {"id":{"name":"spr_player1","path":"sprites/spr_player1/spr_player1.yy",},},
     {"id":{"name":"spr_wall","path":"sprites/spr_wall/spr_wall.yy",},},
@@ -42,7 +43,6 @@
   "resourceType":"GMProject",
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
-    {"roomId":{"name":"rm_start","path":"rooms/rm_start/rm_start.yy",},},
     {"roomId":{"name":"rm_01","path":"rooms/rm_01/rm_01.yy",},},
     {"roomId":{"name":"rm_02","path":"rooms/rm_02/rm_02.yy",},},
     {"roomId":{"name":"rm_03","path":"rooms/rm_03/rm_03.yy",},},

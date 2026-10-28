@@ -1,4 +1,3 @@
-/// Distance to the first wall along a ray. Prefix collision is monotonic.
 function coop_wall_distance(_x, _y, _angle, _range) {
     var _dx = lengthdir_x(1, _angle);
     var _dy = lengthdir_y(1, _angle);
@@ -13,7 +12,6 @@ function coop_wall_distance(_x, _y, _angle, _range) {
     return _low;
 }
 
-/// Normalised ray against circle: first entry distance, or -1 for no hit.
 function coop_ray_circle(_x, _y, _dx, _dy, _cx, _cy, _radius) {
     var _ox = _cx - _x;
     var _oy = _cy - _y;
@@ -26,7 +24,6 @@ function coop_ray_circle(_x, _y, _dx, _dy, _cx, _cy, _radius) {
     return max(0, _projection - sqrt(_radius * _radius - _perp_sq));
 }
 
-/// Shared sight gates enemy drawing and interaction, not just cone decoration.
 function coop_visible(_body, _target_x, _target_y) {
     if (!instance_exists(_body)) return false;
     var _aim = _body.aim_controller;
@@ -34,4 +31,16 @@ function coop_visible(_body, _target_x, _target_y) {
     if (point_distance(_body.x, _body.y, _target_x, _target_y) > _aim.vision_range) return false;
     if (abs(angle_difference(_aim.aim_angle, point_direction(_body.x, _body.y, _target_x, _target_y))) > _aim.cone_width * 0.5) return false;
     return collision_line(_body.x, _body.y, _target_x, _target_y, obj_wall, false, true) == noone;
+}
+
+function coop_enemy_visible(_enemy) {
+    if (!instance_exists(_enemy)) return false;
+    var _body = instance_find(obj_player, 0);
+    var _x = _enemy.x;
+    var _y = _enemy.y;
+    if (_enemy.sprite_index != -1) {
+        _x = (_enemy.bbox_left + _enemy.bbox_right) * 0.5;
+        _y = (_enemy.bbox_top + _enemy.bbox_bottom) * 0.5;
+    }
+    return coop_visible(_body, _x, _y);
 }
