@@ -1,4 +1,9 @@
 targetable = true;
+if (sprite_index == -1 && mask_index == -1) {
+    mask_index = spr_enemy;
+    image_xscale = hit_radius * 2 / sprite_get_width(spr_enemy);
+    image_yscale = hit_radius * 2 / sprite_get_height(spr_enemy);
+}
 receive_shot = function(_attacker) {
 
     instance_destroy();

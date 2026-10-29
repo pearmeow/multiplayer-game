@@ -4,7 +4,7 @@ check = function(_ok, _label) {
     checks += 1;
     show_debug_message("PASS: " + _label);
 };
-var _body = instance_find(obj_player1, 0);
+var _body = instance_find(obj_player, 0);
 var _team = _body.team;
 var _aim = _body.aim_controller;
 check(instance_number(obj_team) == 1, "one shared persistent energy manager");
@@ -17,10 +17,6 @@ check(_team.try_spend(5) && _team.energy == 95, "shot spends exactly five");
 _team.advance_energy(0.5); check(_team.energy == 95, "no banked regeneration at cap");
 check(!_team.try_spend(-5) && _team.energy == 95, "negative spending rejected");
 _team.energy = 0; check(!_team.try_spend(5) && _team.energy == 0, "insufficient energy rejected");
-check(abs(coop_ray_circle(0,0,1,0,100,0,14) - 86) < 0.01, "ray circle entry");
-check(coop_ray_circle(0,0,1,0,-100,0,14) == -1, "enemy behind shooter missed");
-check(coop_ray_circle(0,0,1,0,100,20,14) == -1, "off-axis enemy missed");
-check(coop_ray_circle(0,0,1,0,0,0,14) == 0, "overlapping enemy entry");
 check(_aim.ghost_gap == 6 && _aim.ghost_alpha == 0.6, "ghost offset and translucency");
 
 for (var _a = 0; _a < 360; _a += 45) {
@@ -37,8 +33,19 @@ for (var _a = 0; _a < 360; _a += 45) {
 }
 
 _aim.aim_angle = 0;
-check(coop_visible(_body,_body.x+100,_body.y), "target inside cone visible");
-check(!coop_visible(_body,_body.x-100,_body.y), "target behind player hidden");
+check(coop_visible(_body,_body.x+32,_body.y), "target inside cone visible");
+check(!coop_visible(_body,_body.x-32,_body.y), "target behind player hidden");
+check(coop_wall_distance(_aim,_body.x,_body.y,0,32) == -1, "clear ray misses walls");
+var _door = instance_create_depth(_body.x+40,_body.y-16,0,obj_door);
+var _door_point = _door.get_interaction_point(_body);
+check(coop_visible(_body,_door_point.x,_door_point.y,_door), "door is visible at its surface");
+var _door_blocker = instance_create_depth(_body.x+20,_body.y-16,0,obj_wall);
+check(!coop_visible(_body,_door_point.x,_door_point.y,_door), "another wall still blocks the door");
+instance_destroy(_door_blocker);
+_team.energy = 100;
+check(_aim.update_interaction(true) && _door.is_open, "Enter interaction opens door");
+check(_aim.update_interaction(true) && !_door.is_open, "Enter interaction closes door");
+instance_destroy(_door);
 var _near = instance_create_depth(_body.x+100,_body.y,0,par_enemy);
 var _far = instance_create_depth(_body.x+180,_body.y,0,par_enemy);
 _team.energy=100;
@@ -47,6 +54,8 @@ check(!instance_exists(_near) && instance_exists(_far), "one shot kills nearest 
 check(_team.energy==95, "hit consumes five energy");
 var _wall = instance_create_depth(_body.x+40,_body.y-16,0,obj_wall);
 check(!coop_visible(_body,_far.x,_far.y), "wall blocks vision");
+var _wall_distance = coop_wall_distance(_aim,_body.x,_body.y,0,100);
+check(_wall_distance >= 38 && _wall_distance <= 41, "wall stops ray at placed wall");
 check(_body.fire_shot() && instance_exists(_far), "wall blocks shot");
 check(_team.energy==90, "blocked shot still costs five");
 instance_destroy(_wall);

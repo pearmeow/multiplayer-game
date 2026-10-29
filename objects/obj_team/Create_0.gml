@@ -103,7 +103,7 @@ draw_vision = function() {
     for (var _i = 0; _i <= vision_rays; _i++) {
         var _offset = -_aim.cone_width / 2 + _aim.cone_width * _i / vision_rays;
         var _angle = _aim.aim_angle + _offset;
-        var _range = coop_wall_view_distance(_body.x, _body.y, _angle, _aim.vision_range, vision_wall_reveal);
+        var _range = coop_wall_view_distance(_aim, _body.x, _body.y, _angle, _aim.vision_range, vision_wall_reveal);
         var _edge = clamp((_aim.cone_width / 2 - abs(_offset)) / vision_edge_fade_angle, 0, 1);
         array_push(_rays, {angle: _angle, range: _range, edge: _edge});
     }

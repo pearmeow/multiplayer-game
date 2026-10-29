@@ -1,5 +1,9 @@
 owner_body = noone;
 aim_angle = 90;
+// The drawn ghost is separate; use a one-pixel mask to sample walls and enemies.
+mask_index = spr_wall;
+image_xscale = 1 / sprite_get_width(spr_wall);
+image_yscale = 1 / sprite_get_height(spr_wall);
 
 get_ghost_pose = function() {
     var _dx = lengthdir_x(1, aim_angle);

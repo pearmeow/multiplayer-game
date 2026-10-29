@@ -76,7 +76,7 @@ obj_team 的 indicator_radius / indicator_min_size / indicator_max_size / indica
 ## 视野显示参数
 
 obj_aim.vision_range 控制最大视距，以对象变量面板设置为准。obj_team.vision_tint_colour / vision_tint_alpha 控制扇区内淡灰提示色，默认灰色、透明度0.06。
-vision_wall_reveal 默认8：沿被照到墙面的法线方向显露8像素厚度，斜视时按入射角换算射线长度，并在墙体出口停止，不透视墙后的世界。支持缩放和旋转的矩形墙体。
+vision_wall_reveal 默认8：视线碰到墙后，沿视线最多再显示8像素；到墙体出口即停止。墙体和敌人的命中检测使用碰撞遮罩与 place_meeting。
 vision_brightness 默认0.6，控制视野内世界亮度，自身角色、HUD、箭头不受影响。
 vision_edge_fade_angle 默认8度，控制视锥两侧渐变；vision_distance_fade 默认64像素，控制最远端渐变。vision_fade_steps 默认8，控制渐变网格分段。
 interaction_key 为对象变量，默认 vk_enter；交互使用普通键盘状态的按下边沿，不再直接轮询右Shift，按住不重复触发。

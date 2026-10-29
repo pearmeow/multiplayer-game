@@ -10,7 +10,9 @@ function enemy_nav_radius(_enemy) {
 function enemy_nav_position_clear(_enemy, _x, _y) {
     var _radius = enemy_nav_radius(_enemy);
     if (_x < _radius || _y < _radius || _x >= room_width - _radius || _y >= room_height - _radius) return false;
-    return collision_rectangle(_x - _radius, _y - _radius, _x + _radius, _y + _radius, obj_wall, false, true) == noone;
+    var _clear = false;
+    with (_enemy) _clear = !place_meeting(_x, _y, obj_wall);
+    return _clear;
 }
 
 function enemy_nav_plan(_enemy, _goal_x, _goal_y) {
@@ -31,17 +33,9 @@ function enemy_nav_plan(_enemy, _goal_x, _goal_y) {
 }
 
 function enemy_nav_touching_player(_enemy) {
-    var _left = _enemy.x - _enemy.hit_radius;
-    var _right = _enemy.x + _enemy.hit_radius;
-    var _top = _enemy.y - _enemy.hit_radius;
-    var _bottom = _enemy.y + _enemy.hit_radius;
-    if (_enemy.sprite_index != -1) {
-        _left = _enemy.bbox_left;
-        _right = _enemy.bbox_right;
-        _top = _enemy.bbox_top;
-        _bottom = _enemy.bbox_bottom;
-    }
-    return collision_rectangle(_left, _top, _right, _bottom, obj_player, false, true) != noone;
+    var _touching = false;
+    with (_enemy) _touching = place_meeting(x, y, obj_player);
+    return _touching;
 }
 
 function enemy_nav_follow(_enemy, _distance_left) {

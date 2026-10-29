@@ -25,9 +25,9 @@
 - obj_player：实体、移动碰撞、射击、交互；自动创建 obj_team 与 obj_aim。
 - obj_aim：Begin Step 更新瞄准，Draw 绘制视锥和幽灵。ghost_gap=6，ghost_alpha=0.60。
 - obj_team：共享池和 GUI 能量条；try_spend(cost)、advance_energy(seconds)。
-- par_enemy：未来敌人的父对象；hit_radius=14，targetable=true，receive_shot(attacker) 默认直接销毁。子对象的 Create 需调用 event_inherited()；更换贴图可覆写 Draw，但需保留 coop_visible 判断。
+- par_enemy：未来敌人的父对象；targetable=true，receive_shot(attacker) 默认直接销毁。命中使用敌人的碰撞遮罩；没有贴图时按 hit_radius 设置遮罩。子对象的 Create 需调用 event_inherited()；更换贴图可覆写 Draw，但需保留 coop_visible 判断。
 - par_interactable：未来门、开关、拾取物的父对象；enabled、prompt、interact(actor)。幽灵的Enter 选择实体64px内最近的可见对象；交互方法默认只提示，子对象替换实际效果。
-- coop_core：射线与圆形目标相交、墙体射程截断、共享视野判定。
+- coop_core：沿射线逐像素调用 place_meeting，处理射击、墙体遮挡和共享视野判定。
 - obj_wall：实体阻挡移动、瞄准射线和可见性。
 
 保留 rm_01、rm_03 中已有的玩家、墙体和敌人布置；rm_02 由共享管理器自动创建玩家。三个房间均配置一个共享管理器，跨房时自动去重。

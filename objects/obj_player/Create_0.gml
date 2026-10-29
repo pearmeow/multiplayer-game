@@ -19,24 +19,11 @@ fire_shot = function() {
     if (!instance_exists(team) || !instance_exists(aim_controller)) return false;
     if (team.try_spend(team.action_energy_cost)) {
         var _angle = aim_controller.aim_angle;
-        var _distance = coop_wall_distance(x, y, _angle, shoot_range);
+        var _hit = coop_shot_hit(aim_controller, x, y, _angle, shoot_range);
         var _dx = lengthdir_x(1, _angle);
         var _dy = lengthdir_y(1, _angle);
-        var _nearest = noone;
-        var _hit_distance = _distance;
-
-        for (var _i = 0; _i < instance_number(par_enemy); ++_i) {
-            var _enemy = instance_find(par_enemy, _i);
-            if (!instance_exists(_enemy)) continue;
-            if (!_enemy.targetable) continue;
-            var _hit = coop_ray_circle(x, y, _dx, _dy, _enemy.x, _enemy.y, _enemy.hit_radius);
-            if (_hit >= 0 && _hit < _hit_distance) {
-                _hit_distance = _hit;
-                _nearest = _enemy;
-            }
-        }
-        show_action_effect(x + _dx * _hit_distance, y + _dy * _hit_distance, shoot_effect_colour);
-        if (_nearest != noone) _nearest.receive_shot(id);
+        show_action_effect(x + _dx * _hit.distance, y + _dy * _hit.distance, shoot_effect_colour);
+        if (_hit.enemy != noone) _hit.enemy.receive_shot(id);
         return true;
     } else {
         team.notify("Not enough shared energy (need " + string(team.action_energy_cost) + ")");
