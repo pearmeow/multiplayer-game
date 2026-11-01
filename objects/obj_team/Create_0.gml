@@ -107,16 +107,26 @@ draw_vision = function() {
         var _edge = clamp((_aim.cone_width / 2 - abs(_offset)) / vision_edge_fade_angle, 0, 1);
         array_push(_rays, {angle: _angle, range: _range, edge: _edge});
     }
+    var _ghost_x = (_aim.x - camera_get_view_x(camera_id)) * _scale_x;
+    var _ghost_y = (_aim.y - camera_get_view_y(camera_id)) * _scale_y;
+    var _ghost_rays = [];
+    for (var _i = 0; _i <= vision_rays; _i++) {
+        var _angle = 360 * _i / vision_rays;
+        var _range = coop_wall_view_distance(_aim, _aim.x, _aim.y, _angle, _aim.ghost_vision_range, vision_wall_reveal);
+        array_push(_ghost_rays, {angle: _angle, range: _range, edge: 1});
+    }
     if (!surface_exists(vision_mask)) vision_mask = surface_create(display_get_gui_width(), display_get_gui_height());
     surface_set_target(vision_mask);
     draw_clear_alpha(c_black, 1);
     gpu_set_blendmode_ext(bm_zero, bm_inv_src_alpha);
     draw_set_alpha(1);
-    draw_vision_mesh(_rays, _x, _y, _scale_x, _scale_y, _aim.vision_range, c_white, vision_brightness);
+    draw_vision_mesh(_rays, _x, _y, _scale_x, _scale_y, _aim.vision_range, c_white, vision_brightness * 0.6);
+    draw_vision_mesh(_ghost_rays, _ghost_x, _ghost_y, _scale_x, _scale_y, _aim.ghost_vision_range, c_white, vision_brightness);
     gpu_set_blendmode(bm_normal);
     surface_reset_target();
     draw_surface(vision_mask, 0, 0);
     draw_vision_mesh(_rays, _x, _y, _scale_x, _scale_y, _aim.vision_range, vision_tint_colour, vision_tint_alpha);
+    draw_vision_mesh(_ghost_rays, _ghost_x, _ghost_y, _scale_x, _scale_y, _aim.ghost_vision_range, vision_tint_colour, vision_tint_alpha);
     draw_set_alpha(1);
     draw_set_colour(c_white);
 };
@@ -139,9 +149,7 @@ draw_indicator = function() {
     var _y = (_body.y - camera_get_view_y(camera_id)) * display_get_gui_height() / camera_get_view_height(camera_id);
     var _angle = _info.angle;
     var _size = _info.size;
-    var _pose = _body.aim_controller.get_ghost_pose();
-    var _ghost_edge = point_distance(_body.x, _body.y, _pose.x, _pose.y) + max(sprite_get_width(spr_ghost), sprite_get_height(spr_ghost)) / 2;
-    var _radius = max(indicator_radius, _ghost_edge + _size);
+    var _radius = indicator_radius;
     var _front_x = _x + lengthdir_x(_radius + _size, _angle);
     var _front_y = _y + lengthdir_y(_radius + _size, _angle);
     var _back_x = _x + lengthdir_x(_radius - _size, _angle);

@@ -32,6 +32,6 @@ get_interaction_point = function(_actor) {
     return {x: clamp(_actor.x, _left, _right), y: clamp(_actor.y, _top, _bottom)};
 };
 interact = function(_actor) {
-    if (can_interact()) return toggle();
+    if (instance_exists(_actor) && _actor.object_index == obj_aim && can_interact()) return toggle();
     return false;
 };

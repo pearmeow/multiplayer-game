@@ -3,6 +3,7 @@ var _mx = keyboard_check(ord("D")) - keyboard_check(ord("A"));
 var _my = keyboard_check(ord("S")) - keyboard_check(ord("W"));
 var _length = point_distance(0, 0, _mx, _my);
 if (_length > 0) {
+    if (instance_exists(aim_controller)) aim_controller.aim_angle = point_direction(0, 0, _mx, _my);
     _mx = _mx / _length * move_speed * _dt;
     _my = _my / _length * move_speed * _dt;
 	
@@ -13,8 +14,7 @@ if (_length > 0) {
     }
 }
 
-var _gap = instance_exists(aim_controller) ? aim_controller.ghost_gap : 6;
-var _margin = sprite_get_width(sprite_index) + sprite_get_width(spr_ghost) + _gap;
+var _margin = max(sprite_get_width(sprite_index), sprite_get_height(sprite_index)) / 2;
 x = clamp(x, min(_margin, room_width * 0.5), max(room_width * 0.5, room_width - _margin));
 y = clamp(y, min(_margin, room_height * 0.5), max(room_height * 0.5, room_height - _margin));
 shot_time = max(0, shot_time - _dt);
