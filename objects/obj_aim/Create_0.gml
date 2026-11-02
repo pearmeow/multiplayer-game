@@ -1,5 +1,7 @@
 owner_body = noone;
 aim_angle = 90;
+ghost_offset_x = 0;
+ghost_offset_y = 0;
 // The drawn ghost is separate; use a one-pixel mask to sample walls and enemies.
 mask_index = spr_wall;
 image_xscale = 1 / sprite_get_width(spr_wall);
@@ -10,14 +12,15 @@ get_ghost_pose = function() {
 };
 
 clamp_ghost_position = function() {
-    var _distance = point_distance(owner_body.x, owner_body.y, x, y);
+    var _distance = point_distance(0, 0, ghost_offset_x, ghost_offset_y);
+
     if (_distance > ghost_move_radius) {
-        var _direction = point_direction(owner_body.x, owner_body.y, x, y);
-        x = owner_body.x + lengthdir_x(ghost_move_radius, _direction);
-        y = owner_body.y + lengthdir_y(ghost_move_radius, _direction);
+        ghost_offset_x = ghost_offset_x / _distance * ghost_move_radius;
+        ghost_offset_y = ghost_offset_y / _distance * ghost_move_radius;
     }
-    x = clamp(x, 0, room_width - 1);
-    y = clamp(y, 0, room_height - 1);
+
+    x = owner_body.x + ghost_offset_x;
+    y = owner_body.y + ghost_offset_y;
 };
 
 interaction_pressed = false;
