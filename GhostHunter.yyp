@@ -1,6 +1,6 @@
 {
   "$GMProject":"v1",
-  "%Name":"GhostHunter",
+  "%Name":"multiplayer",
   "AudioGroups":[
     {"$GMAudioGroup":"v1","%Name":"audiogroup_default","exportDir":"","name":"audiogroup_default","resourceType":"GMAudioGroup","resourceVersion":"2.0","targets":-1,},
   ],
@@ -24,7 +24,7 @@
   "MetaData":{
     "IDEVersion":"2026.0.0.16",
   },
-  "name":"GhostHunter",
+  "name":"multiplayer",
   "resources":[
     {"id":{"name":"obj_aim","path":"objects/obj_aim/obj_aim.yy",},},
     {"id":{"name":"obj_door_trigger","path":"objects/obj_door_trigger/obj_door_trigger.yy",},},
@@ -37,7 +37,6 @@
     {"id":{"name":"obj_trap","path":"objects/obj_trap/obj_trap.yy",},},
     {"id":{"name":"obj_trigger","path":"objects/obj_trigger/obj_trigger.yy",},},
     {"id":{"name":"obj_wall","path":"objects/obj_wall/obj_wall.yy",},},
-    {"id":{"name":"Object13","path":"objects/Object13/Object13.yy",},},
     {"id":{"name":"par_enemy","path":"objects/par_enemy/par_enemy.yy",},},
     {"id":{"name":"par_interactable","path":"objects/par_interactable/par_interactable.yy",},},
     {"id":{"name":"rm_01","path":"rooms/rm_01/rm_01.yy",},},
