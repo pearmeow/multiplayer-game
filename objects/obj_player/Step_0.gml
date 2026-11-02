@@ -1,3 +1,7 @@
+if (place_meeting(x, y, par_enemy)) {
+	instance_destroy()
+}
+
 var _dt = min(0.05, max(0, delta_time / 1000000));
 var _mx = keyboard_check(ord("D")) - keyboard_check(ord("A"));
 var _my = keyboard_check(ord("S")) - keyboard_check(ord("W"));
