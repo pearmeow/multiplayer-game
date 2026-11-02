@@ -1,13 +1,15 @@
 if (place_meeting(x, y, par_enemy)) {
-	instance_destroy()
+    instance_destroy();
+    exit;
 }
 
+var _old_x = x;
+var _old_y = y;
 var _dt = min(0.05, max(0, delta_time / 1000000));
 var _mx = keyboard_check(ord("D")) - keyboard_check(ord("A"));
 var _my = keyboard_check(ord("S")) - keyboard_check(ord("W"));
 var _length = point_distance(0, 0, _mx, _my);
 if (_length > 0) {
-    if (instance_exists(aim_controller)) aim_controller.aim_angle = point_direction(0, 0, _mx, _my);
     _mx = _mx / _length * move_speed * _dt;
     _my = _my / _length * move_speed * _dt;
 	
@@ -23,5 +25,12 @@ x = clamp(x, min(_margin, room_width * 0.5), max(room_width * 0.5, room_width - 
 y = clamp(y, min(_margin, room_height * 0.5), max(room_height * 0.5, room_height - _margin));
 shot_time = max(0, shot_time - _dt);
 if (!instance_exists(team) || !instance_exists(aim_controller)) exit;
+
+moving = x != _old_x || y != _old_y;
+if (moving) {
+    aim_controller.aim_angle = point_direction(_old_x, _old_y, x, y);
+} else if (aim_controller.ghost_offset_x != 0 || aim_controller.ghost_offset_y != 0) {
+    aim_controller.aim_angle = point_direction(0, 0, aim_controller.ghost_offset_x, aim_controller.ghost_offset_y);
+}
 
 if (keyboard_check_pressed(vk_space)) fire_shot();
