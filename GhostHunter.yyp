@@ -36,6 +36,7 @@
     {"id":{"name":"obj_trap","path":"objects/obj_trap/obj_trap.yy",},},
     {"id":{"name":"obj_trigger","path":"objects/obj_trigger/obj_trigger.yy",},},
     {"id":{"name":"obj_wall","path":"objects/obj_wall/obj_wall.yy",},},
+    {"id":{"name":"Object13","path":"objects/Object13/Object13.yy",},},
     {"id":{"name":"par_enemy","path":"objects/par_enemy/par_enemy.yy",},},
     {"id":{"name":"par_interactable","path":"objects/par_interactable/par_interactable.yy",},},
     {"id":{"name":"rm_01","path":"rooms/rm_01/rm_01.yy",},},
