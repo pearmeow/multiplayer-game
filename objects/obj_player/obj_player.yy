@@ -36,7 +36,6 @@
     {"$GMObjectProperty":"v2","%Name":"move_speed","filters":[],"listItems":[],"multiselect":false,"name":"move_speed","rangeEnabled":false,"rangeMax":10000.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"120","varType":0,},
     {"$GMObjectProperty":"v2","%Name":"shoot_range","filters":[],"listItems":[],"multiselect":false,"name":"shoot_range","rangeEnabled":false,"rangeMax":10000.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"600","varType":0,},
     {"$GMObjectProperty":"v2","%Name":"interact_range","filters":[],"listItems":[],"multiselect":false,"name":"interact_range","rangeEnabled":false,"rangeMax":10000.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"64","varType":0,},
-    {"$GMObjectProperty":"v2","%Name":"move_spread","filters":[],"listItems":[],"multiselect":false,"name":"move_spread","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"8","varType":0,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",

@@ -1,5 +1,4 @@
 shot_time = 0;
-moving = false;
 shot_x = x;
 shot_y = y;
 shot_source_x = x;
@@ -24,9 +23,6 @@ fire_shot = function() {
     if (!instance_exists(team) || !instance_exists(aim_controller)) return false;
     if (team.try_spend(team.action_energy_cost)) {
         var _angle = aim_controller.aim_angle;
-		if (moving) {
-		    _angle += random_range(-move_spread, move_spread);
-		}
         var _hit = coop_shot_hit(aim_controller, x, y, _angle, shoot_range);
         var _dx = lengthdir_x(1, _angle);
         var _dy = lengthdir_y(1, _angle);
