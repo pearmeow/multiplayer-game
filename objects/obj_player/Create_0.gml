@@ -1,6 +1,8 @@
 shot_time = 0;
 shot_x = x;
 shot_y = y;
+shot_source_x = x;
+shot_source_y = y;
 interaction_target = noone;
 action_effect_colour = shoot_effect_colour;
 team = instance_find(obj_team, 0);
@@ -8,7 +10,9 @@ if (team == noone) team = instance_create_depth(0, 0, -1000, obj_team);
 aim_controller = instance_create_depth(x, y, depth + 1, obj_aim);
 aim_controller.owner_body = id;
 
-show_action_effect = function(_target_x, _target_y, _colour) {
+show_action_effect = function(_target_x, _target_y, _colour, _source_x = x, _source_y = y) {
+    shot_source_x = _source_x;
+    shot_source_y = _source_y;
     action_effect_colour = _colour;
     shot_x = _target_x;
     shot_y = _target_y;

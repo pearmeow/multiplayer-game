@@ -60,10 +60,14 @@ function coop_visible(_body, _target_x, _target_y, _target = noone) {
     var _aim = _body.aim_controller;
     if (!instance_exists(_aim)) return false;
     var _distance = point_distance(_body.x, _body.y, _target_x, _target_y);
-    if (_distance > _aim.vision_range) return false;
-    if (abs(angle_difference(_aim.aim_angle, point_direction(_body.x, _body.y, _target_x, _target_y))) > _aim.cone_width * 0.5) return false;
-    return coop_wall_distance(_aim, _body.x, _body.y,
-        point_direction(_body.x, _body.y, _target_x, _target_y), _distance, _target) == -1;
+    var _angle = point_direction(_body.x, _body.y, _target_x, _target_y);
+    if (_distance <= _aim.vision_range
+        && abs(angle_difference(_aim.aim_angle, _angle)) <= _aim.cone_width * 0.5
+        && coop_wall_distance(_aim, _body.x, _body.y, _angle, _distance, _target) == -1) return true;
+    var _ghost_distance = point_distance(_aim.x, _aim.y, _target_x, _target_y);
+    if (_ghost_distance > _aim.ghost_vision_range) return false;
+    return coop_wall_distance(_aim, _aim.x, _aim.y,
+        point_direction(_aim.x, _aim.y, _target_x, _target_y), _ghost_distance, _target) == -1;
 }
 
 function coop_wall_view_distance(_probe, _x, _y, _angle, _range, _depth) {

@@ -16,7 +16,7 @@ draw_set_colour(c_white);
 draw_rectangle(_left, _top, _left + _width, _top + 20, true);
 draw_text(_left, _top + 28, "ENERGY: " + string(energy) + "/" + string(energy_max));
 draw_text(_left, _top + 50, "BODY: WASD to move, SPACE to fire (-" + string(action_energy_cost) + ")");
-draw_text(_left, _top + 70, "GHOST: LEFT/RIGHT to aim, ENTER interact (-" + string(action_energy_cost) + ")");
+draw_text(_left, _top + 70, "GHOST: ARROWS to move, ENTER interact (-" + string(action_energy_cost) + ")");
 if (feedback_time > 0) draw_text(_left, _top + 94, feedback);
 
 var _body = instance_find(obj_player, 0);

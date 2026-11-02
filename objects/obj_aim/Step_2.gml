@@ -1,5 +1,4 @@
 if (!instance_exists(owner_body)) exit;
-x = owner_body.x;
-y = owner_body.y;
+clamp_ghost_position();
 update_interaction(interaction_pressed);
 interaction_pressed = false;
