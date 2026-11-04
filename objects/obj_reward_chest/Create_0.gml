@@ -1,5 +1,5 @@
 event_inherited();
-prompt = "Open weapon chest (free)";
+prompt = "Open reward chest (free)";
 interaction_free = true;
 reward_key = reward_id;
 if (reward_key == "") reward_key = room_get_name(room) + ":" + string(id);
@@ -16,7 +16,7 @@ interact = function(_actor) {
         mark_open();
         return false;
     }
-    if (!_team.claim_reward(reward_key, weapon_reward)) return false;
+    if (!_team.claim_reward(reward_key, weapon_reward, reward_pool, _actor)) return false;
     mark_open();
     return true;
 };

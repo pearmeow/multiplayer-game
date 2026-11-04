@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"team_render",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"team_render",
+  "parent":{
+    "name":"scripts",
+    "path":"folders/scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

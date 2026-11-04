@@ -5,4 +5,3 @@ font_enable_effects(font, true, {
     outlineDistance: 2,
     outlineColour: c_black
 });
-draw_set_font(font)

@@ -1,4 +1,3 @@
-hp = health_max;
 san = san_max;
 damage_cooldown = 0;
 
@@ -22,6 +21,7 @@ update_sanity = function(_seconds) {
 };
 
 shot_time = 0;
+door_notice_time = 0;
 fire_cooldown = 0;
 moving = false;
 shot_x = x;
@@ -32,6 +32,7 @@ interaction_target = noone;
 action_effect_colour = interact_effect_colour;
 team = instance_find(obj_team, 0);
 if (team == noone) team = instance_create_depth(0, 0, -1000, obj_team);
+hp = health_max + team.stat_bonus.max_health;
 aim_controller = instance_create_depth(x, y, depth + 1, obj_aim);
 aim_controller.owner_body = id;
 
@@ -54,6 +55,9 @@ fire_shot = function() {
     }
 
     var _angle = aim_controller.aim_angle;
+    if (aim_controller.ghost_offset_x != 0 || aim_controller.ghost_offset_y != 0) {
+        _angle = point_direction(0, 0, aim_controller.ghost_offset_x, aim_controller.ghost_offset_y);
+    }
     if (moving) _angle += random_range(-move_spread, move_spread);
     for (var _i = 0; _i < _weapon.pellets; _i++) {
         var _heading = _angle;

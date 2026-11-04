@@ -7,10 +7,6 @@ mask_index = spr_wall;
 image_xscale = 1 / sprite_get_width(spr_wall);
 image_yscale = 1 / sprite_get_height(spr_wall);
 
-get_ghost_pose = function() {
-    return {x: x, y: y, rotation: 0};
-};
-
 clamp_ghost_position = function() {
     var _distance = point_distance(0, 0, ghost_offset_x, ghost_offset_y);
 
@@ -31,7 +27,7 @@ read_interaction_input = function(_down) {
     return _pressed;
 };
 get_ghost_vision_range = function() {
-    return ghost_vision_range;
+    return ghost_vision_range + owner_body.team.stat_bonus.ghost_vision;
 };
 
 update_interaction = function(_pressed, _dx = 0, _dy = 0) {

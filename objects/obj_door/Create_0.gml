@@ -1,6 +1,12 @@
 is_open = false;
 closed_sprite = sprite_index;
 toggle = function() {
+    if (!is_open && link_id != 0) {
+        for (var _i = 0; _i < instance_number(obj_door_trigger); _i++) {
+            var _plate = instance_find(obj_door_trigger, _i);
+            if (_plate.target_link == link_id && _plate.activations == 0) return false;
+        }
+    }
     sprite_index = closed_sprite;
     if (is_open) {
         if (place_meeting(x, y, obj_player) || place_meeting(x, y, par_enemy)) {
@@ -16,13 +22,7 @@ toggle = function() {
 
 enabled = true;
 can_interact = function() {
-    if (link_id == 0) return true;
-    for (var _i = 0; _i < instance_number(obj_trigger); _i++) {
-        var _trigger = instance_find(obj_trigger, _i);
-        if (!instance_exists(_trigger)) continue;
-        if (_trigger.target_link == link_id) return false;
-    }
-    return true;
+    return link_id == 0;
 };
 get_interaction_point = function(_actor) {
     var _left = x - sprite_get_xoffset(closed_sprite) * image_xscale;

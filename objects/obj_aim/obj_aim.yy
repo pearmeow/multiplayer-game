@@ -4,7 +4,6 @@
   "eventList":[
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":1,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":2,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
@@ -34,7 +33,6 @@
     {"$GMObjectProperty":"v2","%Name":"ghost_move_speed","filters":[],"listItems":[],"multiselect":false,"name":"ghost_move_speed","rangeEnabled":false,"rangeMax":10000.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"196","varType":0,},
     {"$GMObjectProperty":"v2","%Name":"ghost_move_radius","filters":[],"listItems":[],"multiselect":false,"name":"ghost_move_radius","rangeEnabled":false,"rangeMax":10000.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"120","varType":0,},
     {"$GMObjectProperty":"v2","%Name":"ghost_vision_range","filters":[],"listItems":[],"multiselect":false,"name":"ghost_vision_range","rangeEnabled":false,"rangeMax":10000.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"100","varType":0,},
-    {"$GMObjectProperty":"v2","%Name":"ghost_interact_range","filters":[],"listItems":[],"multiselect":false,"name":"ghost_interact_range","rangeEnabled":false,"rangeMax":10000.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"64","varType":0,},
     {"$GMObjectProperty":"v2","%Name":"ghost_alpha","filters":[],"listItems":[],"multiselect":false,"name":"ghost_alpha","rangeEnabled":false,"rangeMax":10000.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0.6","varType":0,},
     {"$GMObjectProperty":"v2","%Name":"interaction_key","filters":[],"listItems":[],"multiselect":false,"name":"interaction_key","rangeEnabled":false,"rangeMax":10000.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"vk_enter","varType":4,},
   ],
@@ -46,5 +44,5 @@
     "path":"sprites/spr_ghost/spr_ghost.yy",
   },
   "spriteMaskId":null,
-  "visible":true,
+  "visible":false,
 }

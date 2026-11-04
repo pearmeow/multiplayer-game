@@ -88,7 +88,22 @@
       "rangeMin": 0.0,
       "resourceType": "GMObjectProperty",
       "resourceVersion": "2.0",
-      "value": "lever",
+      "value": "",
+      "varType": 2
+    },
+    {
+      "$GMObjectProperty": "v2",
+      "%Name": "reward_pool",
+      "filters": [],
+      "listItems": [],
+      "multiselect": false,
+      "name": "reward_pool",
+      "rangeEnabled": false,
+      "rangeMax": 10000.0,
+      "rangeMin": 0.0,
+      "resourceType": "GMObjectProperty",
+      "resourceVersion": "2.0",
+      "value": "mixed",
       "varType": 2
     }
   ],

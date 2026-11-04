@@ -1,0 +1,38 @@
+{
+  "mixed": [
+    {
+      "weapon": "lever",
+      "weight": 3
+    },
+    {
+      "weapon": "rifle",
+      "weight": 3
+    },
+    {
+      "weapon": "shotgun",
+      "weight": 2
+    },
+    {
+      "weapon": "sniper",
+      "weight": 2
+    },
+    {
+      "stat": "move_speed",
+      "label": "Move speed",
+      "weight": 2,
+      "fraction": 0.1
+    },
+    {
+      "stat": "ghost_vision",
+      "label": "Ghost vision",
+      "weight": 2,
+      "fraction": 0.1
+    },
+    {
+      "stat": "max_health",
+      "label": "Max health",
+      "weight": 2,
+      "fraction": 0.1
+    }
+  ]
+}

@@ -5,53 +5,58 @@
     "damage": 30,
     "projectile_speed": 520,
     "range": 340,
-    "energy_cost": 5,
+    "energy_cost": 4,
     "cooldown": 0.32,
     "pellets": 1,
-    "pellet_spread": 0
+    "pellet_spread": 0,
+    "automatic": false
   },
   "lever": {
     "name": "Lever-Action Rifle",
     "rank": 1,
-    "damage": 45,
-    "projectile_speed": 660,
-    "range": 450,
+    "damage": 54,
+    "projectile_speed": 720,
+    "range": 480,
     "energy_cost": 5,
-    "cooldown": 0.44,
+    "cooldown": 0.5,
     "pellets": 1,
-    "pellet_spread": 0
+    "pellet_spread": 0,
+    "automatic": false
   },
   "rifle": {
     "name": "Rifle",
     "rank": 2,
-    "damage": 55,
-    "projectile_speed": 800,
-    "range": 550,
-    "energy_cost": 5,
-    "cooldown": 0.28,
+    "damage": 34,
+    "projectile_speed": 860,
+    "range": 520,
+    "energy_cost": 3,
+    "cooldown": 0.18,
     "pellets": 1,
-    "pellet_spread": 0
+    "pellet_spread": 0,
+    "automatic": true
   },
   "shotgun": {
     "name": "Shotgun",
     "rank": 3,
-    "damage": 19,
-    "projectile_speed": 540,
-    "range": 260,
+    "damage": 21,
+    "projectile_speed": 580,
+    "range": 245,
     "energy_cost": 7,
-    "cooldown": 0.55,
+    "cooldown": 0.62,
     "pellets": 5,
-    "pellet_spread": 14
+    "pellet_spread": 14,
+    "automatic": false
   },
   "sniper": {
     "name": "Sniper Rifle",
     "rank": 3,
-    "damage": 95,
-    "projectile_speed": 1060,
-    "range": 720,
-    "energy_cost": 7,
-    "cooldown": 0.72,
+    "damage": 112,
+    "projectile_speed": 1200,
+    "range": 760,
+    "energy_cost": 8,
+    "cooldown": 0.85,
     "pellets": 1,
-    "pellet_spread": 0
+    "pellet_spread": 0,
+    "automatic": false
   }
 }
