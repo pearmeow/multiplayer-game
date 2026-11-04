@@ -4,9 +4,10 @@ if (sprite_index == -1 && mask_index == -1) {
     image_xscale = hit_radius * 2 / sprite_get_width(spr_enemy);
     image_yscale = hit_radius * 2 / sprite_get_height(spr_enemy);
 }
-receive_shot = function(_attacker) {
-
-    instance_destroy();
+hp = health_max;
+receive_shot = function(_attacker, _damage) {
+    hp = max(0, hp - max(0, _damage));
+    if (hp == 0) instance_destroy();
 };
 
 start_x = x;

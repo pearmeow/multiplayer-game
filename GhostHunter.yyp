@@ -17,6 +17,7 @@
   ],
   "ForcedPrefabProjectReferences":[],
   "IncludedFiles":[
+    {"$GMIncludedFile":"","%Name":"weapons.json","CopyToMask":-1,"filePath":"datafiles","name":"weapons.json","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"Smile Moon.otf","CopyToMask":-1,"filePath":"datafiles","name":"Smile Moon.otf","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
   ],
   "isEcma":false,
@@ -26,6 +27,10 @@
   },
   "name":"multiplayer",
   "resources":[
+    {"id":{"name":"obj_bullet","path":"objects/obj_bullet/obj_bullet.yy",},},
+    {"id":{"name":"obj_reward_chest","path":"objects/obj_reward_chest/obj_reward_chest.yy",},},
+    {"id":{"name":"spr_reward_chest_closed","path":"sprites/spr_reward_chest_closed/spr_reward_chest_closed.yy",},},
+    {"id":{"name":"spr_reward_chest_open","path":"sprites/spr_reward_chest_open/spr_reward_chest_open.yy",},},
     {"id":{"name":"obj_aim","path":"objects/obj_aim/obj_aim.yy",},},
     {"id":{"name":"obj_door_trigger","path":"objects/obj_door_trigger/obj_door_trigger.yy",},},
     {"id":{"name":"obj_door","path":"objects/obj_door/obj_door.yy",},},

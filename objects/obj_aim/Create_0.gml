@@ -30,51 +30,65 @@ read_interaction_input = function(_down) {
     interaction_was_down = _down;
     return _pressed;
 };
-update_interaction = function(_pressed) {
+get_ghost_vision_range = function() {
+    return ghost_vision_range;
+};
+
+update_interaction = function(_pressed, _dx = 0, _dy = 0) {
     var _body = owner_body;
     if (!instance_exists(_body)) return false;
-    _body.interaction_target = noone;
-    var _best = max(_body.interact_range, ghost_interact_range) + 1;
-    var _target_point = undefined;
-    var _target_is_door = false;
+    var _current = _body.interaction_target;
+    var _nearest = undefined;
+    var _locked = undefined;
+    var _directional = undefined;
+    var _range = get_ghost_vision_range();
     var _groups = [par_interactable, obj_door];
+
     for (var _group = 0; _group < array_length(_groups); _group++) {
         var _object = _groups[_group];
         for (var _i = 0; _i < instance_number(_object); _i++) {
             var _item = instance_find(_object, _i);
             if (!_item.enabled) continue;
-            var _is_door = _object == obj_door;
             var _point = {x: _item.x, y: _item.y};
-            var _distance;
-            if (_is_door) {
+            if (_object == obj_door) {
                 if (!_item.can_interact()) continue;
                 _point = _item.get_interaction_point(id);
-                _distance = point_distance(x, y, _point.x, _point.y);
-                if (_distance > ghost_interact_range) continue;
-                var _angle = point_direction(x, y, _point.x, _point.y);
-                if (coop_wall_distance(id, x, y, _angle, _distance, _item) != -1) continue;
-            } else {
-                _distance = point_distance(_body.x, _body.y, _point.x, _point.y);
-                if (_distance > _body.interact_range) continue;
-                if (!coop_visible(_body, _point.x, _point.y, _item)) continue;
             }
-            if (_distance >= _best) continue;
-            _body.interaction_target = _item;
-            _best = _distance;
-            _target_point = _point;
-            _target_is_door = _is_door;
+            var _distance = point_distance(x, y, _point.x, _point.y);
+            if (_distance > _range) continue;
+            if (coop_wall_distance(id, x, y, point_direction(x, y, _point.x, _point.y), _distance, _item) != -1) continue;
+
+            var _candidate = {item: _item, point: _point, distance: _distance, door: _object == obj_door};
+            if (is_undefined(_nearest) || _distance < _nearest.distance) _nearest = _candidate;
+            if (_item == _current) _locked = _candidate;
+            if ((_dx != 0 || _dy != 0) && instance_exists(_current)) {
+                var _off_x = _item.x - _current.x;
+                var _off_y = _item.y - _current.y;
+                if (_off_x * _dx + _off_y * _dy <= 0) continue;
+                _candidate.switch_distance = point_distance(0, 0, _off_x, _off_y);
+                if (is_undefined(_directional) || _candidate.switch_distance < _directional.switch_distance) {
+                    _directional = _candidate;
+                }
+            }
         }
     }
-    if (!_pressed || !instance_exists(_body.interaction_target)) return false;
-    if (!_body.team.try_spend(_body.team.action_energy_cost)) {
-        _body.team.notify("Not enough energy to interact");
+
+    if (!is_undefined(_locked)) {
+        _nearest = _locked;
+        if (!is_undefined(_directional)) _nearest = _directional;
+    }
+    _body.interaction_target = noone;
+    if (is_undefined(_nearest)) return false;
+    _body.interaction_target = _nearest.item;
+    if (!_pressed) return false;
+
+    var _team = _body.team;
+    if ((_nearest.door || !_nearest.item.interaction_free) && !_team.try_spend(_team.get_action_cost())) {
+        _team.notify("Not enough energy to interact");
         return false;
     }
-    _body.interaction_target.interact(_target_is_door ? id : _body);
-    if (_target_is_door) {
-        _body.show_action_effect(_target_point.x, _target_point.y, _body.interact_effect_colour, x, y);
-    } else {
-        _body.show_action_effect(_target_point.x, _target_point.y, _body.interact_effect_colour);
-    }
+    _nearest.item.interact(_nearest.door ? id : _body);
+    _body.show_action_effect(_nearest.point.x, _nearest.point.y, _body.interact_effect_colour, x, y);
+    if (!instance_exists(_nearest.item) || !_nearest.item.enabled) _body.interaction_target = noone;
     return true;
 };

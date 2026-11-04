@@ -32,6 +32,11 @@
   "physicsShapePoints":[],
   "physicsStartAwake":true,
   "properties":[
+    {"$GMObjectProperty":"v2","%Name":"starting_weapon","filters":[],"listItems":[],"multiselect":false,"name":"starting_weapon","rangeEnabled":false,"rangeMax":10000.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"pistol","varType":2},
+    {"$GMObjectProperty":"v2","%Name":"luck","filters":[],"listItems":[],"multiselect":false,"name":"luck","rangeEnabled":false,"rangeMax":10000.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"25","varType":0},
+    {"$GMObjectProperty":"v2","%Name":"luck_bonus_max","filters":[],"listItems":[],"multiselect":false,"name":"luck_bonus_max","rangeEnabled":false,"rangeMax":10000.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0.5","varType":0},
+    {"$GMObjectProperty":"v2","%Name":"interaction_halo_radius","filters":[],"listItems":[],"multiselect":false,"name":"interaction_halo_radius","rangeEnabled":false,"rangeMax":10000.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"16","varType":0},
+    {"$GMObjectProperty":"v2","%Name":"interaction_halo_alpha","filters":[],"listItems":[],"multiselect":false,"name":"interaction_halo_alpha","rangeEnabled":false,"rangeMax":10000.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0.13","varType":0},
     {"$GMObjectProperty":"v2","%Name":"camera_width","filters":[],"listItems":[],"multiselect":false,"name":"camera_width","rangeEnabled":false,"rangeMax":10000.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"960","varType":1,},
     {"$GMObjectProperty":"v2","%Name":"camera_height","filters":[],"listItems":[],"multiselect":false,"name":"camera_height","rangeEnabled":false,"rangeMax":10000.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"540","varType":1,},
     {"$GMObjectProperty":"v2","%Name":"camera_smoothing","filters":[],"listItems":[],"multiselect":false,"name":"camera_smoothing","rangeEnabled":false,"rangeMax":10000.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0.1","varType":0,},

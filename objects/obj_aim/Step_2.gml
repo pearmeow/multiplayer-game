@@ -1,4 +1,7 @@
 if (!instance_exists(owner_body)) exit;
 clamp_ghost_position();
-update_interaction(interaction_pressed);
+owner_body.update_sanity(max(0, delta_time / 1000000));
+update_interaction(interaction_pressed,
+    keyboard_check_pressed(vk_right) - keyboard_check_pressed(vk_left),
+    keyboard_check_pressed(vk_down) - keyboard_check_pressed(vk_up));
 interaction_pressed = false;

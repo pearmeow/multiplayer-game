@@ -1,11 +1,11 @@
-if (place_meeting(x, y, par_enemy)) {
-    instance_destroy();
-    exit;
-}
-
 var _old_x = x;
 var _old_y = y;
 var _dt = min(0.05, max(0, delta_time / 1000000));
+fire_cooldown = max(0, fire_cooldown - _dt);
+damage_cooldown = max(0, damage_cooldown - _dt);
+var _enemy = instance_place(x, y, par_enemy);
+if (_enemy != noone && take_damage(_enemy.contact_damage) && hp == 0) exit;
+
 var _mx = keyboard_check(ord("D")) - keyboard_check(ord("A"));
 var _my = keyboard_check(ord("S")) - keyboard_check(ord("W"));
 var _length = point_distance(0, 0, _mx, _my);

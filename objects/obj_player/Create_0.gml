@@ -1,11 +1,35 @@
+hp = health_max;
+san = san_max;
+damage_cooldown = 0;
+
+take_damage = function(_damage) {
+    if (_damage <= 0 || damage_cooldown > 0) return false;
+    hp = max(0, hp - _damage);
+    damage_cooldown = contact_damage_interval;
+    if (hp == 0) instance_destroy();
+    return true;
+};
+
+update_sanity = function(_seconds) {
+    for (var _i = 0; _i < instance_number(par_enemy); _i++) {
+        var _enemy = instance_find(par_enemy, _i);
+        if (coop_visible(id, _enemy.x, _enemy.y, _enemy)) {
+            san = max(0, san - san_drain_per_second * _seconds);
+            return;
+        }
+    }
+    san = min(san_max, san + san_recovery_per_second * _seconds);
+};
+
 shot_time = 0;
+fire_cooldown = 0;
 moving = false;
 shot_x = x;
 shot_y = y;
 shot_source_x = x;
 shot_source_y = y;
 interaction_target = noone;
-action_effect_colour = shoot_effect_colour;
+action_effect_colour = interact_effect_colour;
 team = instance_find(obj_team, 0);
 if (team == noone) team = instance_create_depth(0, 0, -1000, obj_team);
 aim_controller = instance_create_depth(x, y, depth + 1, obj_aim);
@@ -21,18 +45,30 @@ show_action_effect = function(_target_x, _target_y, _colour, _source_x = x, _sou
 };
 
 fire_shot = function() {
-    if (!instance_exists(team) || !instance_exists(aim_controller)) return false;
-    if (team.try_spend(team.action_energy_cost)) {
-        var _angle = aim_controller.aim_angle;
-        if (moving) _angle += random_range(-move_spread, move_spread);
-        var _hit = coop_shot_hit(aim_controller, x, y, _angle, shoot_range);
-        var _dx = lengthdir_x(1, _angle);
-        var _dy = lengthdir_y(1, _angle);
-        show_action_effect(x + _dx * _hit.distance, y + _dy * _hit.distance, shoot_effect_colour);
-        if (_hit.enemy != noone) _hit.enemy.receive_shot(id);
-        return true;
-    } else {
-        team.notify("Not enough shared energy (need " + string(team.action_energy_cost) + ")");
+    if (!instance_exists(team) || !instance_exists(aim_controller) || fire_cooldown > 0) return false;
+    var _weapon = team.weapon;
+    if (is_undefined(_weapon)) return false;
+    if (!team.try_spend(_weapon.energy_cost)) {
+        team.notify("Not enough energy to fire");
         return false;
     }
+
+    var _angle = aim_controller.aim_angle;
+    if (moving) _angle += random_range(-move_spread, move_spread);
+    for (var _i = 0; _i < _weapon.pellets; _i++) {
+        var _heading = _angle;
+        if (_weapon.pellets > 1) {
+            _heading += lerp(-_weapon.pellet_spread, _weapon.pellet_spread, _i / (_weapon.pellets - 1));
+        }
+        instance_create_depth(x, y, depth, obj_bullet, {
+            heading: _heading,
+            shooter: id,
+            damage: team.weapon_damage,
+            projectile_speed: _weapon.projectile_speed,
+            range_left: _weapon.range
+        });
+    }
+
+    fire_cooldown = _weapon.cooldown;
+    return true;
 };

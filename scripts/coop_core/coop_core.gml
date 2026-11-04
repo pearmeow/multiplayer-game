@@ -30,7 +30,7 @@ function coop_wall_distance(_probe, _x, _y, _angle, _range, _ignore = noone) {
 function coop_shot_hit(_probe, _x, _y, _angle, _range) {
     var _dx = lengthdir_x(1, _angle);
     var _dy = lengthdir_y(1, _angle);
-    var _hit = {distance: _range, enemy: noone};
+    var _hit = {distance: _range, enemy: noone, wall: false};
     with (_probe) {
         for (var _step = 0; _step <= ceil(_range); _step++) {
             var _at = min(_step, _range);
@@ -38,6 +38,7 @@ function coop_shot_hit(_probe, _x, _y, _angle, _range) {
             var _sample_y = _y + _dy * _at;
             if (place_meeting(_sample_x, _sample_y, obj_wall)) {
                 _hit.distance = _at;
+                _hit.wall = true;
                 break;
             }
             if (!place_meeting(_sample_x, _sample_y, par_enemy)) continue;
@@ -65,7 +66,7 @@ function coop_visible(_body, _target_x, _target_y, _target = noone) {
         && abs(angle_difference(_aim.aim_angle, _angle)) <= _aim.cone_width * 0.5
         && coop_wall_distance(_aim, _body.x, _body.y, _angle, _distance, _target) == -1) return true;
     var _ghost_distance = point_distance(_aim.x, _aim.y, _target_x, _target_y);
-    if (_ghost_distance > _aim.ghost_vision_range) return false;
+    if (_ghost_distance > _aim.get_ghost_vision_range()) return false;
     return coop_wall_distance(_aim, _aim.x, _aim.y,
         point_direction(_aim.x, _aim.y, _target_x, _target_y), _ghost_distance, _target) == -1;
 }
