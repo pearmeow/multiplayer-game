@@ -47,6 +47,7 @@ if (show_help) {
     team_draw_hud_text(_left, _row + _line * 2, "R: Restart | F11: Fullscreen");
     _row += _line * 3;
 }
+
 if (run_complete) {
     team_draw_hud_text(_left, _row, "Escaped! All floors cleared.");
 } else if (instance_exists(_body)) {
