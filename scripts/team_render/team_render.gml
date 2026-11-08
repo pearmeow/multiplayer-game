@@ -1,4 +1,5 @@
 function team_get_indicator() {
+    if (instance_number(par_enemy) != 1) return undefined;
     var _body = instance_find(obj_player, 0);
     if (!instance_exists(_body)) return undefined;
     var _enemy = instance_nearest(_body.x, _body.y, par_enemy);

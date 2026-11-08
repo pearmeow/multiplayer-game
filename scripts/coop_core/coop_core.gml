@@ -71,17 +71,44 @@ function coop_visible(_body, _target_x, _target_y, _target = noone) {
         point_direction(_aim.x, _aim.y, _target_x, _target_y), _ghost_distance, _target) == -1;
 }
 
+function coop_light_wall_at(_probe, _x, _y) {
+    var _blocked = false;
+    with (_probe) {
+        if (place_meeting(_x, _y, obj_wall)) {
+            if (!place_meeting(_x, _y, obj_door)) {
+                _blocked = true;
+            } else {
+                // A door can overlap a wall, which should still block light.
+                for (var _i = 0; _i < instance_number(obj_wall); _i++) {
+                    var _wall = instance_find(obj_wall, _i);
+                    if (_wall.object_index == obj_door || object_is_ancestor(_wall.object_index, obj_door)) continue;
+                    if (place_meeting(_x, _y, _wall)) {
+                        _blocked = true;
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    return _blocked;
+}
+
 function coop_wall_view_distance(_probe, _x, _y, _angle, _range, _depth) {
-    var _distance = coop_wall_distance(_probe, _x, _y, _angle, _range);
-    if (_distance == -1) return _range;
     var _dx = lengthdir_x(1, _angle);
     var _dy = lengthdir_y(1, _angle);
-    var _visible = _distance;
-    with (_probe) {
-        for (var _step = _distance + 1; _step <= min(_range, _distance + _depth); _step++) {
-            if (!place_meeting(_x + _dx * _step, _y + _dy * _step, obj_wall)) break;
-            _visible = _step;
+    var _distance = -1;
+    for (var _step = 0; _step <= ceil(_range); _step++) {
+        var _at = min(_step, _range);
+        if (coop_light_wall_at(_probe, _x + _dx * _at, _y + _dy * _at)) {
+            _distance = _at;
+            break;
         }
+    }
+    if (_distance == -1) return _range;
+    var _visible = _distance;
+    for (var _step = _distance + 1; _step <= min(_range, _distance + _depth); _step++) {
+        if (!coop_light_wall_at(_probe, _x + _dx * _step, _y + _dy * _step)) break;
+        _visible = _step;
     }
     return _visible;
 }
