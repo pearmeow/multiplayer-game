@@ -164,18 +164,12 @@ change_room = function(_target) {
     return true;
 };
 
-update_camera = function(_snap) {
+update_camera = function() {
     var _body = instance_find(obj_player, 0);
     if (camera_id == -1 || !instance_exists(_body)) return;
-    var _x = max(0, room_width - camera_get_view_width(camera_id));
-    var _y = max(0, room_height - camera_get_view_height(camera_id));
-    var _target_x = clamp(_body.x - camera_get_view_width(camera_id) / 2, 0, _x);
-    var _target_y = clamp(_body.y - camera_get_view_height(camera_id) / 2, 0, _y);
-    if (!_snap) {
-        _target_x = lerp(camera_get_view_x(camera_id), _target_x, camera_smoothing);
-        _target_y = lerp(camera_get_view_y(camera_id), _target_y, camera_smoothing);
-    }
-    camera_set_view_pos(camera_id, clamp(_target_x, 0, _x), clamp(_target_y, 0, _y));
+    camera_set_view_pos(camera_id,
+        _body.x - camera_get_view_width(camera_id) / 2,
+        _body.y - camera_get_view_height(camera_id) / 2);
 };
 
 vision_mask = -1;
