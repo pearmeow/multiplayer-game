@@ -16,6 +16,9 @@ receive_shot = function(_attacker, _damage) {
     nav_repath_timer = 0;
 };
 
+start_img_ind = 0
+end_img_ind = 5
+
 start_x = x;
 start_y = y;
 state = 0; // 0 idle, 1 chase, 2 return home
@@ -32,13 +35,25 @@ ai_update = function(_seconds) {
     var _old_state = state;
     if (state == 0) {
         if (_player_distance < notice_distance) state = 1;
+		start_img_ind = 0
+		end_img_ind = 5
     } else if (state == 1) {
         if (!instance_exists(_player)) state = 2;
+		start_img_ind = 8
+		end_img_ind = 13
     } else {
         if (point_distance(x, y, start_x, start_y) < home_tolerance) state = 0;
         if (_player_distance < notice_distance) state = 1;
+		start_img_ind = 8
+		end_img_ind = 13
     }
-    if (_old_state != state) nav_repath_timer = 0;
+    if (_old_state != state) {
+		nav_repath_timer = 0;
+		image_index = start_img_ind
+	}
+	if (image_index > end_img_ind) {
+		image_index = start_img_ind
+	}
     if (state == 0) return;
     if (state == 1 && enemy_nav_touching_player(id)) {
         nav_repath_timer = 0;

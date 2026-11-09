@@ -46,6 +46,9 @@
     "name":"spr_enemy",
     "path":"sprites/spr_enemy/spr_enemy.yy",
   },
-  "spriteMaskId":{"name":"spr_enemy_collision","path":"sprites/spr_enemy_collision/spr_enemy_collision.yy",},
+  "spriteMaskId":{
+    "name":"spr_enemy_collision",
+    "path":"sprites/spr_enemy_collision/spr_enemy_collision.yy",
+  },
   "visible":true,
 }

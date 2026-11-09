@@ -28,7 +28,6 @@
   },
   "name":"multiplayer",
   "resources":[
-    {"id":{"name":"spr_enemy_collision","path":"sprites/spr_enemy_collision/spr_enemy_collision.yy",},},
     {"id":{"name":"obj_aim","path":"objects/obj_aim/obj_aim.yy",},},
     {"id":{"name":"obj_bullet","path":"objects/obj_bullet/obj_bullet.yy",},},
     {"id":{"name":"obj_door_trigger","path":"objects/obj_door_trigger/obj_door_trigger.yy",},},
@@ -54,6 +53,7 @@
     {"id":{"name":"spr_bullet","path":"sprites/spr_bullet/spr_bullet.yy",},},
     {"id":{"name":"spr_door_closed","path":"sprites/spr_door_closed/spr_door_closed.yy",},},
     {"id":{"name":"spr_door_open","path":"sprites/spr_door_open/spr_door_open.yy",},},
+    {"id":{"name":"spr_enemy_collision","path":"sprites/spr_enemy_collision/spr_enemy_collision.yy",},},
     {"id":{"name":"spr_enemy","path":"sprites/spr_enemy/spr_enemy.yy",},},
     {"id":{"name":"spr_exit_portal","path":"sprites/spr_exit_portal/spr_exit_portal.yy",},},
     {"id":{"name":"spr_floor","path":"sprites/spr_floor/spr_floor.yy",},},
