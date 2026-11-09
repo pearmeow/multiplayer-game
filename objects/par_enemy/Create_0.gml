@@ -6,8 +6,14 @@ if (sprite_index == -1 && mask_index == -1) {
 }
 hp = health_max;
 receive_shot = function(_attacker, _damage) {
-    hp = max(0, hp - max(0, _damage));
-    if (hp == 0) instance_destroy();
+    if (_damage <= 0) return;
+    hp = max(0, hp - _damage);
+    if (hp == 0) {
+        instance_destroy();
+        return;
+    }
+    state = 1;
+    nav_repath_timer = 0;
 };
 
 start_x = x;
