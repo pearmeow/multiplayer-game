@@ -43,24 +43,22 @@ ai_update = function(_seconds) {
     var _player_distance = instance_exists(_player) ? point_distance(x, y, _player.x, _player.y) : infinity;
     var _old_state = state;
     if (state == 0) {
-		start_img_ind = 0
-		end_img_ind = 5
         if (_player_distance < notice_distance) state = 1;
     } else if (state == 1) {
-		start_img_ind = 8
-		end_img_ind = 13
-        if (!instance_exists(_player)) state = 2;
-    } else {
-		start_img_ind = 8
-		end_img_ind = 13
-        if (point_distance(x, y, start_x, start_y) < home_tolerance) state = 0;
-        if (_player_distance < notice_distance) state = 1;
+        if (!instance_exists(_player)) state = 0;
     }
     if (_old_state != state) {
+		if (state == 0) {
+			start_img_ind = 0
+			end_img_ind = 5
+		} else {
+			start_img_ind = 8
+			end_img_ind = 14
+		}
 		nav_repath_timer = 0;
 		image_index = start_img_ind
 	}
-	if (image_index > end_img_ind) {
+	if (image_index >= end_img_ind) {
 		image_index = start_img_ind
 	}
     if (state == 0) return;
