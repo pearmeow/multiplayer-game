@@ -49,5 +49,14 @@ ai_update = function(_seconds) {
         enemy_nav_plan(id, state == 1 ? _player.x : start_x, state == 1 ? _player.y : start_y);
         nav_repath_timer = nav_repath_interval;
     }
-    enemy_nav_follow(id, move_speed * _dt);
+	var _multiplier = 1;
+	var _ghost = instance_find(obj_aim, 0);
+
+	if (instance_exists(_ghost) && _ghost.slow_active) {
+	    if (point_distance(x, y, _ghost.x, _ghost.y) <= _ghost.slow_range) {
+	        _multiplier = _ghost.slow_rate;
+	    }
+	}
+
+	enemy_nav_follow(id, move_speed * _multiplier * _dt);
 };

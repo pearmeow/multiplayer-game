@@ -5,6 +5,10 @@ if (instance_exists(_manager)) draw_set_font(_manager.font);
 team_draw_vision();
 
 var _body = instance_find(obj_player, 0);
+if (camera_id != -1 && instance_exists(_body)) {
+    team_draw_slow_range(_body.aim_controller);
+}
+
 if (camera_id != -1 && instance_exists(_body) && instance_exists(_body.interaction_target)) {
     team_draw_interaction_halo(_body.interaction_target);
 }

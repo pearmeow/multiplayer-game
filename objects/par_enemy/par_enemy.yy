@@ -29,8 +29,8 @@
   "physicsShapePoints":[],
   "physicsStartAwake":true,
   "properties":[
-    {"$GMObjectProperty":"v2","%Name":"health_max","filters":[],"listItems":[],"multiselect":false,"name":"health_max","rangeEnabled":false,"rangeMax":10000.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"60","varType":0},
-    {"$GMObjectProperty":"v2","%Name":"contact_damage","filters":[],"listItems":[],"multiselect":false,"name":"contact_damage","rangeEnabled":false,"rangeMax":10000.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"25","varType":0},
+    {"$GMObjectProperty":"v2","%Name":"health_max","filters":[],"listItems":[],"multiselect":false,"name":"health_max","rangeEnabled":false,"rangeMax":10000.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"60","varType":0,},
+    {"$GMObjectProperty":"v2","%Name":"contact_damage","filters":[],"listItems":[],"multiselect":false,"name":"contact_damage","rangeEnabled":false,"rangeMax":10000.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"25","varType":0,},
     {"$GMObjectProperty":"v2","%Name":"hit_radius","filters":[],"listItems":[],"multiselect":false,"name":"hit_radius","rangeEnabled":false,"rangeMax":10000.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"14","varType":0,},
     {"$GMObjectProperty":"v2","%Name":"notice_distance","filters":[],"listItems":[],"multiselect":false,"name":"notice_distance","rangeEnabled":false,"rangeMax":10000.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"220","varType":0,},
     {"$GMObjectProperty":"v2","%Name":"home_tolerance","filters":[],"listItems":[],"multiselect":false,"name":"home_tolerance","rangeEnabled":false,"rangeMax":10000.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"16","varType":0,},
@@ -46,6 +46,6 @@
     "name":"spr_enemy",
     "path":"sprites/spr_enemy/spr_enemy.yy",
   },
-  "spriteMaskId":null,
+  "spriteMaskId":{"name":"spr_enemy_collision","path":"sprites/spr_enemy_collision/spr_enemy_collision.yy",},
   "visible":true,
 }

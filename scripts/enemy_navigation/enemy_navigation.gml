@@ -29,7 +29,18 @@ function enemy_nav_plan(_enemy, _goal_x, _goal_y) {
     }
     _enemy.nav_point_index = 0;
     path_clear_points(_enemy.nav_path);
-    return mp_grid_path(_enemy.nav_grid, _enemy.nav_path, _enemy.x, _enemy.y, _goal_x, _goal_y, false);
+    if (mp_grid_path(_enemy.nav_grid, _enemy.nav_path, _enemy.x, _enemy.y, _goal_x, _goal_y, false)) return true;
+
+    var _distance = point_distance(_goal_x, _goal_y, _enemy.x, _enemy.y);
+    var _angle = point_direction(_goal_x, _goal_y, _enemy.x, _enemy.y);
+    for (var _offset = _cell; _offset < _distance; _offset += _cell) {
+        var _x = _goal_x + lengthdir_x(_offset, _angle);
+        var _y = _goal_y + lengthdir_y(_offset, _angle);
+        path_clear_points(_enemy.nav_path);
+        if (mp_grid_path(_enemy.nav_grid, _enemy.nav_path, _enemy.x, _enemy.y, _x, _y, false)) return true;
+    }
+    path_clear_points(_enemy.nav_path);
+    return false;
 }
 
 function enemy_nav_touching_player(_enemy) {

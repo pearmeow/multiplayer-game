@@ -173,3 +173,27 @@ function team_draw_status_bar(_x, _y, _width, _height, _value, _maximum, _colour
     draw_rectangle(_x, _y, _x + _width, _y + _height, true);
     team_draw_hud_text(_x + 5, _y + 1, _label + ": " + string(round(_value * 100) / 100) + "/" + string(round(_maximum * 100) / 100));
 }
+
+function team_draw_slow_range(_ghost) {
+    if (!instance_exists(_ghost) || !_ghost.slow_active) return;
+
+    var _sx = display_get_gui_width() / camera_get_view_width(camera_id);
+    var _sy = display_get_gui_height() / camera_get_view_height(camera_id);
+
+    var _x = (_ghost.x - camera_get_view_x(camera_id)) * _sx;
+    var _y = (_ghost.y - camera_get_view_y(camera_id)) * _sy;
+
+    draw_set_colour(_ghost.slow_colour);
+    draw_set_alpha(_ghost.slow_alpha);
+
+    draw_ellipse(
+        _x - _ghost.slow_range * _sx,
+        _y - _ghost.slow_range * _sy,
+        _x + _ghost.slow_range * _sx,
+        _y + _ghost.slow_range * _sy,
+        false
+    );
+
+    draw_set_alpha(1);
+    draw_set_colour(c_white);
+}
