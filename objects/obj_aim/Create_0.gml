@@ -3,6 +3,7 @@ aim_angle = 90;
 ghost_offset_x = 0;
 ghost_offset_y = 0;
 slow_active = false;
+slow_key = vk_rshift;
 // The drawn ghost is separate; use a one-pixel mask to sample walls and enemies.
 mask_index = spr_wall;
 image_xscale = 1 / sprite_get_width(spr_wall);
