@@ -31,6 +31,15 @@ ai_update = function(_seconds) {
     if (!ai_enabled) return;
     var _dt = clamp(_seconds, 0, 0.05);
     var _player = instance_nearest(x, y, obj_player);
+	if (_player != noone && _player.x < x) {
+		if (image_xscale > 0) {
+			image_xscale *= -1
+		}
+	} else if (_player != noone) {
+		if (image_xscale < 0) {
+			image_xscale *= -1
+		}
+	}
     var _player_distance = instance_exists(_player) ? point_distance(x, y, _player.x, _player.y) : infinity;
     var _old_state = state;
     if (state == 0) {
