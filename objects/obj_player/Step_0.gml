@@ -30,6 +30,28 @@ if (!instance_exists(team) || !instance_exists(aim_controller)) exit;
 
 moving = x != _old_x || y != _old_y;
 if (moving) {
+    var _dx = x - _old_x;
+    var _dy = y - _old_y;
+    // There are no straight left/right rows; retain the previous vertical facing.
+    var _face_up = _dy < 0 || (_dy == 0 && facing_row >= 2 && facing_row <= 4);
+    if (_dx < 0) {
+        facing_row = _face_up ? 2 : 1;
+    } else if (_dx > 0) {
+        facing_row = _face_up ? 4 : 5;
+    } else {
+        facing_row = _dy < 0 ? 3 : 0;
+    }
+}
+
+var _player_sprite = moving ? spr_player_walk : spr_player_idle;
+if (sprite_index != _player_sprite) {
+    sprite_index = _player_sprite;
+    animation_frame = 0;
+}
+animation_frame = (animation_frame + 8 * _dt) mod 8;
+image_index = facing_row * 8 + floor(animation_frame);
+
+if (moving) {
     aim_controller.aim_angle = point_direction(_old_x, _old_y, x, y);
 } else if (aim_controller.ghost_offset_x != 0 || aim_controller.ghost_offset_y != 0) {
     aim_controller.aim_angle = point_direction(0, 0, aim_controller.ghost_offset_x, aim_controller.ghost_offset_y);
