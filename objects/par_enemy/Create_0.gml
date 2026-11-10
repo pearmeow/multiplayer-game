@@ -5,11 +5,20 @@ if (sprite_index == -1 && mask_index == -1) {
     image_yscale = hit_radius * 2 / sprite_get_height(spr_enemy);
 }
 hp = health_max;
+defeat = function() {
+    var _body = instance_find(obj_player, 0);
+    if (instance_exists(_body)) {
+        _body.san = _body.san_max;
+        _body.team.san_pressure += _body.san_kill_pressure;
+    }
+    instance_destroy();
+};
+
 receive_shot = function(_attacker, _damage) {
     if (_damage <= 0) return;
     hp = max(0, hp - _damage);
     if (hp == 0) {
-        instance_destroy();
+        defeat();
         return;
     }
     state = 1;

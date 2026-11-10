@@ -28,8 +28,12 @@ read_interaction_input = function(_down) {
     interaction_was_down = _down;
     return _pressed;
 };
+get_hunter_vision_range = function() {
+    return vision_range * owner_body.get_sanity_vision_scale();
+};
+
 get_ghost_vision_range = function() {
-    return ghost_vision_range + owner_body.team.stat_bonus.ghost_vision;
+    return (ghost_vision_range + owner_body.team.stat_bonus.ghost_vision) * owner_body.get_sanity_vision_scale();
 };
 
 update_interaction = function(_pressed, _dx = 0, _dy = 0) {
@@ -40,6 +44,10 @@ update_interaction = function(_pressed, _dx = 0, _dy = 0) {
     var _locked = undefined;
     var _directional = undefined;
     var _range = get_ghost_vision_range();
+    if (_range <= 0) {
+        _body.interaction_target = noone;
+        return false;
+    }
     var _groups = [par_interactable, obj_door];
 
     for (var _group = 0; _group < array_length(_groups); _group++) {

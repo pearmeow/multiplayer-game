@@ -1,6 +1,7 @@
 if (instance_number(obj_team) > 1) { instance_destroy(); exit; }
 energy = energy_max;
 reward_keys = [];
+san_pressure = 0;
 opened_reward_rooms = {};
 load_reward_data = function(_path) {
     if (!file_exists(_path)) return {};

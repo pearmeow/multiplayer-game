@@ -1,13 +1,3 @@
-function team_get_indicator() {
-    if (instance_number(par_enemy) != 1) return undefined;
-    var _body = instance_find(obj_player, 0);
-    if (!instance_exists(_body)) return undefined;
-    var _enemy = instance_nearest(_body.x, _body.y, par_enemy);
-    if (!instance_exists(_enemy)) return undefined;
-    var _distance = point_distance(_body.x, _body.y, _enemy.x, _enemy.y);
-    return {angle: point_direction(_body.x, _body.y, _enemy.x, _enemy.y),
-        size: lerp(indicator_max_size, indicator_min_size, clamp(_distance / indicator_far_distance, 0, 1))};
-}
 function team_draw_vision_mesh(_rays, _x, _y, _sx, _sy, _range, _colour, _alpha) {
     for (var _i = 0; _i < array_length(_rays) - 1; _i++) {
         draw_primitive_begin(pr_trianglestrip);
@@ -36,7 +26,7 @@ function team_draw_vision() {
     for (var _i = 0; _i <= vision_rays; _i++) {
         var _offset = -_aim.cone_width / 2 + _aim.cone_width * _i / vision_rays;
         var _angle = _aim.aim_angle + _offset;
-        var _range = coop_wall_view_distance(_aim, _body.x, _body.y, _angle, _aim.vision_range, vision_wall_reveal);
+        var _range = coop_wall_view_distance(_aim, _body.x, _body.y, _angle, _aim.get_hunter_vision_range(), vision_wall_reveal);
         var _edge = clamp((_aim.cone_width / 2 - abs(_offset)) / vision_edge_fade_angle, 0, 1);
         array_push(_rays, {angle: _angle, range: _range, edge: _edge});
     }
@@ -54,12 +44,12 @@ function team_draw_vision() {
     draw_clear_alpha(c_black, 1);
     gpu_set_blendmode_ext(bm_zero, bm_inv_src_alpha);
     draw_set_alpha(1);
-    team_draw_vision_mesh(_rays, _x, _y, _scale_x, _scale_y, _aim.vision_range, c_white, vision_brightness * hunter_vision_multiplier);
+    team_draw_vision_mesh(_rays, _x, _y, _scale_x, _scale_y, _aim.get_hunter_vision_range(), c_white, vision_brightness * hunter_vision_multiplier);
     team_draw_vision_mesh(_ghost_rays, _ghost_x, _ghost_y, _scale_x, _scale_y, _ghost_range, c_white, vision_brightness);
     gpu_set_blendmode(bm_normal);
     surface_reset_target();
     draw_surface(vision_mask, 0, 0);
-    team_draw_vision_mesh(_rays, _x, _y, _scale_x, _scale_y, _aim.vision_range, vision_tint_colour, vision_tint_alpha);
+    team_draw_vision_mesh(_rays, _x, _y, _scale_x, _scale_y, _aim.get_hunter_vision_range(), vision_tint_colour, vision_tint_alpha);
     team_draw_vision_mesh(_ghost_rays, _ghost_x, _ghost_y, _scale_x, _scale_y, _ghost_range, vision_tint_colour, vision_tint_alpha);
     draw_set_alpha(1);
     draw_set_colour(c_white);
@@ -77,15 +67,20 @@ function team_draw_own_players() {
     draw_sprite_ext(spr_ghost, 0, (_aim.x - _camera_x) * _sx, (_aim.y - _camera_y) * _sy, _sx, _sy, 0, c_white, _body.aim_controller.ghost_alpha);
 }
 function team_draw_indicator() {
-    var _info = team_get_indicator();
-    if (is_undefined(_info) || camera_id == -1) return;
+    if (camera_id == -1) return;
     var _body = instance_find(obj_player, 0);
-    var _x = (_body.x - camera_get_view_x(camera_id)) * display_get_gui_width() / camera_get_view_width(camera_id);
-    var _y = (_body.y - camera_get_view_y(camera_id)) * display_get_gui_height() / camera_get_view_height(camera_id);
-    var _angle = _info.angle;
-    var _size = _info.size;
-    var _radius = indicator_radius;
-    team_draw_pointer(_x, _y, _angle, _size, _radius, c_red);
+    if (!instance_exists(_body) || !instance_exists(_body.aim_controller)) return;
+    var _aim = _body.aim_controller;
+    var _x = (_aim.x - camera_get_view_x(camera_id)) * display_get_gui_width() / camera_get_view_width(camera_id);
+    var _y = (_aim.y - camera_get_view_y(camera_id)) * display_get_gui_height() / camera_get_view_height(camera_id);
+    for (var _i = 0; _i < instance_number(par_enemy); _i++) {
+        var _enemy = instance_find(par_enemy, _i);
+        if (_enemy.state != 1) continue;
+        var _distance = point_distance(_aim.x, _aim.y, _enemy.x, _enemy.y);
+        var _size = lerp(indicator_max_size, indicator_min_size, clamp(_distance / indicator_far_distance, 0, 1));
+        team_draw_pointer(_x, _y, point_direction(_aim.x, _aim.y, _enemy.x, _enemy.y), _size,
+            max(plate_indicator_radius, max(sprite_get_width(spr_ghost), sprite_get_height(spr_ghost)) / 2 + _size), c_red);
+    }
 }
 
 function team_draw_pointer(_x, _y, _angle, _size, _radius, _colour) {

@@ -29,6 +29,10 @@
   "physicsShapePoints":[],
   "physicsStartAwake":true,
   "properties":[
+    {"$GMObjectProperty":"v2","%Name":"san_blind_threshold","filters":[],"listItems":[],"multiselect":false,"name":"san_blind_threshold","rangeEnabled":false,"rangeMax":10000.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"30","varType":0},
+    {"$GMObjectProperty":"v2","%Name":"san_chase_drain","filters":[],"listItems":[],"multiselect":false,"name":"san_chase_drain","rangeEnabled":false,"rangeMax":10000.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"2","varType":0},
+    {"$GMObjectProperty":"v2","%Name":"san_kill_pressure","filters":[],"listItems":[],"multiselect":false,"name":"san_kill_pressure","rangeEnabled":false,"rangeMax":10000.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0.25","varType":0},
+    {"$GMObjectProperty":"v2","%Name":"san_floor_drain","filters":[],"listItems":[],"multiselect":false,"name":"san_floor_drain","rangeEnabled":false,"rangeMax":10000.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":0},
     {"$GMObjectProperty":"v2","%Name":"health_max","filters":[],"listItems":[],"multiselect":false,"name":"health_max","rangeEnabled":false,"rangeMax":10000.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"100","varType":0,},
     {"$GMObjectProperty":"v2","%Name":"contact_damage_interval","filters":[],"listItems":[],"multiselect":false,"name":"contact_damage_interval","rangeEnabled":false,"rangeMax":10000.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"1","varType":0,},
     {"$GMObjectProperty":"v2","%Name":"san_max","filters":[],"listItems":[],"multiselect":false,"name":"san_max","rangeEnabled":false,"rangeMax":10000.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"100","varType":0,},

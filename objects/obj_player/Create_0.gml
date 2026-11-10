@@ -1,4 +1,5 @@
 san = san_max;
+san_change_per_second = 0;
 damage_cooldown = 0;
 
 take_damage = function(_damage) {
@@ -9,15 +10,27 @@ take_damage = function(_damage) {
     return true;
 };
 
+get_sanity_vision_scale = function() {
+    return clamp((san - san_blind_threshold) / max(1, san_max - san_blind_threshold), 0, 1);
+};
+
 update_sanity = function(_seconds) {
+    var _visible = false;
+    var _chased = false;
     for (var _i = 0; _i < instance_number(par_enemy); _i++) {
         var _enemy = instance_find(par_enemy, _i);
-        if (coop_visible(id, _enemy.x, _enemy.y, _enemy)) {
-            san = max(0, san - san_drain_per_second * _seconds);
-            return;
-        }
+        if (_enemy.state == 1) _chased = true;
+        if (coop_visible(id, _enemy.x, _enemy.y, _enemy)) _visible = true;
     }
-    san = min(san_max, san + san_recovery_per_second * _seconds);
+    var _drain = san_floor_drain;
+    if (_visible) _drain += san_drain_per_second;
+    if (_chased) _drain += san_chase_drain;
+    if (_drain > 0) {
+        san_change_per_second = -(_drain + team.san_pressure);
+    } else {
+        san_change_per_second = san_recovery_per_second;
+    }
+    san = clamp(san + san_change_per_second * max(0, _seconds), 0, san_max);
 };
 
 shot_time = 0;
