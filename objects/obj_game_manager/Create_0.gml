@@ -29,6 +29,7 @@ start_victory = function() {
 };
 
 finish_ending = function(_retry) {
+    audio_stop_all();
     instance_activate_all();
     if (_retry) game_restart();
     else game_end();

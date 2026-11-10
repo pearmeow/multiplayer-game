@@ -1,1 +1,1 @@
-advance(clamp(delta_time / 1000000, 0, 0.05));
+advance(coop_motion_seconds(coop_step_seconds()));

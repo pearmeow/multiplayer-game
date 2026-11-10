@@ -1,3 +1,17 @@
+#macro COOP_MAX_MOTION_SECONDS 0.05
+
+function coop_step_seconds() {
+    return max(0, delta_time / 1000000);
+}
+
+function coop_motion_seconds(_seconds) {
+    return clamp(_seconds, 0, COOP_MAX_MOTION_SECONDS);
+}
+
+function coop_proximity(_distance, _range) {
+    return clamp(1 - _distance / max(1, _range), 0, 1);
+}
+
 function coop_wall_distance(_probe, _x, _y, _angle, _range, _ignore = noone) {
     var _dx = lengthdir_x(1, _angle);
     var _dy = lengthdir_y(1, _angle);
@@ -56,19 +70,14 @@ function coop_shot_hit(_probe, _x, _y, _angle, _range) {
     return _hit;
 }
 
-function coop_visible(_body, _target_x, _target_y, _target = noone) {
-    if (!instance_exists(_body)) return false;
+function coop_hunter_sees(_body, _target) {
     var _aim = _body.aim_controller;
     if (!instance_exists(_aim)) return false;
-    var _distance = point_distance(_body.x, _body.y, _target_x, _target_y);
-    var _angle = point_direction(_body.x, _body.y, _target_x, _target_y);
-    if (_aim.get_hunter_vision_range() > 0 && _distance <= _aim.get_hunter_vision_range()
-        && abs(angle_difference(_aim.aim_angle, _angle)) <= _aim.cone_width * 0.5
-        && coop_wall_distance(_aim, _body.x, _body.y, _angle, _distance, _target) == -1) return true;
-    var _ghost_distance = point_distance(_aim.x, _aim.y, _target_x, _target_y);
-    if (_aim.get_ghost_vision_range() <= 0 || _ghost_distance > _aim.get_ghost_vision_range()) return false;
-    return coop_wall_distance(_aim, _aim.x, _aim.y,
-        point_direction(_aim.x, _aim.y, _target_x, _target_y), _ghost_distance, _target) == -1;
+    var _distance = point_distance(_body.x, _body.y, _target.x, _target.y);
+    if (_distance > _aim.get_hunter_vision_range()) return false;
+    var _angle = point_direction(_body.x, _body.y, _target.x, _target.y);
+    return abs(angle_difference(_aim.aim_angle, _angle)) <= _aim.cone_width / 2
+        && coop_wall_distance(_aim, _body.x, _body.y, _angle, _distance, _target) == -1;
 }
 
 function coop_light_wall_at(_probe, _x, _y) {

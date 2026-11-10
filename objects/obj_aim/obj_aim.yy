@@ -29,7 +29,7 @@
   "physicsStartAwake":true,
   "properties":[
     {"$GMObjectProperty":"v2","%Name":"cone_width","filters":[],"listItems":[],"multiselect":false,"name":"cone_width","rangeEnabled":false,"rangeMax":10000.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"50","varType":0,},
-    {"$GMObjectProperty":"v2","%Name":"vision_range","filters":[],"listItems":[],"multiselect":false,"name":"vision_range","rangeEnabled":false,"rangeMax":10000.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"140","varType":0,},
+    {"$GMObjectProperty":"v2","%Name":"vision_range","filters":[],"listItems":[],"multiselect":false,"name":"vision_range","rangeEnabled":false,"rangeMax":10000.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"155","varType":0,},
     {"$GMObjectProperty":"v2","%Name":"ghost_move_speed","filters":[],"listItems":[],"multiselect":false,"name":"ghost_move_speed","rangeEnabled":false,"rangeMax":10000.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"196","varType":0,},
     {"$GMObjectProperty":"v2","%Name":"ghost_move_radius","filters":[],"listItems":[],"multiselect":false,"name":"ghost_move_radius","rangeEnabled":false,"rangeMax":10000.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"120","varType":0,},
     {"$GMObjectProperty":"v2","%Name":"ghost_vision_range","filters":[],"listItems":[],"multiselect":false,"name":"ghost_vision_range","rangeEnabled":false,"rangeMax":10000.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"120","varType":0,},

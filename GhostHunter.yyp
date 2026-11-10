@@ -29,6 +29,8 @@
   },
   "name":"multiplayer",
   "resources":[
+    {"id":{"name":"snd_victory_cue","path":"sounds/snd_victory_cue/snd_victory_cue.yy"}},
+    {"id":{"name":"snd_failure_alarm","path":"sounds/snd_failure_alarm/snd_failure_alarm.yy"}},
     {"id":{"name":"obj_wraith","path":"objects/obj_wraith/obj_wraith.yy"}},
     {"id":{"name":"spr_wraith","path":"sprites/spr_wraith/spr_wraith.yy"}},
     {"id":{"name":"spr_victory","path":"sprites/spr_victory/spr_victory.yy"}},

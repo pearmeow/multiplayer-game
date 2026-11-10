@@ -15,8 +15,8 @@ ai_update = function(_seconds) {
     if (_hunter.x != x) image_xscale = -sign(_hunter.x - x) * abs(image_xscale);
     if (place_meeting(x, y, _hunter)) return;
 
-    var _speed = (_hunter.move_speed + _hunter.team.stat_bonus.move_speed) * hunter_speed_multiplier;
-    var _step = min(_distance, _speed * get_slow_multiplier() * clamp(_seconds, 0, 0.05));
+    var _speed = _hunter.get_move_speed() * hunter_speed_multiplier;
+    var _step = min(_distance, _speed * get_slow_multiplier() * coop_motion_seconds(_seconds));
     var _direction = point_direction(x, y, _hunter.x, _hunter.y);
     x += lengthdir_x(_step, _direction);
     y += lengthdir_y(_step, _direction);

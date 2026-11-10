@@ -2,7 +2,7 @@ if (instance_number(obj_team) > 1) { instance_destroy(); exit; }
 energy = energy_max;
 bgm_voice = -1;
 heartbeat_voice = -1;
-heartbeat_gain = heartbeat_idle_gain;
+enemy_proximity = 0;
 reward_keys = [];
 san_pressure = 0;
 opened_reward_rooms = {};
@@ -148,20 +148,11 @@ display_set_gui_size(camera_width, camera_height);
 change_room = function(_target) {
     var _manager = instance_find(obj_game_manager, 0);
     if (instance_exists(_manager) && _manager.ending_active) return false;
-    if (changing_room) {
-        return false;
-    }
-    if (_target == room) {
-        return false;
-    }
-
-    if (!room_exists(_target)) return false;
+    if (changing_room || _target == room || !room_exists(_target)) return false;
 
     var _body = instance_find(obj_player, 0);
-    if (instance_exists(_body)) {
-        if (instance_exists(_body.aim_controller)) {
-            saved_aim_angle = _body.aim_controller.aim_angle;
-        }
+    if (instance_exists(_body) && instance_exists(_body.aim_controller)) {
+        saved_aim_angle = _body.aim_controller.aim_angle;
     }
 
     changing_room = true;

@@ -4,15 +4,17 @@ if (!ending_active) {
 }
 
 if (!ending_frozen) {
-    var _team = instance_find(obj_team, 0);
-    if (instance_exists(_team)) with (_team) team_stop_room_audio();
+    audio_stop_all();
+    audio_master_gain(1);
+    var _sound = victory ? victory_sound : failure_sound;
+    if (_sound != -1) audio_play_sound(_sound, 3, false, ending_sound_gain);
     instance_deactivate_all(true);
     ending_frozen = true;
     exit;
 }
 
 if (!victory && failure_time < scare_hold_seconds + scare_fade_seconds) {
-    failure_time += max(0, delta_time / 1000000);
+    failure_time += coop_step_seconds();
     exit;
 }
 

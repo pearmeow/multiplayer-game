@@ -29,11 +29,11 @@ read_interaction_input = function(_down) {
     return _pressed;
 };
 get_hunter_vision_range = function() {
-    return vision_range * owner_body.get_sanity_vision_scale();
+    return owner_body.get_vision_range(vision_range);
 };
 
 get_ghost_vision_range = function() {
-    return (ghost_vision_range + owner_body.team.stat_bonus.ghost_vision) * owner_body.get_sanity_vision_scale();
+    return owner_body.get_vision_range(ghost_vision_range, owner_body.team.stat_bonus.ghost_vision);
 };
 
 update_interaction = function(_pressed, _dx = 0, _dy = 0) {

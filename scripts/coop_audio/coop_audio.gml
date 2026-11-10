@@ -1,7 +1,3 @@
-function coop_audio_proximity(_distance, _range) {
-    return clamp(1 - _distance / max(1, _range), 0, 1);
-}
-
 function coop_update_footsteps(_distance, _proximity) {
     var _count = array_length(footstep_sounds);
     if (_distance <= 0 || footstep_spacing <= 0 || _count == 0) return;
@@ -22,23 +18,25 @@ function team_stop_room_audio() {
 
 function team_start_room_audio(_track) {
     team_stop_room_audio();
-    heartbeat_gain = heartbeat_idle_gain;
+    enemy_proximity = 0;
+    audio_master_gain(1);
     if (_track != -1) bgm_voice = audio_play_sound(_track, 0, true, bgm_gain);
-    if (heartbeat_sound != -1) heartbeat_voice = audio_play_sound(heartbeat_sound, 1, true, heartbeat_gain);
+    if (heartbeat_sound != -1) heartbeat_voice = audio_play_sound(heartbeat_sound, 1, true, heartbeat_idle_gain);
 }
 
-function team_update_heartbeat(_seconds) {
-    if (heartbeat_voice == -1) return;
-    var _target = heartbeat_idle_gain;
+function team_update_room_audio(_seconds) {
     var _body = instance_find(obj_player, 0);
-    if (instance_exists(_body)) {
-        var _enemy = instance_nearest(_body.x, _body.y, par_enemy);
-        if (instance_exists(_enemy)) {
-            var _near = coop_audio_proximity(point_distance(_body.x, _body.y, _enemy.x, _enemy.y), heartbeat_range);
-            _target = lerp(heartbeat_idle_gain, heartbeat_peak_gain, _near);
-        }
+    if (!instance_exists(_body)) return;
+
+    var _target = 0;
+    var _enemy = instance_nearest(_body.x, _body.y, par_enemy);
+    if (instance_exists(_enemy)) {
+        _target = coop_proximity(point_distance(_body.x, _body.y, _enemy.x, _enemy.y), heartbeat_range);
     }
-    var _rate = _target > heartbeat_gain ? heartbeat_attack : heartbeat_release;
-    heartbeat_gain = lerp(heartbeat_gain, _target, 1 - exp(-max(0, _rate) * max(0, _seconds)));
-    audio_sound_gain(heartbeat_voice, heartbeat_gain, 0);
+    var _rate = _target > enemy_proximity ? heartbeat_attack : heartbeat_release;
+    enemy_proximity = lerp(enemy_proximity, _target, 1 - exp(-max(0, _rate) * _seconds));
+
+    audio_master_gain(lerp(san_audio_min_gain, 1, _body.get_sanity_fraction()));
+    if (bgm_voice != -1) audio_sound_gain(bgm_voice, bgm_gain * lerp(1, bgm_near_multiplier, enemy_proximity), 0);
+    if (heartbeat_voice != -1) audio_sound_gain(heartbeat_voice, lerp(heartbeat_idle_gain, heartbeat_peak_gain, enemy_proximity), 0);
 }

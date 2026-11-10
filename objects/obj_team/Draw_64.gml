@@ -64,26 +64,24 @@ if (camera_id != -1 && instance_exists(_body) && instance_exists(_body.interacti
     var _target = _body.interaction_target;
     var _world_x = _target.x - sign(_target.x - _body.x) * prompt_offset_x;
     var _world_y = _target.y - prompt_offset_y;
-    var _prompt_x = (_world_x - camera_get_view_x(camera_id)) * display_get_gui_width() / camera_get_view_width(camera_id);
-    var _prompt_y = (_world_y - camera_get_view_y(camera_id)) * display_get_gui_height() / camera_get_view_height(camera_id);
+    var _point = team_gui_point(team_gui_projection(), _world_x, _world_y);
     draw_set_alpha(1);
     draw_set_halign(fa_left);
     draw_set_valign(fa_top);
     draw_set_colour(c_black);
-    team_draw_hud_text(_prompt_x + 1, _prompt_y + 1, "[ENTER] " + _target.prompt);
+    team_draw_hud_text(_point.x + 1, _point.y + 1, "[ENTER] " + _target.prompt);
     draw_set_colour(c_white);
-    team_draw_hud_text(_prompt_x, _prompt_y, "[ENTER] " + _target.prompt);
+    team_draw_hud_text(_point.x, _point.y, "[ENTER] " + _target.prompt);
 }
 
 
 if (camera_id != -1 && instance_exists(_body) && _body.door_notice_time > 0) {
     var _remaining = _body.door_notice_time / _body.door_notice_duration;
-    var _x = (_body.x - camera_get_view_x(camera_id)) * display_get_gui_width() / camera_get_view_width(camera_id);
-    var _y = (_body.bbox_top - camera_get_view_y(camera_id)) * display_get_gui_height() / camera_get_view_height(camera_id);
+    var _point = team_gui_point(team_gui_projection(), _body.x, _body.bbox_top);
     draw_set_halign(fa_center);
     draw_set_valign(fa_bottom);
     draw_set_alpha(_remaining);
-    team_draw_hud_text(_x, _y - _line * (1 - _remaining), "A door at somewhere is opened");
+    team_draw_hud_text(_point.x, _point.y - _line * (1 - _remaining), "A door at somewhere is opened");
     draw_set_alpha(1);
     draw_set_halign(fa_left);
     draw_set_valign(fa_top);

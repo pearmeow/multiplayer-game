@@ -1,6 +1,6 @@
 var _old_x = x;
 var _old_y = y;
-var _dt = min(0.05, max(0, delta_time / 1000000));
+var _dt = coop_motion_seconds(coop_step_seconds());
 fire_cooldown = max(0, fire_cooldown - _dt);
 damage_cooldown = max(0, damage_cooldown - _dt);
 var _enemy = instance_place(x, y, par_enemy);
@@ -10,7 +10,7 @@ var _mx = keyboard_check(ord("D")) - keyboard_check(ord("A"));
 var _my = keyboard_check(ord("S")) - keyboard_check(ord("W"));
 var _length = point_distance(0, 0, _mx, _my);
 if (_length > 0) {
-    var _speed = move_speed + team.stat_bonus.move_speed;
+    var _speed = get_move_speed();
     _mx = _mx / _length * _speed * _dt;
     _my = _my / _length * _speed * _dt;
 	
@@ -49,8 +49,9 @@ if (sprite_index != _player_sprite) {
     sprite_index = _player_sprite;
     animation_frame = 0;
 }
-animation_frame = (animation_frame + 8 * _dt) mod 8;
-image_index = facing_row * 8 + floor(animation_frame);
+var _frames = max(1, floor(image_number / max(1, animation_directions)));
+animation_frame = (animation_frame + animation_fps * _dt) mod _frames;
+image_index = facing_row * _frames + floor(animation_frame);
 
 if (moving) {
     aim_controller.aim_angle = point_direction(_old_x, _old_y, x, y);

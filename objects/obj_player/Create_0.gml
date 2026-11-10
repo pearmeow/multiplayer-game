@@ -23,8 +23,17 @@ take_damage = function(_damage) {
     return true;
 };
 
-get_sanity_vision_scale = function() {
-    return clamp((san - san_blind_threshold) / max(1, san_max - san_blind_threshold), 0, 1);
+get_sanity_fraction = function() {
+    return clamp(san / max(1, san_max), 0, 1);
+};
+
+get_vision_range = function(_base_range, _bonus = 0) {
+    var _scale = clamp((san - san_vision_floor_threshold) / max(1, san_max - san_vision_floor_threshold), 0, 1);
+    return lerp(_base_range * san_vision_min_fraction, _base_range + _bonus, _scale);
+};
+
+get_move_speed = function() {
+    return move_speed + team.stat_bonus.move_speed;
 };
 
 update_sanity = function(_seconds) {
@@ -34,18 +43,14 @@ update_sanity = function(_seconds) {
         var _enemy = instance_find(par_enemy, _i);
         if (_enemy.state == 1) {
             var _distance = point_distance(x, y, _enemy.x, _enemy.y);
-            var _near = clamp(1 - _distance / max(1, _enemy.notice_distance), 0, 1);
+            var _near = coop_proximity(_distance, _enemy.notice_distance);
             _chase_drain = max(_chase_drain, lerp(san_chase_drain_far, san_chase_drain_near, _near));
         }
-        if (coop_visible(id, _enemy.x, _enemy.y, _enemy)) _visible = true;
+        if (!_visible) _visible = coop_hunter_sees(id, _enemy);
     }
     var _drain = san_floor_drain + _chase_drain;
     if (_visible) _drain += san_drain_per_second;
-    if (_drain > 0) {
-        san_change_per_second = -(_drain + team.san_pressure);
-    } else {
-        san_change_per_second = san_recovery_per_second;
-    }
+    san_change_per_second = _drain > 0 ? -(_drain + team.san_pressure) : san_recovery_per_second;
     san = clamp(san + san_change_per_second * max(0, _seconds), 0, san_max);
     if (san == 0) fail_run(true);
 };

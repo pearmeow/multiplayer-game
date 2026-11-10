@@ -13,3 +13,5 @@ All listed source pages identify the material as CC0. The playable copies are re
 | Heartbeat | bart | https://opengameart.org/content/heartbeat-sounds | heartbeat_slow_0.wav |
 
 The effects were converted to mono, 44.1 kHz, 16-bit PCM. The ambience tracks retain their original Ogg audio. Mix, falloff and heartbeat smoothing are configurable in the object Variable Definitions. Each floor's music is selected by its hunter instance's `floor_bgm` override.
+
+The victory chime and failure flatline are original synthesized cues.

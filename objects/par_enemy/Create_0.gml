@@ -49,7 +49,7 @@ get_slow_multiplier = function() {
 };
 ai_update = function(_seconds) {
     if (!ai_enabled) return;
-    var _dt = clamp(_seconds, 0, 0.05);
+    var _dt = coop_motion_seconds(_seconds);
     var _player = instance_nearest(x, y, obj_player);
 	if (_player != noone && _player.x < x) {
 		if (image_xscale > 0) {
