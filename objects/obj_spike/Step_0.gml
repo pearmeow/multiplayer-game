@@ -1,5 +1,7 @@
-if (place_meeting(x, y, obj_player)) {
-	instance_destroy(obj_player.id)
+var _body = instance_place(x, y, obj_player);
+if (instance_exists(_body) && _body.hp > 0) {
+    _body.play_hit_sound();
+    _body.fail_run(false);
 }
 
 var _multiplier = 1;

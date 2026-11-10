@@ -5,3 +5,22 @@ font_enable_effects(font, true, {
     outlineDistance: 2,
     outlineColour: c_black
 });
+
+randomize();
+failure_sprite = -1;
+failure_time = 0;
+failure_frozen = false;
+sanity_failure = false;
+
+start_failure = function(_sanity) {
+    if (failure_sprite != -1) return;
+    failure_sprite = scare_images[irandom(array_length(scare_images) - 1)];
+    failure_time = 0;
+    sanity_failure = _sanity;
+};
+
+finish_failure = function(_retry) {
+    instance_activate_all();
+    if (_retry) game_restart();
+    else game_end();
+};

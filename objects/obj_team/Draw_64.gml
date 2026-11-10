@@ -30,8 +30,6 @@ team_draw_status_bar(_left, _top, _width, _bar_height, energy, energy_max, c_tea
 if (instance_exists(_body)) {
     team_draw_status_bar(_left, _top + _line, _width, _bar_height, _body.hp, _body.health_max + stat_bonus.max_health, c_maroon, "HP");
     team_draw_status_bar(_left, _top + _line * 2, _width, _bar_height, floor(_body.san), _body.san_max, c_purple, "SAN (" + (_body.san_change_per_second > 0 ? "+" : "") + string_format(_body.san_change_per_second, 0, 2) + "/s)");
-} else {
-    team_draw_hud_text(_left, _top + _line, "Hunter down - R to restart room");
 }
 
 var _row = _top + _line * 3;

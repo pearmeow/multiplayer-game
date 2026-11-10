@@ -29,6 +29,7 @@ door_notice_time = max(0, door_notice_time - _dt);
 if (!instance_exists(team) || !instance_exists(aim_controller)) exit;
 
 moving = x != _old_x || y != _old_y;
+if (moving) coop_update_footsteps(point_distance(_old_x, _old_y, x, y), 1);
 if (moving) {
     var _dx = x - _old_x;
     var _dy = y - _old_y;

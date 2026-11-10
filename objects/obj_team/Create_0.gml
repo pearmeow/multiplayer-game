@@ -1,5 +1,8 @@
 if (instance_number(obj_team) > 1) { instance_destroy(); exit; }
 energy = energy_max;
+bgm_voice = -1;
+heartbeat_voice = -1;
+heartbeat_gain = heartbeat_idle_gain;
 reward_keys = [];
 san_pressure = 0;
 opened_reward_rooms = {};
@@ -144,6 +147,8 @@ window_set_size(camera_width, camera_height);
 display_set_gui_size(camera_width, camera_height);
 
 change_room = function(_target) {
+    var _manager = instance_find(obj_game_manager, 0);
+    if (instance_exists(_manager) && _manager.failure_sprite != -1) return false;
     if (changing_room) {
         return false;
     }

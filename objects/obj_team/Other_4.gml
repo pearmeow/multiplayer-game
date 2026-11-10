@@ -16,3 +16,5 @@ view_yport[0] = 0;
 view_wport[0] = camera_width;
 view_hport[0] = camera_height;
 update_camera();
+
+team_start_room_audio(instance_exists(_body) ? _body.floor_bgm : -1);

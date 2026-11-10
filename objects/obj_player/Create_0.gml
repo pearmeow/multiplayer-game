@@ -1,12 +1,26 @@
 san = san_max;
 san_change_per_second = 0;
 damage_cooldown = 0;
+footstep_distance = 0;
+footstep_index = 0;
+
+play_hit_sound = function() {
+    if (hurt_sound != -1) audio_play_sound(hurt_sound, 3, false, hurt_gain);
+};
+
+fail_run = function(_sanity) {
+    if (!_sanity) hp = 0;
+    var _manager = instance_find(obj_game_manager, 0);
+    if (_manager == noone) _manager = instance_create_depth(0, 0, depth, obj_game_manager);
+    _manager.start_failure(_sanity);
+};
 
 take_damage = function(_damage) {
-    if (_damage <= 0 || damage_cooldown > 0) return false;
+    if (hp <= 0 || _damage <= 0 || damage_cooldown > 0) return false;
+    play_hit_sound();
     hp = max(0, hp - _damage);
     damage_cooldown = contact_damage_interval;
-    if (hp == 0) instance_destroy();
+    if (hp == 0) fail_run(false);
     return true;
 };
 
@@ -16,21 +30,25 @@ get_sanity_vision_scale = function() {
 
 update_sanity = function(_seconds) {
     var _visible = false;
-    var _chased = false;
+    var _chase_drain = 0;
     for (var _i = 0; _i < instance_number(par_enemy); _i++) {
         var _enemy = instance_find(par_enemy, _i);
-        if (_enemy.state == 1) _chased = true;
+        if (_enemy.state == 1) {
+            var _distance = point_distance(x, y, _enemy.x, _enemy.y);
+            var _near = clamp(1 - _distance / max(1, _enemy.notice_distance), 0, 1);
+            _chase_drain = max(_chase_drain, lerp(san_chase_drain_far, san_chase_drain_near, _near));
+        }
         if (coop_visible(id, _enemy.x, _enemy.y, _enemy)) _visible = true;
     }
-    var _drain = san_floor_drain;
+    var _drain = san_floor_drain + _chase_drain;
     if (_visible) _drain += san_drain_per_second;
-    if (_chased) _drain += san_chase_drain;
     if (_drain > 0) {
         san_change_per_second = -(_drain + team.san_pressure);
     } else {
         san_change_per_second = san_recovery_per_second;
     }
     san = clamp(san + san_change_per_second * max(0, _seconds), 0, san_max);
+    if (san == 0) fail_run(true);
 };
 
 shot_time = 0;

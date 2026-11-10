@@ -1,4 +1,7 @@
 targetable = true;
+footstep_distance = 0;
+footstep_index = 0;
+alert_sounded = false;
 if (sprite_index == -1 && mask_index == -1) {
     mask_index = spr_enemy;
     image_xscale = hit_radius * 2 / sprite_get_width(spr_enemy);

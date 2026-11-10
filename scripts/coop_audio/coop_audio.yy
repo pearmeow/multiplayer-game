@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"coop_audio",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"coop_audio",
+  "parent":{
+    "name":"scripts",
+    "path":"folders/scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
