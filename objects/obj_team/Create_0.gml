@@ -139,7 +139,6 @@ advance_energy = function(_seconds) {
 };
 
 changing_room = false;
-run_complete = false;
 level_spawn = undefined;
 camera_id = -1;
 saved_aim_angle = 90;
@@ -148,7 +147,7 @@ display_set_gui_size(camera_width, camera_height);
 
 change_room = function(_target) {
     var _manager = instance_find(obj_game_manager, 0);
-    if (instance_exists(_manager) && _manager.failure_sprite != -1) return false;
+    if (instance_exists(_manager) && _manager.ending_active) return false;
     if (changing_room) {
         return false;
     }

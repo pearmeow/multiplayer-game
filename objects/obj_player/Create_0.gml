@@ -10,8 +10,7 @@ play_hit_sound = function() {
 
 fail_run = function(_sanity) {
     if (!_sanity) hp = 0;
-    var _manager = instance_find(obj_game_manager, 0);
-    if (_manager == noone) _manager = instance_create_depth(0, 0, depth, obj_game_manager);
+    var _manager = coop_game_manager();
     _manager.start_failure(_sanity);
 };
 

@@ -1,5 +1,4 @@
 changing_room = false;
-run_complete = false;
 level_spawn = undefined;
 var _body = instance_find(obj_player, 0);
 if (instance_exists(_body)) level_spawn = {x: _body.x, y: _body.y, depth: _body.depth};

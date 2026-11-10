@@ -1,23 +1,23 @@
-if (failure_sprite == -1) {
+if (!ending_active) {
     if (keyboard_check_pressed(ord("R"))) room_restart();
     exit;
 }
 
-if (!failure_frozen) {
+if (!ending_frozen) {
     var _team = instance_find(obj_team, 0);
     if (instance_exists(_team)) with (_team) team_stop_room_audio();
     instance_deactivate_all(true);
-    failure_frozen = true;
+    ending_frozen = true;
     exit;
 }
 
-if (failure_time < scare_hold_seconds + scare_fade_seconds) {
+if (!victory && failure_time < scare_hold_seconds + scare_fade_seconds) {
     failure_time += max(0, delta_time / 1000000);
     exit;
 }
 
 if (keyboard_check_pressed(vk_enter)) {
-    finish_failure(true);
+    finish_ending(true);
 } else if (keyboard_check_pressed(vk_escape)) {
-    finish_failure(false);
+    finish_ending(false);
 }

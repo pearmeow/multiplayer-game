@@ -29,6 +29,7 @@
   "physicsShapePoints":[],
   "physicsStartAwake":true,
   "properties":[
+    {"$GMObjectProperty":"v2","%Name":"victory_image","filters":[],"listItems":[],"multiselect":false,"name":"victory_image","rangeEnabled":false,"rangeMax":10000.0,"rangeMin":0.0,"resource":{"name":"spr_victory","path":"sprites/spr_victory/spr_victory.yy",},"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"spr_victory","varType":5,},
     {"$GMObjectProperty":"v2","%Name":"scare_hold_seconds","filters":[],"listItems":[],"multiselect":false,"name":"scare_hold_seconds","rangeEnabled":false,"rangeMax":10000.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"1","varType":0,},
     {"$GMObjectProperty":"v2","%Name":"scare_fade_seconds","filters":[],"listItems":[],"multiselect":false,"name":"scare_fade_seconds","rangeEnabled":false,"rangeMax":10000.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"2","varType":0,},
     {"$GMObjectProperty":"v2","%Name":"scare_images","filters":[],"listItems":[],"multiselect":false,"name":"scare_images","rangeEnabled":false,"rangeMax":10000.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"[spr_scare_reference, spr_scare_specter, spr_scare_wraith]","varType":4,},

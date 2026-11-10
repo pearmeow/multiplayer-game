@@ -7,19 +7,28 @@ font_enable_effects(font, true, {
 });
 
 randomize();
+ending_active = false;
+victory = false;
 failure_sprite = -1;
 failure_time = 0;
-failure_frozen = false;
+ending_frozen = false;
 sanity_failure = false;
 
 start_failure = function(_sanity) {
-    if (failure_sprite != -1) return;
+    if (ending_active) return;
+    ending_active = true;
     failure_sprite = scare_images[irandom(array_length(scare_images) - 1)];
     failure_time = 0;
     sanity_failure = _sanity;
 };
 
-finish_failure = function(_retry) {
+start_victory = function() {
+    if (ending_active) return;
+    ending_active = true;
+    victory = true;
+};
+
+finish_ending = function(_retry) {
     instance_activate_all();
     if (_retry) game_restart();
     else game_end();

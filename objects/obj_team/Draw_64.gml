@@ -50,9 +50,7 @@ if (show_help) {
     _row += _line * 3;
 }
 
-if (run_complete) {
-    team_draw_hud_text(_left, _row, "Escaped! All floors cleared.");
-} else if (instance_exists(_body)) {
+if (instance_exists(_body)) {
     var _remaining_enemies = instance_number(par_enemy);
     if (_remaining_enemies > 0) {
         team_draw_hud_text(_left, _row, "Objective: Clear the floor (" + string(_remaining_enemies) + " left)");

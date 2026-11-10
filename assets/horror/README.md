@@ -1,6 +1,6 @@
 # Horror asset candidates
 
-These files are reference candidates only. No sprite, sound, included file, or death effect has been registered in either GameMaker project. Do not execute archive contents. PNG and WAV assets can be previewed before importing.
+This directory contains original source files and unused alternatives. The wraith uses the fly sheet and a short alert cut from the sound pack.
 
 ## Enemy: Animated Creepy Ghost Sprite
 - Author: ZaninDevelopers
@@ -30,8 +30,4 @@ These files are reference candidates only. No sprite, sound, included file, or d
 - Source: https://opengameart.org/content/horror-hit-soundpack-1
 - File: jumpscare/horror_hit_soundpack_1.zip
 - Contains 55 WAV effects and the author's README, also copied as soundpack_README.txt.
-- Not auditioned or normalized. Preview at low playback volume and select one before integration.
-
-## Proposed later integration
-Keep the hunter and friendly ghost readable. Use the dark enemy sprite as contrast.
-On hunter death, play one brief portrait/attack-frame reveal and one short sound, then display the restart prompt. Trigger once per death, with a jumpscare toggle. No automatic playback has been added.
+- The wraith alert uses a trimmed mono cut of High 5.wav.

@@ -112,3 +112,10 @@ function coop_wall_view_distance(_probe, _x, _y, _angle, _range, _depth) {
     }
     return _visible;
 }
+
+
+function coop_game_manager() {
+    var _manager = instance_find(obj_game_manager, 0);
+    if (_manager == noone) _manager = instance_create_depth(0, 0, 0, obj_game_manager);
+    return _manager;
+}
