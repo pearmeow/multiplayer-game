@@ -1,4 +1,3 @@
-san = san_max;
 san_change_per_second = 0;
 damage_cooldown = 0;
 footstep_distance = 0;
@@ -23,35 +22,45 @@ take_damage = function(_damage) {
     return true;
 };
 
-get_sanity_fraction = function() {
-    return clamp(san / max(1, san_max), 0, 1);
+get_max_health = function() {
+    return health_max + team.stat_bonus.max_health;
 };
 
-get_vision_range = function(_base_range, _bonus = 0) {
-    var _scale = clamp((san - san_vision_floor_threshold) / max(1, san_max - san_vision_floor_threshold), 0, 1);
-    return lerp(_base_range * san_vision_min_fraction, _base_range + _bonus, _scale);
+get_max_sanity = function() {
+    return san_max + team.stat_bonus.max_sanity;
+};
+
+get_sanity_fraction = function() {
+    return clamp(san / max(1, get_max_sanity()), 0, 1);
+};
+
+get_vision_range = function(_base_range) {
+    var _scale = clamp((san - san_vision_floor_threshold) / max(1, get_max_sanity() - san_vision_floor_threshold), 0, 1);
+    return _base_range * team.stat_bonus.vision * lerp(san_vision_min_fraction, 1, _scale);
 };
 
 get_move_speed = function() {
-    return move_speed + team.stat_bonus.move_speed;
+    return move_speed * team.stat_bonus.move_speed;
 };
 
 update_sanity = function(_seconds) {
-    var _visible = false;
     var _chase_drain = 0;
     for (var _i = 0; _i < instance_number(par_enemy); _i++) {
         var _enemy = instance_find(par_enemy, _i);
-        if (_enemy.state == 1) {
-            var _distance = point_distance(x, y, _enemy.x, _enemy.y);
-            var _near = coop_proximity(_distance, _enemy.notice_distance);
-            _chase_drain = max(_chase_drain, lerp(san_chase_drain_far, san_chase_drain_near, _near));
+        if (coop_hunter_sees(id, _enemy)) {
+            _chase_drain = san_chase_drain_near;
+            break;
         }
-        if (!_visible) _visible = coop_hunter_sees(id, _enemy);
+        if (_enemy.state != 1) continue;
+        var _distance = point_distance(x, y, _enemy.x, _enemy.y);
+        if (_distance > san_chase_range) continue;
+        var _near = coop_proximity(_distance - san_chase_full_range, san_chase_range - san_chase_full_range);
+        _chase_drain = max(_chase_drain, lerp(san_chase_drain_far, san_chase_drain_near, _near));
     }
-    var _drain = san_floor_drain + _chase_drain;
-    if (_visible) _drain += san_drain_per_second;
-    san_change_per_second = _drain > 0 ? -(_drain + team.san_pressure) : san_recovery_per_second;
-    san = clamp(san + san_change_per_second * max(0, _seconds), 0, san_max);
+    var _drain = san_floor_drain;
+    if (_chase_drain > 0) _drain += min(san_chase_drain_near, _chase_drain + team.san_pressure);
+    san_change_per_second = _drain > 0 ? -_drain : san_recovery_per_second;
+    san = clamp(san + san_change_per_second * max(0, _seconds), 0, get_max_sanity());
     if (san == 0) fail_run(true);
 };
 
@@ -71,7 +80,8 @@ interaction_target = noone;
 action_effect_colour = interact_effect_colour;
 team = instance_find(obj_team, 0);
 if (team == noone) team = instance_create_depth(0, 0, -1000, obj_team);
-hp = health_max + team.stat_bonus.max_health;
+hp = get_max_health();
+san = get_max_sanity();
 aim_controller = instance_create_depth(x, y, depth + 1, obj_aim);
 aim_controller.owner_body = id;
 

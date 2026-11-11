@@ -119,23 +119,7 @@
   "physicsShape": 1,
   "physicsShapePoints": [],
   "physicsStartAwake": true,
-  "properties": [
-    {
-      "$GMObjectProperty": "v2",
-      "%Name": "hunter_speed_multiplier",
-      "filters": [],
-      "listItems": [],
-      "multiselect": false,
-      "name": "hunter_speed_multiplier",
-      "rangeEnabled": false,
-      "rangeMax": 10000.0,
-      "rangeMin": 0.0,
-      "resourceType": "GMObjectProperty",
-      "resourceVersion": "2.0",
-      "value": "1.2",
-      "varType": 0
-    }
-  ],
+  "properties": [],
   "resourceType": "GMObject",
   "resourceVersion": "2.0",
   "solid": false,

@@ -4,6 +4,7 @@ bgm_voice = -1;
 heartbeat_voice = -1;
 enemy_proximity = 0;
 reward_keys = [];
+reward_counts = {};
 san_pressure = 0;
 opened_reward_rooms = {};
 load_reward_data = function(_path) {
@@ -20,7 +21,7 @@ load_reward_data = function(_path) {
 
 weapon_catalog = load_reward_data("weapons.json");
 reward_pools = load_reward_data("reward_pools.json");
-stat_bonus = {move_speed: 0, ghost_vision: 0, max_health: 0};
+stat_bonus = {move_speed: 1, vision: 1, max_health: 0, max_sanity: 0};
 
 weapon = variable_struct_get(weapon_catalog, starting_weapon);
 weapon_damage = is_undefined(weapon) ? 0 : weapon.damage;
@@ -32,11 +33,23 @@ has_reward = function(_key) {
     return false;
 };
 
-get_upgrade = function(_weapon_id) {
-    var _next = variable_struct_get(weapon_catalog, _weapon_id);
-    if (is_undefined(_next)) return undefined;
-    if (!is_undefined(weapon) && _next.rank <= weapon.rank) return undefined;
-    return _next;
+get_next_weapon = function(_preferred) {
+    var _next_rank = is_undefined(weapon) ? 0 : weapon.rank + 1;
+    var _choices = [];
+    var _ids = variable_struct_get_names(weapon_catalog);
+    for (var _i = 0; _i < array_length(_ids); _i++) {
+        var _candidate = variable_struct_get(weapon_catalog, _ids[_i]);
+        if (_candidate.rank != _next_rank) continue;
+        if (_ids[_i] == _preferred) return _candidate;
+        array_push(_choices, _candidate);
+    }
+    if (array_length(_choices) == 0) return undefined;
+    return _choices[irandom(array_length(_choices) - 1)];
+};
+
+get_reward_count = function(_id) {
+    if (!variable_struct_exists(reward_counts, _id)) return 0;
+    return variable_struct_get(reward_counts, _id);
 };
 
 roll_reward_amount = function(_amount) {
@@ -44,20 +57,14 @@ roll_reward_amount = function(_amount) {
     return round(_amount * (1 + _bonus) * 100) / 100;
 };
 
-pick_chest_reward = function(_pool, _weapons_only) {
+pick_chest_reward = function(_pool, _next_weapon) {
     if (!is_array(_pool)) return undefined;
     var _choices = [];
     var _weight = 0;
     for (var _i = 0; _i < array_length(_pool); _i++) {
         var _entry = _pool[_i];
-        if (_entry.weight <= 0) continue;
-        if (variable_struct_exists(_entry, "weapon")) {
-            var _upgrade = get_upgrade(_entry.weapon);
-            if (is_undefined(_upgrade)) continue;
-            if (!is_undefined(weapon) && _upgrade.rank != weapon.rank + 1) continue;
-        } else {
-            if (_weapons_only || !variable_struct_exists(stat_bonus, _entry.stat) || _entry.fraction <= 0) continue;
-        }
+        if (_entry.weight <= 0 || get_reward_count(_entry.id) >= reward_pools.max_per_upgrade) continue;
+        if (_entry.id == "weapon" && is_undefined(_next_weapon)) continue;
         _weight += _entry.weight;
         array_push(_choices, {entry: _entry, threshold: _weight});
     }
@@ -73,39 +80,34 @@ claim_reward = function(_key, _weapon_id, _pool_id, _body) {
     if (has_reward(_key)) return false;
     var _room_key = room_get_name(room);
     var _first = !variable_struct_exists(opened_reward_rooms, _room_key);
-    var _pool = variable_struct_get(reward_pools, _pool_id);
+    var _next_weapon = undefined;
+    if (get_reward_count("weapon") < reward_pools.max_per_upgrade) _next_weapon = get_next_weapon(_weapon_id);
+
     var _entry = undefined;
-    if (_first) {
-        var _preferred = get_upgrade(_weapon_id);
-        if (!is_undefined(_preferred) && (is_undefined(weapon) || _preferred.rank == weapon.rank + 1)) {
-            _entry = {weapon: _weapon_id};
-        } else {
-            _entry = pick_chest_reward(reward_pools.mixed, true);
-        }
+    if (_first && !is_undefined(_next_weapon)) {
+        _entry = {id: "weapon"};
+    } else {
+        _entry = pick_chest_reward(variable_struct_get(reward_pools, _pool_id), _next_weapon);
     }
-    if (is_undefined(_entry)) _entry = pick_chest_reward(_pool, false);
     if (is_undefined(_entry)) {
-        notify("No reward available");
+        notify("No upgrades remaining");
         return false;
     }
 
-    if (variable_struct_exists(_entry, "weapon")) {
-        weapon = get_upgrade(_entry.weapon);
+    if (_entry.id == "weapon") {
+        weapon = _next_weapon;
         weapon_damage = roll_reward_amount(weapon.damage);
         notify("Equipped " + weapon.name + " / Damage " + string(weapon_damage));
     } else {
-        var _base = {
-            move_speed: _body.move_speed,
-            ghost_vision: _body.aim_controller.ghost_vision_range,
-            max_health: _body.health_max
-        };
-        var _previous = variable_struct_get(stat_bonus, _entry.stat);
-        var _amount = (variable_struct_get(_base, _entry.stat) + _previous) * _entry.fraction;
-        variable_struct_set(stat_bonus, _entry.stat, _previous + _amount);
-        if (_entry.stat == "max_health") _body.hp += _amount;
-        notify(_entry.label + " +" + string(round(_amount * 100) / 100));
+        var _previous = variable_struct_get(stat_bonus, _entry.id);
+        var _updated = variable_struct_exists(_entry, "fraction")
+            ? _previous * (1 + _entry.fraction) : _previous + _entry.amount;
+        variable_struct_set(stat_bonus, _entry.id, _updated);
+        if (_entry.id == "max_health") _body.hp = min(_body.get_max_health(), _body.hp + _entry.amount);
+        notify(_entry.label);
     }
 
+    variable_struct_set(reward_counts, _entry.id, get_reward_count(_entry.id) + 1);
     array_push(reward_keys, _key);
     variable_struct_set(opened_reward_rooms, _room_key, true);
     return true;

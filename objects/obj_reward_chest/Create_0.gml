@@ -1,5 +1,5 @@
 event_inherited();
-prompt = "Open reward chest (free)";
+prompt = "Open reward chest";
 interaction_free = true;
 reward_key = reward_id;
 if (reward_key == "") reward_key = room_get_name(room) + ":" + string(id);

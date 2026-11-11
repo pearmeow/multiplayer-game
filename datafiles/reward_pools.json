@@ -1,38 +1,33 @@
 {
+  "max_per_upgrade": 3,
   "mixed": [
     {
-      "weapon": "lever",
-      "weight": 3
+      "id": "weapon",
+      "weight": 1
     },
     {
-      "weapon": "rifle",
-      "weight": 3
+      "id": "max_health",
+      "label": "Max health +25 / Heal 25",
+      "amount": 25,
+      "weight": 1
     },
     {
-      "weapon": "shotgun",
-      "weight": 2
+      "id": "vision",
+      "label": "Hunter and ghost vision +30%",
+      "fraction": 0.3,
+      "weight": 1
     },
     {
-      "weapon": "sniper",
-      "weight": 2
+      "id": "move_speed",
+      "label": "Move speed +20%",
+      "fraction": 0.2,
+      "weight": 1
     },
     {
-      "stat": "move_speed",
-      "label": "Move speed",
-      "weight": 2,
-      "fraction": 0.1
-    },
-    {
-      "stat": "ghost_vision",
-      "label": "Ghost vision",
-      "weight": 2,
-      "fraction": 0.1
-    },
-    {
-      "stat": "max_health",
-      "label": "Max health",
-      "weight": 2,
-      "fraction": 0.1
+      "id": "max_sanity",
+      "label": "Max SAN +25",
+      "amount": 25,
+      "weight": 1
     }
   ]
 }

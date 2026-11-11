@@ -11,7 +11,7 @@ hp = health_max;
 defeat = function() {
     var _body = instance_find(obj_player, 0);
     if (instance_exists(_body)) {
-        _body.san = _body.san_max;
+        _body.san = _body.get_max_sanity();
         _body.team.san_pressure += _body.san_kill_pressure;
     }
     instance_destroy();
@@ -24,21 +24,16 @@ receive_shot = function(_attacker, _damage) {
         defeat();
         return;
     }
-    state = 1;
-    nav_repath_timer = 0;
+    pursue_hunter();
 };
 
-start_img_ind = 0
-end_img_ind = 5
-
-start_x = x;
-start_y = y;
-state = 0; // 0 idle, 1 chase, 2 return home
+state = 0; // 0 idle, 1 chase
 ai_enabled = true;
 nav_repath_timer = 0;
 nav_grid = -1;
 nav_path = path_add();
 nav_point_index = 0;
+chase_animation = false;
 get_slow_multiplier = function() {
     var _ghost = instance_find(obj_aim, 0);
     if (instance_exists(_ghost) && _ghost.slow_active
@@ -47,49 +42,48 @@ get_slow_multiplier = function() {
     }
     return 1;
 };
+pursue_hunter = function() {
+    state = 1;
+    nav_repath_timer = 0;
+};
+
+update_pursuit = function(_hunter) {
+    if (!instance_exists(_hunter)) {
+        state = 0;
+        return false;
+    }
+    if (state == 0 && point_distance(x, y, _hunter.x, _hunter.y) <= notice_distance
+        && collision_line(x, y, _hunter.x, _hunter.y, obj_wall, true, true) == noone) {
+        pursue_hunter();
+    }
+    return state == 1;
+};
+
+get_chase_speed = function(_hunter) {
+    return _hunter.get_move_speed() * hunter_speed_multiplier * get_slow_multiplier();
+};
+
 ai_update = function(_seconds) {
     if (!ai_enabled) return;
     var _dt = coop_motion_seconds(_seconds);
-    var _player = instance_nearest(x, y, obj_player);
-	if (_player != noone && _player.x < x) {
-		if (image_xscale > 0) {
-			image_xscale *= -1
-		}
-	} else if (_player != noone) {
-		if (image_xscale < 0) {
-			image_xscale *= -1
-		}
-	}
-    var _player_distance = instance_exists(_player) ? point_distance(x, y, _player.x, _player.y) : infinity;
-    var _old_state = state;
-    if (state == 0) {
-        if (_player_distance < notice_distance) state = 1;
-    } else if (state == 1) {
-        if (!instance_exists(_player)) state = 0;
-    }
-    if (_old_state != state) {
-		if (state == 0) {
-			start_img_ind = 0
-			end_img_ind = 5
-		} else {
-			start_img_ind = 8
-			end_img_ind = 14
-		}
-		nav_repath_timer = 0;
-		image_index = start_img_ind
-	}
-	if (image_index >= end_img_ind) {
-		image_index = start_img_ind
-	}
-    if (state == 0) return;
-    if (state == 1 && enemy_nav_touching_player(id)) {
+    var _hunter = instance_nearest(x, y, obj_player);
+    var _chasing = update_pursuit(_hunter);
+    if (_hunter != noone && _hunter.x != x) image_xscale = sign(_hunter.x - x) * abs(image_xscale);
+
+    var _first_frame = _chasing ? chase_first_frame : idle_first_frame;
+    var _last_frame = _chasing ? chase_last_frame : idle_last_frame;
+    if (_chasing != chase_animation || image_index >= _last_frame) image_index = _first_frame;
+    chase_animation = _chasing;
+
+    if (!_chasing) return;
+    if (place_meeting(x, y, _hunter)) {
         nav_repath_timer = 0;
         return;
     }
     nav_repath_timer -= _dt;
     if (nav_repath_timer <= 0) {
-        enemy_nav_plan(id, state == 1 ? _player.x : start_x, state == 1 ? _player.y : start_y);
+        enemy_nav_plan(id, _hunter.x, _hunter.y);
         nav_repath_timer = nav_repath_interval;
     }
-    enemy_nav_follow(id, move_speed * get_slow_multiplier() * _dt);
+    enemy_nav_follow(id, get_chase_speed(_hunter) * _dt);
 };

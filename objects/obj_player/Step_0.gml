@@ -4,7 +4,10 @@ var _dt = coop_motion_seconds(coop_step_seconds());
 fire_cooldown = max(0, fire_cooldown - _dt);
 damage_cooldown = max(0, damage_cooldown - _dt);
 var _enemy = instance_place(x, y, par_enemy);
-if (_enemy != noone && take_damage(_enemy.contact_damage) && hp == 0) exit;
+if (_enemy != noone && take_damage(_enemy.contact_damage)) {
+    _enemy.pursue_hunter();
+    if (hp == 0) exit;
+}
 
 var _mx = keyboard_check(ord("D")) - keyboard_check(ord("A"));
 var _my = keyboard_check(ord("S")) - keyboard_check(ord("W"));

@@ -33,7 +33,7 @@ get_hunter_vision_range = function() {
 };
 
 get_ghost_vision_range = function() {
-    return owner_body.get_vision_range(ghost_vision_range, owner_body.team.stat_bonus.ghost_vision);
+    return owner_body.get_vision_range(ghost_vision_range);
 };
 
 update_interaction = function(_pressed, _dx = 0, _dy = 0) {
