@@ -55,10 +55,26 @@ if (instance_exists(_body)) {
     if (_remaining_enemies > 0) {
         team_draw_hud_text(_left, _row, "Objective: Clear the floor (" + string(_remaining_enemies) + " left)");
     } else {
-        team_draw_hud_text(_left, _row, "Objective: Return to the starting point and enter the portal");
+        team_draw_hud_text(_left, _row, "Enter the portal");
     }
 }
-if (feedback_time > 0) team_draw_hud_text(_left, _row + _line, feedback);
+if (feedback_time > 0) {
+    if (feedback_actor == noone) {
+        team_draw_hud_text(_left, _row + _line, feedback);
+    } else if (camera_id != -1 && instance_exists(feedback_actor)) {
+        var _point = team_gui_point(team_gui_projection(), feedback_actor.x, feedback_actor.bbox_top);
+        var _offset = 4;
+        if (feedback_actor.door_notice_time > 0) _offset += _line * 2;
+        draw_set_halign(fa_center);
+        draw_set_valign(fa_bottom);
+        draw_set_colour(c_black);
+        team_draw_hud_text(_point.x + 1, _point.y - _offset + 1, feedback);
+        draw_set_colour(c_white);
+        team_draw_hud_text(_point.x, _point.y - _offset, feedback);
+        draw_set_halign(fa_left);
+        draw_set_valign(fa_top);
+    }
+}
 
 if (camera_id != -1 && instance_exists(_body) && instance_exists(_body.interaction_target)) {
     var _target = _body.interaction_target;
@@ -81,7 +97,7 @@ if (camera_id != -1 && instance_exists(_body) && _body.door_notice_time > 0) {
     draw_set_halign(fa_center);
     draw_set_valign(fa_bottom);
     draw_set_alpha(_remaining);
-    team_draw_hud_text(_point.x, _point.y - _line * (1 - _remaining), "A door at somewhere is opened");
+    team_draw_hud_text(_point.x, _point.y - _line * (1 - _remaining), "Somewhere, a door has opened");
     draw_set_alpha(1);
     draw_set_halign(fa_left);
     draw_set_valign(fa_top);

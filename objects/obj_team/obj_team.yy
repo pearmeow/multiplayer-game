@@ -32,8 +32,8 @@
   "physicsShapePoints":[],
   "physicsStartAwake":true,
   "properties":[
-    {"$GMObjectProperty":"v2","%Name":"san_audio_min_gain","filters":[],"listItems":[],"multiselect":false,"name":"san_audio_min_gain","rangeEnabled":false,"rangeMax":10000.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0.25","varType":0},
-    {"$GMObjectProperty":"v2","%Name":"bgm_near_multiplier","filters":[],"listItems":[],"multiselect":false,"name":"bgm_near_multiplier","rangeEnabled":false,"rangeMax":10000.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0.4","varType":0},
+    {"$GMObjectProperty":"v2","%Name":"san_audio_min_gain","filters":[],"listItems":[],"multiselect":false,"name":"san_audio_min_gain","rangeEnabled":false,"rangeMax":10000.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0.25","varType":0,},
+    {"$GMObjectProperty":"v2","%Name":"bgm_near_multiplier","filters":[],"listItems":[],"multiselect":false,"name":"bgm_near_multiplier","rangeEnabled":false,"rangeMax":10000.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0.4","varType":0,},
     {"$GMObjectProperty":"v2","%Name":"bgm_gain","filters":[],"listItems":[],"multiselect":false,"name":"bgm_gain","rangeEnabled":false,"rangeMax":10000.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0.36","varType":0,},
     {"$GMObjectProperty":"v2","%Name":"heartbeat_sound","filters":[],"listItems":[],"multiselect":false,"name":"heartbeat_sound","rangeEnabled":false,"rangeMax":10000.0,"rangeMin":0.0,"resource":{"name":"snd_heartbeat","path":"sounds/snd_heartbeat/snd_heartbeat.yy",},"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"snd_heartbeat","varType":5,},
     {"$GMObjectProperty":"v2","%Name":"heartbeat_idle_gain","filters":[],"listItems":[],"multiselect":false,"name":"heartbeat_idle_gain","rangeEnabled":false,"rangeMax":10000.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0.16","varType":0,},

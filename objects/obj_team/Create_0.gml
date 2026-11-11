@@ -90,21 +90,27 @@ claim_reward = function(_key, _weapon_id, _pool_id, _body) {
         _entry = pick_chest_reward(variable_struct_get(reward_pools, _pool_id), _next_weapon);
     }
     if (is_undefined(_entry)) {
-        notify("No upgrades remaining");
+        notify("No upgrades remaining", _body);
         return false;
     }
 
     if (_entry.id == "weapon") {
+        var _previous_damage = weapon_damage;
         weapon = _next_weapon;
         weapon_damage = roll_reward_amount(weapon.damage);
-        notify("Equipped " + weapon.name + " / Damage " + string(weapon_damage));
+        var _message = "Equipped " + weapon.name;
+        if (_previous_damage > 0) {
+            var _damage_change = round((weapon_damage / _previous_damage - 1) * 100);
+            _message += " / Damage " + (_damage_change > 0 ? "+" : "") + string(_damage_change) + "%";
+        }
+        notify(_message, _body);
     } else {
         var _previous = variable_struct_get(stat_bonus, _entry.id);
         var _updated = variable_struct_exists(_entry, "fraction")
             ? _previous * (1 + _entry.fraction) : _previous + _entry.amount;
         variable_struct_set(stat_bonus, _entry.id, _updated);
         if (_entry.id == "max_health") _body.hp = min(_body.get_max_health(), _body.hp + _entry.amount);
-        notify(_entry.label);
+        notify(_entry.label, _body);
     }
 
     variable_struct_set(reward_counts, _entry.id, get_reward_count(_entry.id) + 1);
@@ -120,14 +126,16 @@ get_action_cost = function() {
 regen_elapsed = 0;
 feedback = "";
 feedback_time = 0;
+feedback_actor = noone;
 try_spend = function(_cost) {
     if (_cost < 0 || energy < _cost) return false;
     energy = clamp(energy - _cost, 0, energy_max);
     return true;
 };
-notify = function(_message) {
+notify = function(_message, _actor = noone) {
     feedback = _message;
     feedback_time = hud_feedback_duration;
+    feedback_actor = _actor;
 };
 
 advance_energy = function(_seconds) {
