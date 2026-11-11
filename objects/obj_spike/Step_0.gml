@@ -14,3 +14,7 @@ if (instance_exists(_ghost) && _ghost.slow_active
 // Move in the direction of the spike's image angle.
 x += spd * _multiplier * dcos(image_angle + 90);
 y -= spd * _multiplier * dsin(image_angle + 90);
+
+if (collidable && place_meeting(x, y, obj_wall)) {
+	instance_destroy()
+}

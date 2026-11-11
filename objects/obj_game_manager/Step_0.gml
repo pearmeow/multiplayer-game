@@ -1,3 +1,16 @@
+if (keyboard_check(ord("1"))) {
+	room_goto(rm_01)
+}
+if (keyboard_check(ord("2"))) {
+	room_goto(rm_02)
+}
+if (keyboard_check(ord("3"))) {
+	room_goto(rm_03)
+}
+if (keyboard_check(ord("4"))) {
+	room_goto(rm_04)
+}
+
 if (!ending_active) {
     if (keyboard_check_pressed(ord("R"))) room_restart();
     exit;
